@@ -1,0 +1,42 @@
+<scroll-view scroll-y class="scrollPage">
+  <image src="/images/efy.png" mode="widthFix" class="png" style="width:100%"></image>
+  <view class="layout-index">
+    <view wx:if="{{status==0}}" class="index-card bg-img" style="background-image:url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gsxy5mqf1oj36y01jkqd9.jpg)">
+      <view class="card-name">兴化语记</view>
+      <view class="card-slogan">记住乡愁 留下乡音</view>
+      <button class="card-btn cu-btn round bg-black shadow" bindtap="login" style="width:22vw">授权登录</button>
+    </view>
+    <view class="index-word">
+      <view class="flex solid-bottom justify-between">
+        <view class="padding-sm margin-xs text-bold">每日一词</view>
+        <view class="padding-sm margin-xs text-grey">MORE</view>
+      </view>
+      <view class="flex">
+        <view class="flex-sub padding-sm margin text-center solid-right">
+          <view class="text-bold text-xsl">行</view>
+          <text decode="true" class="text-blue margin-sm">gia2&nbsp;&nbsp;&nbsp;/kia13/</text>
+        </view>
+        <view class="word-sy flex-sub margin-xs text-grey">
+          (1)走：~城里（进城）；头前~（先走）|未学~，笃学飞（比喻基础未打好想一步登天）。(2)（车、船等）运行；移动：班车~宽宽（很慢）；点钟无~。(3)离开，去：我下月卜去~上海；椅子搬~。(4)（亲友之间）来往：~外家；亲情有~有亲。
+        </view>
+      </view>
+    </view>
+    <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+      duration="500">
+      <swiper-item wx:for="{{swiperList}}" wx:key>
+        <image src="{{item.url}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+    <view class="index-search">
+      <view class="flex">
+        <view class="flex-treble padding-sm margin-xs radius">
+          <view class="text-xl text-bold">语记·搜索</view>
+          <view class="text-grey text-bold" style="margin-top:5rpx">学习了解更多莆仙方言</view>
+        </view>
+        <view class="flex-sub padding-sm margin-sm radius bg-img" style="background-image:url('https://wx2.sinaimg.cn/mw690/0084vph8ly1gsw0m4zm6wj30so0iqact.jpg')">
+        </view>
+      </view>
+    </view>
+    <view class="stand-view"></view>
+  </view>
+</scroll-view>

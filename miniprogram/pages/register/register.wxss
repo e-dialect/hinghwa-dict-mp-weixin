@@ -1,0 +1,10 @@
+page {
+  background-color: #ffffff;
+}
+
+.logo {
+  width: 50vw;
+  display: block;
+  margin: auto;
+}
+
