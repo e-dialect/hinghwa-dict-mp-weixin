@@ -1,0 +1,49 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+</cu-custom>
+<view class="cu-form-group padding" bindtap="chooseAvatar">
+  <view class="text-bold-less title">头像</view>
+  <view>
+    <image src="{{avatar}}" class="margin-right-xs cu-avatar xl round" mode="aspectFill"></image>
+    <text class="cuIcon-right text-gray"></text>
+  </view>
+</view>
+<view class="cu-form-group" bindtap="changeUsername">
+  <view class="text-bold-less title">昵称</view>
+  <view>
+    {{username}}
+    <text class="cuIcon-right text-gray"></text>
+  </view>
+</view>
+<view class="cu-form-group" bindtap="changeEmail">
+  <view class="text-bold-less title">邮箱</view>
+  <view>
+    {{email}}
+    <text class="cuIcon-right text-gray"></text>
+  </view>
+</view>
+<view class="cu-form-group" bindtap="changePhone">
+  <view class="text-bold-less title">手机</view>
+  <view>
+    {{phone}}
+    <text class="cuIcon-right text-gray"></text>
+  </view>
+</view>
+<view class="cu-form-group padding-top-xl" style="background-color:#f7f7f7;">
+  <view class="text-bold text-df text-gray">个人信息</view>
+</view>
+<view class="cu-form-group">
+  <view class="text-bold-less title">生日</view>
+  <picker mode="date" value="{{date}}" start="1990-09-01" end="2020-09-01" bindchange="DateChange">
+    <view class="picker">
+      {{date}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="text-bold-less title">现居地</view>
+  <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      <text >{{region[1]}} {{region[2]}}</text>
+    </view>
+  </picker>
+</view>
