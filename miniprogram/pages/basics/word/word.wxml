@@ -1,0 +1,74 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="word-bg">
+    <view class="text-xl text-white back" bindtap="back">
+      <text class="cuIcon-back"></text>
+    </view>
+  </view>
+  <view style="box-shadow:0 -10px 40px 60px #f7f7f7;position:relative;z-index:100;"></view>
+  <view class="layout-index" style="z-index:100">
+    <view class="flex card padding-sm">
+      <view class="flex-sub text-center text-bold text-slp margin-right-sm" style="border:1px solid grey;">{{word.word}}
+      </view>
+      <view class="flex-twice flex flex-direction justify-center">
+        <view class="flex justify-between">
+          <view class="text-grey">
+            日期：<text class="text-blue">{{date}}</text>
+          </view>
+          <view class="text-grey">
+            <text class="cuIcon-attention"></text> {{word.views}}
+          </view>
+        </view>
+        <view class="margin-top-sm text-grey">
+          来源：<text class="text-blue">{{contributor}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="card padding margin-top-lg">
+      <view class="text-bold text-xl">释义</view>
+      <view class="text-grey margin-top-sm">{{word.definition}}</view>
+    </view>
+    <view class="flex">
+      <view class="flex-sub card-other padding">
+        <view>
+          <text class="text-bold text-xl">相关词语</text>
+          <text class="text-grey text-sm">（{{word.related_words.length}}个）</text>
+        </view>
+        <view class="flex justify-between margin-top-sm" wx:for="{{related_words}}" bindtap="getMore" data-id="{{index}}" wx:key>
+          <view class="text-df">{{item.word}}</view>
+          <view class="cuIcon-right text-gray"></view>
+        </view>
+      </view>
+      <view class="flex-sub card-pth padding">
+        <view class="text-bold text-xl">普通话</view>
+        <text class="text-df text-grey margin-top-sm" wx:for="{{word.mandarin}}" wx:key>{{item}} </text>
+      </view>
+    </view>
+    <view class="card padding-sm">
+      <view>
+        <text class="text-bold text-xl">相关文章</text>
+        <text class="text-grey text-sm">（{{word.related_articles.length}}篇）</text>
+      </view>
+      <view class="article" wx:for="{{related_articles}}" wx:key>
+        <image src="{{item.article.cover}}" mode="aspectFill"></image>
+        <view class="des">
+          <view class="flex justify-between">
+            <view class="text-bold-less text-lg">{{item.article.title}}</view>
+            <view class="text-grey margin-top-mini">
+              <text class="cuIcon-attention"></text> {{item.article.views}}
+            </view>
+          </view>
+          <view class="content">{{item.article.content}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="card padding">
+      <view class="flex justify-between">
+        <view class="text-bold text-xl">附注</view>
+        <view class="text-xl margin-right-xs margin-top-mini">
+          <text class="cuIcon-write text-grey"></text>
+        </view>
+      </view>
+      <view class="text-grey margin-top-sm">{{word.annotation}}</view>
+    </view>
+  </view>
+</scroll-view>

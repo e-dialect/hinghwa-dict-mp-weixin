@@ -2,6 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/basics/home/home",
+    "pages/basics/word/word",
+    "pages/basics/search/search",
+    "pages/basics/characters/characters",
+    "pages/basics/words/words",
     "pages/component/home/home",
     "pages/plugin/home/home",
     "pages/about/home/home",

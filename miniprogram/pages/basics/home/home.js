@@ -6,6 +6,7 @@ Component({
   },
   data: {
     status: 0,
+    word: {},
     swiperList: [{
       id: 0,
       url: 'https://wx4.sinaimg.cn/mw690/0084vph8ly1gsvkzupsv7j319j0sg7jn.jpg'
@@ -24,7 +25,8 @@ Component({
     attached: function () {
       // 在组件实例进入页面节点树时执行
       this.setData({
-        status: app.globalData.status
+        status: app.globalData.status,
+        word: app.globalData.word
       })
       if (this.data.status == 0) {
         app.globalData.token = wx.getStorageSync('token')
@@ -61,12 +63,69 @@ Component({
           })
         }
       }
+      this.getWordId();
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
     }
   },
   methods: {
+    getWordId() {
+      if (!this.data.word.id) {
+        var that = this
+        wx.request({
+          // url: app.globalData.server + "website/word_of_the_day",
+          url: 'http://127.0.0.1:4523/mock/404238/website/word_of_the_day',
+          method: 'GET',
+          data: {},
+          header: {
+            'content-type': 'application/json',
+          },
+          success(res) {
+            if (res.statusCode == 200)
+            {
+              app.globalData.word.id = res.data.word_of_the_day
+              that.setData({
+                word: {id: res.data.word_of_the_day}
+              })
+              // 获取每日一词
+              that.getWord();
+            } else {
+              wx.showToast({
+                title: '服务器错误'
+              })
+            }
+          }
+        })
+      }
+    },
+    getWord() {
+      let that = this
+      wx.request({
+        // url: app.globalData.server + 'words/' + app.globalData.word.id,
+        url: 'http://127.0.0.1:4523/mock/404238/words/1',
+        method: 'GET',
+        data: {},
+        header: {
+          'content-type': 'application/json',
+        },
+        success(res) {
+          console.log(res.data)
+          if (res.statusCode == 200)
+          {
+            app.globalData.word = res.data.word
+            that.setData({
+              word: res.data.word
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'error'
+            })
+          }
+        }
+      })
+    },
     login(e) {
       wx.getUserProfile({
         desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -82,6 +141,17 @@ Component({
         fail(err) {
           console.log(err)
         }
+      })
+    },
+    getMore() {
+      let word = JSON.stringify(this.data.word)
+      wx.navigateTo({
+        url: '/pages/basics/word/word?word=' + word
+      })
+    },
+    search() {
+      wx.navigateTo({
+        url: '/pages/basics/search/search',
       })
     }
   }

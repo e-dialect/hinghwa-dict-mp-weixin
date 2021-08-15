@@ -28,12 +28,13 @@ App({
     })
   },
   globalData: {
-    id: '',
     server: 'https://api.pxm.edialect.top/',
+    id: '',
     token: '',
     userInfo: {},
     status: 0,
-    data: {}
+    word: {},
+    data: {},
   },
   watch: function (method) {
     var obj = this.globalData;
