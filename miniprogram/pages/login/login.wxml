@@ -4,12 +4,12 @@
 <image class="logo" src="/images/logo.png" mode="widthFix"></image>
 <form bindsubmit="login">
   <view style="margin:5vh 0 0 0">
-    <view class="input">
+    <view class="login-input">
       <view class="cu-avatar lg round" style="background-image:url({{avatar}});margin-right:10rpx;">
       </view>
       <input class="text-xl" name="username" style="margin:auto 10rpx" placeholder="用户名"></input>
     </view>
-    <view class="input">
+    <view class="login-input">
       <image src="/images/login/{{ear}}" bindtap="bindEar" style="margin-right:10rpx;" class="cu-avatar lg round"></image>
       <input class="text-xl" name="password" password="{{is_close}}" style="margin:auto 10rpx" placeholder="输入密码"></input>
     </view>

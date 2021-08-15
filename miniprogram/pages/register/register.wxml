@@ -3,25 +3,25 @@
 </cu-custom>
 <image class="logo" src="/images/logo.png" mode="widthFix"></image>
 <form bindsubmit="register">
-  <view class="input">
+  <view class="login-input">
     <view class="cu-avatar round" style="margin-right:10rpx;">
     </view>
     <input class="text-xl" name="username" style="margin:auto 10rpx" placeholder="用户名"></input>
   </view>
-  <view class="input">
+  <view class="login-input">
     <image src="/images/login/{{ear}}" bindtap="bindEar" style="margin-right:10rpx;" class="cu-avatar round"></image>
     <input class="text-xl" name="password" style="margin:auto 10rpx" password="{{is_close}}" placeholder="输入密码"></input>
   </view>
-  <view class="input">
+  <view class="login-input">
     <image src="/images/login/{{ear}}" bindtap="bindEar" style="margin-right:10rpx;" class="cu-avatar round"></image>
     <input class="text-xl" name="password_confirmed" style="margin:auto 10rpx" password="{{is_close}}" placeholder="再次输入密码"></input>
   </view>
-  <view class="input">
+  <view class="login-input">
     <view class="cu-avatar round" style="margin-right:10rpx;">
     </view>
     <input class="text-xl" name="email" style="margin:auto 10rpx" bindinput="getEmail" placeholder="邮箱"></input>
   </view>
-  <view class="input">
+  <view class="login-input">
     <view class="cu-avatar round" style="margin-right:10rpx;">
     </view>
     <input class="text-xl" name="code" style="margin:auto 10rpx" placeholder="验证码"></input>

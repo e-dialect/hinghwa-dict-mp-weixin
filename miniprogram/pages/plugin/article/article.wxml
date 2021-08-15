@@ -1,0 +1,43 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="content" class="text-black">兴化语记</view>
+</cu-custom>
+<scroll-view scroll-y class="scrollPage">
+  <view class="padding-sm">
+    <view class="text-bold text-xxl line">三艘航母同时开工，扬言绝不向中国求助，美质疑：谁会提供技术？</view>
+    <view class="flex text-df margin-top">
+      <image class="cu-avatar round ssm" src="/images/efy.png" mode="aspectFill"></image>
+      <text decode="true">&nbsp;海陆空天视频&nbsp;&nbsp;<text class="text-grey">8/13 12:37</text>
+      </text>
+    </view>
+    <view class="solid-top solid-bottom margin-top-xl padding-top-sm padding-bottom-sm">
+      <text class="text-xl text-grey line">美国同时开工建造两艘航母，又一国家传来惊人消息，一起上马3艘航母，声称绝不向中国求助，美国绞尽脑汁都想不出来，那到底是谁提供的技术？</text>
+    </view>
+    <view class="margin-top-xl">
+      <text class="text-xl text-black line">美国同时开工建造两艘航母，又一国家传来惊人消息，一起上马3艘航母，声称绝不向中国求助，美国绞尽脑汁都想不出来，那到底是谁提供的技术？</text>
+    </view>
+    <view class="margin-top-xl">
+      <text class="text-xl text-black line">美国同时开工建造两艘航母，又一国家传来惊人消息，一起上马3艘航母，声称绝不向中国求助，美国绞尽脑汁都想不出来，那到底是谁提供的技术？</text>
+    </view>
+    <image src="/images/efy.png" mode="aspectFill" class="margin-top-xl" style="width:100%;"></image>
+    <view class="margin-top-xl">
+      <text class="text-xl text-black line">美国同时开工建造两艘航母，又一国家传来惊人消息，一起上马3艘航母，声称绝不向中国求助，美国绞尽脑汁都想不出来，那到底是谁提供的技术？</text>
+    </view>
+  </view>
+</scroll-view>
+<!-- <view class="cu-bar tabbar bg-white shadow foot" style="border-radius:40rpx;justify-content:flex-start;">
+  <view class="flex-sub text-center">
+
+  </view>
+  <view class="flex-four"><input type="text" class="solid-bottom bg-grey"></input></view>
+</view> -->
+
+
+<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}">
+  <view class="like" wx:if="{{status==0}}">
+    <text class="cuIcon-appreciate"> 21</text>
+  </view>
+  <view class="input-box">
+    <input style="margin-left:30rpx;" placeholder="写下你想说的..." bindfocus="focus" bindblur="blur" adjust-position="{{true}}"></input>
+  </view>
+  <button class="cu-btn bg-blue shadow" wx:if="{{status==1}}" style="width:16vw;">发送</button>
+</view>

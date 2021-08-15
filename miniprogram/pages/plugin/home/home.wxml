@@ -2,20 +2,29 @@
   <view class="text-black" slot="content">语记·互动</view>
 </cu-custom>
 <scroll-view scroll-y class="scrollPage">
-  <view class="cu-card article no-card" wx:for="{{articlesList}}" wx:key>
-    <view class="cu-item shadow" style="margin-bottom:10rpx;">
-      <view class="title">
-        <view class="text-cut">{{item.title}}</view>
-      </view>
-      <view class="content">
-        <image src="{{item.img}}" mode="aspectFill"></image>
-        <view class="desc">
-          <view class="text-content">{{item.content}}</view>
-          <view>
-            <view class="cu-tag bg-green light sm round">{{item.tag}}</view>
+  <view class="cu-card article no-card" bindtap="article" data-index="{{index}}" wx:for="{{articlesList}}" wx:key>
+    <view class="cu-item shadow" style="margin-bottom:20rpx;">
+      <view class="flex justify-between">
+        <view class="title flex">
+          <view class="text-cut">{{item.article.title}}</view>
+          <view class="cu-tag bg-blue light sm round margin-top-smp margin-left-xs">
+            <text class="cuIcon-appreciate"> {{item.article.likes}}</text>
           </view>
         </view>
+        <text class="cuIcon-attention text-grey margin-top-sm margin-right"> {{item.article.views}}</text>
+      </view>
+      <view class="content">
+        <view class="desc">
+          <view class="text-df">
+            <image class="cu-avatar round ssm" src="/images/efy.png" mode="aspectFill"></image>
+            <text decode="true">&nbsp;{{item.author.nickname}}&nbsp;&nbsp;</text>
+            <text class="text-grey">{{item.article.publish_time}}</text>
+          </view>
+          <view class="text-content">{{item.article.content}}</view>
+        </view>
+        <image src="{{item.article.cover}}" mode="aspectFill"></image>
       </view>
     </view>
   </view>
+  <view class="stand-view"></view>
 </scroll-view>

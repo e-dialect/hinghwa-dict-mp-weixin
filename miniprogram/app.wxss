@@ -68,7 +68,7 @@ page {
   height: 10vh;
 }
 
-.input {
+.login-input {
   background-color: #f2f3f7;
   border-radius: 5000rpx;
   display: flex;

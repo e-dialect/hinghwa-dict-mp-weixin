@@ -950,6 +950,12 @@ button.icon.lg {
 	font-size: 1.5em;
 }
 
+.cu-avatar.ssm {
+	width: 40rpx;
+	height: 40rpx;
+	font-size: 1em;
+}
+
 .cu-avatar.sm {
 	width: 48rpx;
 	height: 48rpx;
@@ -2325,7 +2331,7 @@ button.icon.lg {
 	font-size: 30rpx;
 	font-weight: 900;
 	color: var(--black);
-	line-height: 100rpx;
+	line-height: 80rpx;
 	padding: 0 30rpx;
 }
 
@@ -2337,7 +2343,7 @@ button.icon.lg {
 .cu-card.article>.cu-item .content>image {
 	width: 240rpx;
 	height: 6.4em;
-	margin-right: 20rpx;
+	margin-left: 10rpx;
 	border-radius: 6rpx;
 }
 
@@ -2349,10 +2355,15 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item .content .text-content {
-	font-size: 28rpx;
+	font-size: 26rpx;
 	color: #888;
 	height: 4.8em;
-	overflow: hidden;
+	display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ==================
@@ -2858,6 +2869,10 @@ scroll-view.cu-steps .cu-item {
 	flex: 3;
 }
 
+.flex-four {
+	flex: 4;
+}
+
 .flex-direction {
 	flex-direction: column;
 }
@@ -3065,6 +3080,10 @@ scroll-view.cu-steps .cu-item {
 
 .margin-top-sm {
 	margin-top: 20rpx;
+}
+
+.margin-top-smp {
+	margin-top: 25rpx;
 }
 
 .margin-top {
@@ -3806,6 +3825,10 @@ scroll-view.cu-steps .cu-item {
 
 .text-lg {
 	font-size: 32rpx;
+}
+
+.text-lgp {
+	font-size: 34rpx;
 }
 
 .text-xl {

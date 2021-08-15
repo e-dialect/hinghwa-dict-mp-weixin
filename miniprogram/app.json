@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages": ["pages/plugin/article/article",
     "pages/index/index",
     "pages/basics/home/home",
     "pages/basics/word/word",
@@ -8,6 +8,7 @@
     "pages/basics/words/words",
     "pages/component/home/home",
     "pages/plugin/home/home",
+    
     "pages/about/home/home",
     "pages/about/userinfo/userinfo",
     "pages/about/username/username",
