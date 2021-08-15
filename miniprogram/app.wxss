@@ -12,6 +12,7 @@ page {
 .layout-index {
   position: absolute;
   top: 20vh;
+  width: 100vw;
 }
 
 .index-card {
@@ -44,7 +45,7 @@ page {
 .index-word {
   background-color: #ffffff;
   border-radius: 20rpx;
-  height: 30vh;
+  height: 25vh;
   margin: 5vw;
 }
 
@@ -52,7 +53,7 @@ page {
   display: -webkit-box;
   word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 9;
+  -webkit-line-clamp: 7;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -64,7 +65,7 @@ page {
 }
 
 .stand-view {
-  height: 8vh;
+  height: 10vh;
 }
 
 .input {
@@ -79,3 +80,4 @@ page {
   margin: 10vh auto;
   background-color: white;
 }
+

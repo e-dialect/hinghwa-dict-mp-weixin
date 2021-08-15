@@ -570,7 +570,7 @@ radio.white[checked] .wx-radio-input {
 }
 
 .solid-bottom::after {
-	border-bottom: 1rpx solid rgba(0, 0, 0, 0.3);
+	border-bottom: 1rpx solid rgba(0, 0, 0, 0.2);
 }
 
 .solid-left::after {
@@ -804,7 +804,7 @@ button.icon.lg {
 	justify-content: center;
 	box-sizing: border-box;
 	padding: 0rpx 16rpx;
-	height: 48rpx;
+	height: 40rpx;
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 	white-space: nowrap;
 }
@@ -960,6 +960,11 @@ button.icon.lg {
 	width: 96rpx;
 	height: 96rpx;
 	font-size: 2em;
+}
+
+.cu-avatar.wz {
+	width: 160rpx;
+	height: 120rpx;
 }
 
 .cu-avatar.xl {
@@ -3050,6 +3055,10 @@ scroll-view.cu-steps .cu-item {
 	margin: 50rpx;
 }
 
+.margin-top-mini {
+	margin-top: 6rpx;
+}
+
 .margin-top-xs {
 	margin-top: 10rpx;
 }
@@ -3068,6 +3077,10 @@ scroll-view.cu-steps .cu-item {
 
 .margin-top-xl {
 	margin-top: 50rpx;
+}
+
+.margin-top-xxl {
+	margin-top: 200rpx;
 }
 
 .margin-right-xs {
@@ -3783,6 +3796,10 @@ scroll-view.cu-steps .cu-item {
 	font-size: 24rpx;
 }
 
+.text-smp {
+	font-size: 26rpx;
+}
+
 .text-df {
 	font-size: 28rpx;
 }
@@ -3803,8 +3820,16 @@ scroll-view.cu-steps .cu-item {
 	font-size: 44rpx;
 }
 
+.text-xxlp {
+	font-size: 64rpx;
+}
+
 .text-sl {
 	font-size: 80rpx;
+}
+
+.text-slp {
+	font-size: 90rpx;
 }
 
 .text-xsl {

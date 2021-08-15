@@ -1,0 +1,15 @@
+page {
+  background-color: #ffffff;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo image {
+  width: 22vh;
+  height: 16vh;
+}
+

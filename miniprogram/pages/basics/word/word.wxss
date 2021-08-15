@@ -1,0 +1,71 @@
+.word-bg {
+  background-image: url(https://wx4.sinaimg.cn/mw690/0084vph8ly1gfgmxli3lpj313y0u078m.jpg);
+  background-size: cover;
+  height: 600rpx;
+  display: flex;
+  padding-top: 40rpx;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  color: #ffffff;
+  font-weight: 400;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.back {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin: 4vw;
+}
+
+.card-other {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-left: 4vw;
+  margin-right: 2vw;
+}
+
+.card-pth {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-left: 2vw;
+  margin-right: 4vw;
+}
+
+.article {
+  display: flex;
+	padding: 30rpx 0;
+}
+
+.article image {
+  width: 240rpx;
+  height: 6.4em;
+  margin-right: 20rpx;
+  border-radius: 6rpx;
+}
+
+.des {
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+}
+
+.content {
+  margin-top: 15rpx;
+  font-size: 26rpx;
+  color: #888;
+  height: 4.2em;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

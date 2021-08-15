@@ -22,7 +22,7 @@ Component({
       })
       this.setData({
         avatar: app.globalData.userInfo.avatar,
-        nickname: app.globalData.userInfo.nickname
+        username: app.globalData.userInfo.username
       })
       wx.showLoading({
         title: '数据加载中',

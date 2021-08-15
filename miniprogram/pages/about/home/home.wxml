@@ -1,5 +1,5 @@
 <scroll-view scroll-y class="scrollPage">
-  <view class="user-bg" bindtap="userInfo">
+  <view class="user-bg img-edge-cover" bindtap="userInfo">
     <view class="cu-avatar round" style="width:170rpx;height:170rpx">
       <image src="{{avatar}}" class="cu-avatar round" mode="aspectFill"></image>
     </view>
