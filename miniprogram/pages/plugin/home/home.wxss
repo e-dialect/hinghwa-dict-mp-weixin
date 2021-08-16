@@ -1,1 +1,6 @@
-/* pages/plugin/home/home.wxss */
+.write {
+  position: fixed;
+  bottom: 10vh;
+  right: 6vw;
+  z-index: 1024;
+}

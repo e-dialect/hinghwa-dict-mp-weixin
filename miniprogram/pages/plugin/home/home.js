@@ -11,6 +11,7 @@ Component({
 
   lifetimes: {
     attached() {
+      console.log('a')
       wx.showLoading({
         title: '加载中',
       })
@@ -59,6 +60,12 @@ Component({
       let article = JSON.stringify(this.data.articlesList[index])
       wx.navigateTo({
         url: '/pages/plugin/article/article?article=' + article
+      })
+    },
+
+    writeArticle() {
+      wx.navigateTo({
+        url: '/pages/plugin/write/write',
       })
     }
   }

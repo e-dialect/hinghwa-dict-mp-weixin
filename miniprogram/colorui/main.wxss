@@ -78,7 +78,6 @@ scroll-view,
 swiper,
 button,
 input,
-textarea,
 label,
 navigator,
 image {
@@ -763,8 +762,8 @@ radio.white[checked] .wx-radio-input {
 }
 
 button.icon.lg {
-	width: 80rpx;
-	height: 80rpx;
+	width: 95rpx;
+	height: 95rpx;
 }
 
 .cu-btn.shadow-blur::before {
