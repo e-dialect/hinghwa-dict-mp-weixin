@@ -11,7 +11,6 @@ Component({
 
   lifetimes: {
     attached() {
-      console.log('a')
       wx.showLoading({
         title: '加载中',
       })

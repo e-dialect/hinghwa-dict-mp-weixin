@@ -1288,7 +1288,7 @@ button.icon.lg {
 
 .cu-list.menu-avatar>.cu-item>.cu-avatar {
 	position: absolute;
-	left: 30rpx
+	left: 0rpx;
 }
 
 .cu-list.menu-avatar>.cu-item .flex .text-cut {
@@ -1332,7 +1332,7 @@ button.icon.lg {
 .cu-list.menu-avatar.comment>.cu-item .content {
 	position: relative;
 	left: 0;
-	width: auto;
+	width: 100vw;
 	flex: 1;
 }
 

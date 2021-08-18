@@ -9,6 +9,7 @@
     "pages/component/home/home",
     "pages/plugin/home/home",
     "pages/plugin/article/article",
+    "pages/plugin/comment/comment",
     "pages/plugin/write/write",
     "pages/about/home/home",
     "pages/about/userinfo/userinfo",

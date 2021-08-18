@@ -21,3 +21,40 @@ page {
   border-radius: 5000rpx;
   background-color: #f5f5f5;
 }
+
+.border {
+  border: 2rpx solid #0081ff;
+}
+
+.text-name {
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.text-date {
+  color: #9b9b9b;
+  font-size: 24rpx;
+}
+
+.text-dz {
+  color: #999999;
+  font-size: 36rpx;
+  align-self: center;
+}
+
+.text-content {
+  position: relative;
+  width: 85vw;
+  left: 10vw;
+  margin-top: 15rpx;
+}
+
+.text-reply {
+  background-color: #f7f7f7;
+  position: relative;
+  width: 85vw;
+  left: 10vw;
+  margin-top: 10rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
