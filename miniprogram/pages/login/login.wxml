@@ -1,0 +1,19 @@
+<view class="logo">
+  <image src="/images/logo.png" mode="widthFix"></image>
+</view>
+<form bindsubmit="login">
+  <view class="info">
+    <text class="cuIcon-friendfamous" decode="true">&nbsp;&nbsp;</text>
+    <input name="username" placeholder="请输入用户名"></input>
+  </view>
+  <view class="info">
+    <text class="cuIcon-lock" decode="true">&nbsp;&nbsp;</text>
+    <input name="password" password placeholder="请输入密码"></input>
+  </view>
+  <button class="cu-btn round bg-gradual-blue shadow text-df margin-top"
+    style="display:flex;justify-content:center;width:65vw;" form-type="submit">登录</button>
+</form>
+<view class="flex text-bold text-center" style="margin-top:20vh;">
+  <view class="flex-sub solid-right" bindtap="forget">忘记密码</view>
+  <view class="flex-sub" bindtap="register">用户注册</view>
+</view>

@@ -1,0 +1,6 @@
+.logo {
+  width: 50vw;
+  display: block;
+  margin: auto;
+}
+

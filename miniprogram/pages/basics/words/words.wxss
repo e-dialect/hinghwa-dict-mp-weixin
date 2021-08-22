@@ -1,0 +1,20 @@
+page {
+  background-color: #ffffff;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo image {
+  width: 22vh;
+  height: 16vh;
+}
+
+.info {
+  position: absolute;
+  right: 50rpx;
+  bottom: 28rpx;
+}

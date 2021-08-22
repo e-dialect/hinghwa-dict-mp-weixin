@@ -1,0 +1,78 @@
+page {
+  font-size: 32rpx;
+}
+
+.fileName {
+  height: 4%;
+  background-color: white;
+  padding: 1.8%;
+  width: 77.5%;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  border-radius: 10rpx;
+  display: inline-block;
+}
+
+.description {
+  height: 10%;
+  padding: 2.5%;
+  width: 90%;
+  margin-left: 2.5%;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.extend {
+  height: 4%;
+  background-color: #dbdee2;
+  width: 15%;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  border-radius: 10rpx;
+  display: inline-block;
+  text-align: center;
+}
+
+.tips {
+  height: 5%;
+  margin-top: 1.5%;
+  width: 95%;
+  margin-left: 2.5%;
+}
+
+.tip {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  background-color: #dbdee2;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 36rpx;
+  border-radius: 10rpx;
+}
+
+.markDown {
+  height: 65%;
+  padding: 2.5%;
+  width: 90%;
+  margin-left: 2.5%;
+  margin-top: 10rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.preview {
+  background-color: white;
+  padding: 2.5%;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: 10rpx;
+  border-radius: 10rpx;
+  height: 65%;
+  overflow: auto;
+  line-height: 80rpx;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}

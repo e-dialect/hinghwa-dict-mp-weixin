@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/basics/home/home",
+    "pages/basics/word/word",
+    "pages/basics/search/search",
+    "pages/basics/characters/characters",
+    "pages/basics/words/words",
+    "pages/component/home/home",
+    "pages/component/music/music",
+    "pages/component/uploadmusic/uploadmusic",
+    "pages/plugin/home/home",
+    "pages/plugin/article/article",
+    "pages/plugin/comment/comment",
+    "pages/plugin/write/write",
+    "pages/about/home/home",
+    "pages/about/userinfo/userinfo",
+    "pages/about/nickname/nickname",
+    "pages/about/email/email",
+    "pages/about/password/password",
+    "pages/about/articlesliked/articlesliked",
+    "pages/about/myarticles/myarticles",
+    "pages/about/mycomments/mycomments",
+    "pages/about/phone/phone",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/forget/forget"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

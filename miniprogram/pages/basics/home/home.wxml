@@ -1,0 +1,47 @@
+<scroll-view scroll-y class="scrollPage">
+  <image src="/images/efy.png" mode="widthFix" style="width:100%;"></image>
+  <!-- <view style="box-shadow:0 -10px 40px 50px #f7f7f7;position:relative;z-index:100;"></view> -->
+  <view class="layout-index" style="z-index:100;">
+    <view wx:if="{{status==0}}" class="index-card bg-img"
+      style="background-image:url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gsxy5mqf1oj36y01jkqd9.jpg)">
+      <view class="card-name">兴化语记</view>
+      <view class="card-slogan">记住乡愁 留下乡音</view>
+      <button class="card-btn cu-btn round bg-black shadow" bindtap="login" style="width:22vw">授权登录</button>
+    </view>
+    <view class="index-word">
+      <view class="flex solid-bottom justify-between">
+        <view class="padding-sm margin-xs">
+          <text class="text-bold">每日一词</text>
+          <text class="text-grey text-bold cuIcon-refresh margin-left-sm"></text>
+        </view>
+        <view class="padding-sm margin-xs text-grey" bindtap="getMore">MORE</view>
+      </view>
+      <view class="flex">
+        <view class="flex-sub padding-sm margin text-center solid-right">
+          <view class="text-bold text-sl">{{word.word}}</view>
+        </view>
+        <view class="word-sy flex-sub margin-xs text-grey">
+          {{word.definition}}
+        </view>
+      </view>
+    </view>
+    <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+      duration="500">
+      <swiper-item wx:for="{{swiperList}}" wx:key>
+        <image src="{{item.url}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+    <view class="index-search" bindtap="search">
+      <view class="flex">
+        <view class="flex-treble padding-sm margin-xs radius">
+          <view class="text-xl text-bold">语记·搜索</view>
+          <view class="text-grey text-bold" style="margin-top:5rpx">学习了解更多莆仙方言</view>
+        </view>
+        <view class="flex-sub padding-sm margin-sm radius bg-img"
+          style="background-image:url('https://wx2.sinaimg.cn/mw690/0084vph8ly1gsw0m4zm6wj30so0iqact.jpg')">
+        </view>
+      </view>
+    </view>
+    <view class="stand-view"></view>
+  </view>
+</scroll-view>

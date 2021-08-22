@@ -1,0 +1,77 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="content" class="text-black">语记·搜索</view>
+</cu-custom>
+<scroll-view scroll-y class="scrollPage">
+  <view class="cu-bar search bg-white">
+    <view class="action">
+      <picker bindchange="sort" value="{{index}}" range="{{sort}}">
+        <text>{{sort[index]}}</text>
+        <text class="cuIcon-triangledownfill"></text>
+      </picker>
+    </view>
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="兴化语记" value="{{key}}" confirm-type="search" bindinput="key"></input>
+    </view>
+    <view class="action" bindtap="search">
+      <text class="text-blue">搜索</text>
+    </view>
+  </view>
+  <!-- <view class="cu-bar bg-white text-grey" wx:if="{{status==0}}">
+    <view class="action">历史搜索</view>
+    <image src="/images/home/delete.png" mode="widthFix" bindtap="deleteHistory"
+      style="width:5vw;height:auto;margin-right:30rpx;">
+    </image>
+  </view> -->
+  <!-- <view class="history" wx:if="{{status==0}}">
+    <view class="padding-xs" wx:for="{{history}}">
+      <view class="cu-tag round">{{item}}</view>
+    </view>
+  </view> -->
+  <!-- <view class="bg-white flex text-df text-black" wx:if="{{status!=0}}">
+    <view class="flex-sub padding {{status==1?'text-bold':''}}" bindtap="sort" data-index="1">单字</view>
+    <view class="flex-sub padding {{status==2?'text-bold':''}}" bindtap="sort" data-index="2">词语</view>
+    <view class="flex-sub padding line {{status==3?'text-bold':''}}" bindtap="sort" data-index="3">文章</view>
+    <view class="flex-sub padding text-center" bindtap="sort" data-index="3">更多</view>
+  </view> -->
+  <view class="cu-list menu" wx:if="{{index==0&&status==1}}">
+    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-index="{{index}}"
+      wx:for="{{characters}}">
+      <view class="flex flex-direction justify-between">
+        <view class="margin-bottom-sm">
+          <text class="text-xxl text-bold">{{item.character}}</text>
+          <text class="cuIcon-notificationfill text-blue margin-left"></text>
+        </view>
+        <view>
+          <text>{{item.pinyin}}</text>
+          <text class="text-grey margin-left">/{{item.ipa}}/</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-list menu" wx:if="{{index==2&&status==1}}">
+    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="word" data-index="{{index}}" wx:for="{{words}}">
+      <view class="flex flex-direction justify-between">
+        <view class="margin-bottom-sm">
+          <text class="text-xxl text-bold">{{item.word.word}}</text>
+          <text class="cuIcon-notificationfill text-blue margin-left"></text>
+        </view>
+        <view class="text-grey definition">{{item.word.definition}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{index==3&&status==1}}">
+    <view class="flex article solid-bottom" wx:for="{{articles}}">
+      <image src="{{item.article.cover}}" mode="aspectFill"></image>
+      <view style="flex:1;">
+        <view class="flex justify-between">
+          <view class="text-bold-less text-lg">{{item.article.title}}</view>
+          <view class="text-grey margin-top-mini">
+            <text class="cuIcon-attention"></text> {{item.article.views}}
+          </view>
+        </view>
+        <view class="content">{{item.article.content}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
