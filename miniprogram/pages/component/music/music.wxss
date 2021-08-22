@@ -1,0 +1,19 @@
+page {
+  background-color: white;
+}
+
+.write {
+  position: fixed;
+  bottom: 10vh;
+  right: 6vw;
+  z-index: 1024;
+}
+
+audio {
+  position: relative;
+  left: 2.5%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30rpx;
+}

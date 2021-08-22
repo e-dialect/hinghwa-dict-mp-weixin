@@ -3,6 +3,8 @@ const app = getApp()
 Page({
   data: {
     status: 0,
+    index: 0,
+    sort: ['拼音', '单字', '词语', '文章'],
     history: [],
     key: '',
     characters: [],
@@ -19,6 +21,12 @@ Page({
     }
   },
 
+  sort(e) {
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
   key(e) {
     this.setData({
       key: e.detail.value
@@ -28,7 +36,6 @@ Page({
   search() {
     if (this.data.key == '') {
       wx.showModal({
-        title: '警告',
         content: '搜索内容为空！',
         showCancel: false,
         success(res) {
@@ -37,26 +44,32 @@ Page({
       })
       return;
     }
-    if (this.data.status == 0) {
-      this.setData({
-        status: 1
-      })
-    }
+    this.setData({
+      status: 1
+    })
     this.data.history.push(this.data.key)
     wx.setStorageSync('history', this.data.history)
-    // 获取单字
-    this.getCharacters()
-    // 获取词语
-    this.getWords()
-    // 获取文章
-    this.getArticles()
+    var key = this.data.key
+    var index = this.data.index
+    if (index == 0) {
+      // 拼音
+      this.searchPinyin(key)
+    } else if (index == 2) {
+      // 词语
+      this.searchWord(key)
+    } else if (index == 3) {
+      // 文章
+      this.searchArticle(key)
+    }
   },
 
-  getCharacters() {
-    var that = this
+  searchPinyin(key) {
+    let shengmu = key.substring(0, 1)
+    let yunmu = key.substring(1, key.length - 1)
+    let shengdiao = key.substring(key.length - 1)
+    let that = this
     wx.request({
-      // url: app.globalData.server + 'characters?search=' + that.data.key,
-      url: 'http://127.0.0.1:4523/mock/404238/characters',
+      url: app.globalData.server + 'characters?shengmu=' + shengmu + '&yunmu=' + yunmu + '&shengdiao=' + shengdiao,
       method: 'GET',
       data: {},
       header: {
@@ -66,8 +79,8 @@ Page({
         if (res.statusCode == 200) {
           var arr = res.data.characters
           wx.request({
-            // url: app.globalData.server + 'characters'
-            url: 'http://127.0.0.1:4523/mock/404238/characters',
+            url: app.globalData.server + 'characters',
+            // url: 'http://127.0.0.1:4523/mock/404238/characters',
             method: 'PUT',
             data: {
               characters: arr
@@ -76,6 +89,7 @@ Page({
               'content-type': 'application/json',
             },
             success(res) {
+              console.log(res)
               if (res.statusCode == 200) {
                 that.setData({
                   characters: res.data.characters
@@ -88,31 +102,26 @@ Page({
             title: '服务器错误',
           })
         }
-      },
-      fail(err) {
-        wx.showToast({
-          title: '网络异常',
-        })
       }
     })
   },
 
-  getWords() {
+  searchWord(key) {
     var that = this
     wx.request({
-      // url: app.globalData.server + 'words?search=' + that.data.key,
-      url: 'http://127.0.0.1:4523/mock/404238/words',
+      url: app.globalData.server + 'words?search=' + key,
       method: 'GET',
       data: {},
       header: {
         'content-type': 'application/json',
       },
       success(res) {
+        console.log(res.data)
         if (res.statusCode == 200) {
           var arr = res.data.words
+          console.log(arr)
           wx.request({
-            // url: app.globalData.server + 'words'
-            url: 'http://127.0.0.1:4523/mock/404238/words',
+            url: app.globalData.server + 'words',
             method: 'PUT',
             data: {
               words: arr
@@ -142,11 +151,10 @@ Page({
     })
   },
 
-  getArticles() {
+  searchArticle(key) {
     var that = this
     wx.request({
-      // url: app.globalData.server + 'articles?search=' + that.data.key,
-      url: 'http://127.0.0.1:4523/mock/404238/articles',
+      url: app.globalData.server + 'articles?search=' + key,
       method: 'GET',
       data: {},
       header: {
@@ -156,8 +164,7 @@ Page({
         if (res.statusCode == 200) {
           var arr = res.data.articles
           wx.request({
-            // url: app.globalData.server + 'articles' 
-            url: 'http://127.0.0.1:4523/mock/404238/articles',
+            url: app.globalData.server + 'articles',
             method: 'PUT',
             data: {
               articles: arr
@@ -198,12 +205,6 @@ Page({
           history: []
         })
       }
-    })
-  },
-
-  sort(e) {
-    this.setData({
-      status: e.target.dataset.index
     })
   },
 

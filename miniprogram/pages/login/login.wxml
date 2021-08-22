@@ -1,24 +1,19 @@
-<cu-custom bgColor="bg-white">
-  <view class="text-black" slot="content">兴化语记</view>
-</cu-custom>
-<image class="logo" src="/images/logo.png" mode="widthFix"></image>
+<view class="logo">
+  <image src="/images/logo.png" mode="widthFix"></image>
+</view>
 <form bindsubmit="login">
-  <view style="margin:5vh 0 0 0">
-    <view class="login-input">
-      <view class="cu-avatar lg round" style="background-image:url({{avatar}});margin-right:10rpx;">
-      </view>
-      <input class="text-xl" name="username" style="margin:auto 10rpx" placeholder="用户名"></input>
-    </view>
-    <view class="login-input">
-      <image src="/images/login/{{ear}}" bindtap="bindEar" style="margin-right:10rpx;" class="cu-avatar lg round"></image>
-      <input class="text-xl" name="password" password="{{is_close}}" style="margin:auto 10rpx" placeholder="输入密码"></input>
-    </view>
+  <view class="info">
+    <text class="cuIcon-friendfamous" decode="true">&nbsp;&nbsp;</text>
+    <input name="username" placeholder="请输入用户名"></input>
   </view>
-  <button class="btn" form-type="submit">
-    <image style="width:22vw" src="/images/login/go.png" mode="widthFix"></image>
-  </button>
+  <view class="info">
+    <text class="cuIcon-lock" decode="true">&nbsp;&nbsp;</text>
+    <input name="password" password placeholder="请输入密码"></input>
+  </view>
+  <button class="cu-btn round bg-gradual-blue shadow text-df margin-top"
+    style="display:flex;justify-content:center;width:65vw;" form-type="submit">登录</button>
 </form>
-<view class="flex text-bold text-center">
-  <view class="flex-sub solid-right">找回密码</view>
+<view class="flex text-bold text-center" style="margin-top:20vh;">
+  <view class="flex-sub solid-right" bindtap="forget">忘记密码</view>
   <view class="flex-sub" bindtap="register">用户注册</view>
 </view>

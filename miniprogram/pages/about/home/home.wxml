@@ -1,6 +1,6 @@
 <scroll-view scroll-y class="scrollPage">
-  <view class="user-bg img-edge-cover" bindtap="userInfo">
-    <view class="cu-avatar round" style="width:170rpx;height:170rpx">
+  <view class="user-bg img-edge-cover">
+    <view class="cu-avatar round" style="width:170rpx;height:170rpx" bindtap="userInfo">
       <image src="{{avatar}}" class="cu-avatar round" mode="aspectFill"></image>
     </view>
     <view class="text-xxl margin text-bold">{{username}}</view>
@@ -12,9 +12,9 @@
         <text class="cuIcon-voice"></text> Records</view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xlp text-blue">{{articlesCount}}</view>
+      <view class="text-xlp text-blue">{{wordsCount}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-edit"></text> Articles</view>
+        <text class="cuIcon-font"></text> Words</view>
     </view>
     <view class="flex flex-sub flex-direction">
       <view class="text-xlp text-green">{{visitTotal}}</view>
@@ -24,52 +24,40 @@
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/like_articles/like_articles" hover-class="none">
+      <navigator class="content" url="/pages/about/articlesliked/articlesliked" hover-class="none">
         <text class="cuIcon-appreciate text-grey"></text>
         <text class="text-grey">点赞文章</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
+      <navigator class="content" url="/pages/about/myarticles/myarticles" hover-class="none">
         <text class="cuIcon-edit text-grey"></text>
-        <text class="text-grey">发布文章</text>
+        <text class="text-grey">我的文章</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/mycomments/mycomments" hover-class="none">
+        <text class="cuIcon-comment text-grey"></text>
+        <text class="text-grey">我的评论</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
         <text class="cuIcon-musicfill text-grey"></text>
-        <text class="text-grey">发布音乐</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
-        <text class="cuIcon-comment text-grey"></text>
-        <text class="text-grey">发布评论</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
-        <text class="cuIcon-font text-grey"></text>
-        <text class="text-grey">发布词语</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
-        <text class="cuIcon-voice text-grey"></text>
-        <text class="text-grey">发布语音</text>
+        <text class="text-grey">我的音乐</text>
       </navigator>
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
+      <navigator class="content" url="/pages/about/password/password" hover-class="none">
         <text class="cuIcon-write text-grey"></text>
         <text class="text-grey">修改密码</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
-        <text class="cuIcon-write text-grey"></text>
+        <text class="cuIcon-group text-grey"></text>
         <text class="text-grey">关于我们</text>
       </navigator>
     </view>

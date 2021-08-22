@@ -19,7 +19,7 @@
       <view class="content">
         <view class="desc">
           <view class="text-df">
-            <image class="cu-avatar round ssm" src="/images/efy.png" mode="aspectFill"></image>
+            <image class="cu-avatar round ssm" src="{{item.author.avatar}}" mode="aspectFill"></image>
             <text decode="true">&nbsp;{{item.author.nickname}}&nbsp;&nbsp;</text>
             <text class="text-grey">{{item.article.publish_time}}</text>
           </view>

@@ -7,7 +7,6 @@ Page({
     new_email: ''
   },
   onLoad() {
-    app.globalData.userInfo.email = "2464831035@qq.com"
     this.setData({
       old_email: app.globalData.userInfo.email
     })
@@ -23,7 +22,7 @@ Page({
       url: app.globalData.server + 'website/email',
       method: 'POST',
       data: {
-        email: that.data.old_email
+        email: that.data.new_email
       },
       header: {
         'content-type': 'application/json',
@@ -57,8 +56,8 @@ Page({
     var new_email = this.data.new_email
     app.globalData.userInfo.email = new_email
     wx.request({
-      // url: app.globalData.server + 'users/' + app.globalData.id + '/email',
-      url: 'http://127.0.0.1:4523/mock/404238/users/1/email',
+      url: app.globalData.server + 'users/' + app.globalData.id + '/email',
+      // url: 'http://127.0.0.1:4523/mock/404238/users/1/email',
       method: 'PUT',
       data: {
         code: code,

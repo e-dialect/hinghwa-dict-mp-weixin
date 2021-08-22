@@ -4,20 +4,21 @@ Component({
   options: {
     addGlobalClass: true
   },
+
   data: {
     avatar: '',
     username: '',
     recordsCount: 0,
-    articlesCount: 0,
+    wordsCount: 0,
     visitTotal: 0
   },
+
   lifetimes: {
     attached() {
       var that = this
       app.watch(function (value) {
         that.setData({
-          avatar: value.avatar,
-          username: value.username
+          avatar: value.avatar
         })
       })
       this.setData({
@@ -36,7 +37,7 @@ Component({
           setTimeout(function () {
             that.setData({
               recordsCount: i,
-              articlesCount: i,
+              wordsCount: i,
               visitTotal: i
             })
             i++
@@ -44,15 +45,16 @@ Component({
           }, 20)
         } else {
           that.setData({
-            recordsCount: that.coutNum(3000),
-            articlesCount: that.coutNum(484),
-            visitTotal: that.coutNum(24000)
+            recordsCount: that.coutNum(app.globalData.contribution.pronunciation),
+            wordsCount: that.coutNum(app.globalData.contribution.word),
+            visitTotal: that.coutNum(app.globalData.contribution.listened)
           })
         }
       }
       wx.hideLoading()
     },
   },
+
   methods: {
     coutNum(e) {
       if (e > 1000 && e < 10000) {
@@ -63,6 +65,7 @@ Component({
       }
       return e
     },
+
     //进入个人信息页面
     userInfo() {
       wx.navigateTo({

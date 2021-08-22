@@ -16,8 +16,8 @@ Component({
       })
       let that = this
       wx.request({
-        // url: app.globalData.server + 'articles',
-        url: 'http://127.0.0.1:4523/mock/404238/articles',
+        url: app.globalData.server + 'articles',
+        // url: 'http://127.0.0.1:4523/mock/404238/articles',
         method: 'GET',
         data: {},
         header: {
@@ -29,8 +29,8 @@ Component({
             let arr = res.data.articles
             // 获取文章数组
             wx.request({
-              // url: app.globalData.server + 'articles'
-              url: 'http://127.0.0.1:4523/mock/404238/articles',
+              url: app.globalData.server + 'articles',
+              // url: 'http://127.0.0.1:4523/mock/404238/articles',
               method: 'PUT',
               data: {
                 articles: arr
@@ -56,9 +56,9 @@ Component({
   methods: {
     article(e) {
       let index = e.currentTarget.dataset.index
-      let article = JSON.stringify(this.data.articlesList[index])
+      let id = this.data.articlesList[index].article.id
       wx.navigateTo({
-        url: '/pages/plugin/article/article?article=' + article
+        url: '/pages/plugin/article/article?id=' + id
       })
     },
 

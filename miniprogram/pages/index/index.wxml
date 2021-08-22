@@ -7,24 +7,20 @@
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/index{{PageCur=='basics'?'-selected':''}}.png"></image>
     </view>
-    <view class="text-xs {{PageCur=='basics'?'text-black':'text-gray'}}">首页</view>
   </view>
   <view class="action" bindtap="NavChange" data-cur="component">
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/tool{{PageCur=='component'?'-selected':''}}.png"></image>
     </view>
-    <view class="text-xs {{PageCur=='component'?'text-black':'text-gray'}}">工具</view>
   </view>
   <view class="action" bindtap="NavChange" data-cur="plugin">
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/hd{{PageCur=='plugin'?'-selected':''}}.png"></image>
     </view>
-    <view class="text-xs {{PageCur=='plugin'?'text-black':'text-gray'}}">互动</view>
   </view>
   <view class="action" bindtap="NavChange" data-cur="about">
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/my{{PageCur=='about'?'-selected':''}}.png"></image>
     </view>
-    <view class="text-xs {{PageCur=='about'?'text-black':'text-gray'}}">我的</view>
   </view>
 </view>

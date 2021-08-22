@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     article_id: 0,
+    parent: 0,
     comment: {},
     map: [],
     ph_text: '评论...',
@@ -11,9 +12,11 @@ Page({
   },
 
   onLoad(options) {
+    let data = JSON.parse(options.comment)
     this.setData({
       article_id: options.id,
-      comment: JSON.parse(options.comment)
+      parent: data.id,
+      comment: data
     })
     let map = []
     for (let i = 0; i < this.data.comment.kids.length; i++) {
@@ -32,11 +35,14 @@ Page({
 
   blur() {
     let id = this.data.comment.id
-    this.setData({
-      parent: id,
-      is_reply: false,
-      ph_text: '评论...'
-    })
+    if (this.data.text == '') {
+      this.setData({
+        parent: id,
+        is_reply: false,
+        ph_text: '评论...'
+      })
+    }
+
   },
 
   reply(e) {
@@ -61,8 +67,8 @@ Page({
     let id = this.data.article_id
     let that = this
     wx.request({
-      // url: app.globalData.server + 'articles/' + id + '/comments',
-      url: 'http://127.0.0.1:4523/mock/404238/articles/1/comments',
+      url: app.globalData.server + 'articles/' + id + '/comments',
+      // url: 'http://127.0.0.1:4523/mock/404238/articles/1/comments',
       method: 'POST',
       data: {
         content: comment,
@@ -73,13 +79,16 @@ Page({
         'token': app.globalData.token
       },
       success(res) {
+        console.log(res)
         if (res.statusCode == 200) {
           wx.showToast({
             title: '发表成功',
           })
-          wx.navigateBack({
-            delta: 1,
-          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 500)
         } else if (res.statusCode == 400) {
           wx.showToast({
             title: '格式错误',

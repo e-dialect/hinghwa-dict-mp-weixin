@@ -116,8 +116,8 @@ Page({
     } else {
       // 创建文章
       wx.request({
-        // url: app.globalData.server + 'articles',
-        url: 'http://127.0.0.1:4523/mock/404238/articles',
+        url: app.globalData.server + 'articles',
+        // url: 'http://127.0.0.1:4523/mock/404238/articles',
         method: 'POST',
         data: {
           title: title,

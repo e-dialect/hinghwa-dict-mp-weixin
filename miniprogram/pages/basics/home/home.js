@@ -28,6 +28,7 @@ Component({
         status: app.globalData.status,
         word: app.globalData.word
       })
+      this.getWord()
       if (this.data.status == 0) {
         app.globalData.token = wx.getStorageSync('token')
         app.globalData.id = wx.getStorageSync('id')
@@ -38,17 +39,21 @@ Component({
             status: 1
           })
           wx.request({
-            // url: app.globalData.server + 'users/' + app.globalData.id,
-            url: 'http://127.0.0.1:4523/mock/404238/users/1',
+            url: app.globalData.server + 'users/' + app.globalData.id,
+            // url: 'http://127.0.0.1:4523/mock/404238/users/1',
             method: 'GET',
             data: {},
             header: {
               'content-type': 'application/json', // 默认值
             },
             success(res) {
-              console.log(res)
+              console.log(res.data)
               if (res.statusCode == 200) {
-                app.globalData.userInfo = res.data.user
+                app.globalData.userInfo = res.data.user,
+                app.globalData.publish_articles = res.data.publish_articles,
+                app.globalData.publish_comments = res.data.publish_comments,
+                app.globalData.like_articles = res.data.like_articles, 
+                app.globalData.contribution = res.data.contribution
               } else {
                 wx.showToast({
                   title: '服务器错误',
@@ -63,33 +68,26 @@ Component({
           })
         }
       }
-      this.getWordId();
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
     }
   },
   methods: {
-    getWordId() {
+    getWord() {
       if (!this.data.word.id) {
         var that = this
         wx.request({
-          // url: app.globalData.server + "website/word_of_the_day",
-          url: 'http://127.0.0.1:4523/mock/404238/website/word_of_the_day',
+          url: app.globalData.server + "website/word_of_the_day",
+          // url: 'http://127.0.0.1:4523/mock/404238/website/word_of_the_day',
           method: 'GET',
           data: {},
           header: {
             'content-type': 'application/json',
           },
           success(res) {
-            if (res.statusCode == 200)
-            {
-              app.globalData.word.id = res.data.word_of_the_day
-              that.setData({
-                word: {id: res.data.word_of_the_day}
-              })
-              // 获取每日一词
-              that.getWord();
+            if (res.statusCode == 200) {
+              that.getWordDetails(res.data.word_of_the_day.id)
             } else {
               wx.showToast({
                 title: '服务器错误'
@@ -99,20 +97,18 @@ Component({
         })
       }
     },
-    getWord() {
+    getWordDetails(id) {
       let that = this
       wx.request({
-        // url: app.globalData.server + 'words/' + app.globalData.word.id,
-        url: 'http://127.0.0.1:4523/mock/404238/words/1',
+        url: app.globalData.server + 'words/' + id,
+        // url: 'http://127.0.0.1:4523/mock/404238/words/1',
         method: 'GET',
         data: {},
         header: {
           'content-type': 'application/json',
         },
         success(res) {
-          console.log(res.data)
-          if (res.statusCode == 200)
-          {
+          if (res.statusCode == 200) {
             app.globalData.word = res.data.word
             that.setData({
               word: res.data.word

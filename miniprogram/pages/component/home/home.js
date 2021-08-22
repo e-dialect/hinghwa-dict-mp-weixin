@@ -2,11 +2,12 @@ Component({
   options: {
     addGlobalClass: true,
   },
+
   data: {
     list: [{
-        title: 'e语音',
+        title: 'e音乐',
         img: 'https://wx4.sinaimg.cn/mw690/0084vph8ly1gswr6ns9r2j30go0b4jtl.jpg',
-        url: '/indexes/indexes'
+        url: '/music/music'
       },
       {
         title: 'e字典',
@@ -29,5 +30,13 @@ Component({
         url: ''
       }
     ]
+  },
+
+  methods: {
+    getTools(e) {
+      wx.navigateTo({
+        url: '/pages/component' + e.currentTarget.dataset.url
+      })
+    }
   }
 })
