@@ -6,9 +6,13 @@
     "pages/basics/search/search",
     "pages/basics/characters/characters",
     "pages/basics/words/words",
+    "pages/basics/pronunciation/pronunciation",
     "pages/component/home/home",
     "pages/component/music/music",
+    "pages/component/playmusic/playmusic",
     "pages/component/uploadmusic/uploadmusic",
+    "pages/component/voice/voice",
+    "pages/component/uploadpronunciation/uploadpronunciation",
     "pages/plugin/home/home",
     "pages/plugin/article/article",
     "pages/plugin/comment/comment",
@@ -37,5 +41,9 @@
     "cu-custom": "/colorui/components/cu-custom"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ]
 }

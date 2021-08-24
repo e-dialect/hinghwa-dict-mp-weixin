@@ -6,8 +6,6 @@ Page({
   },
 
   onShow() {
-    // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createInnerAudioContext('myAudio')
     // 获取音乐列表
     this.getMusic()
   },
@@ -34,6 +32,7 @@ Page({
               'content-type': 'application/json'
             },
             success(res) {
+              console.log(res.data)
               if (res.statusCode == 200) {
                 that.setData({
                   music: res.data.music
@@ -50,5 +49,17 @@ Page({
     wx.navigateTo({
       url: '/pages/component/uploadmusic/uploadmusic',
     })
+  },
+
+  playMusic(e) {
+    let index = e.currentTarget.dataset.index
+    let id = this.data.music[index].music.id
+    wx.navigateTo({
+      url: '/pages/component/playmusic/playmusic?id=' + id,
+    })
+  },
+
+  likeMusic() {
+    console.log('like')
   }
 })

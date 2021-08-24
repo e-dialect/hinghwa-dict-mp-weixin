@@ -7,20 +7,9 @@ Component({
   data: {
     status: 0,
     word: {},
-    swiperList: [{
-      id: 0,
-      url: 'https://wx4.sinaimg.cn/mw690/0084vph8ly1gsvkzupsv7j319j0sg7jn.jpg'
-    }, {
-      id: 1,
-      url: 'https://wx4.sinaimg.cn/mw690/0084vph8ly1gsvkzv3gtqj30xk0kz0v2.jpg',
-    }, {
-      id: 2,
-      url: 'https://wx4.sinaimg.cn/mw690/0084vph8ly1gsvkzu0pn3j62180tgalh02.jpg'
-    }, {
-      id: 3,
-      url: 'https://wx1.sinaimg.cn/mw690/0084vph8ly1gsvkzvksqnj314o0mvjv7.jpg'
-    }]
+    announcements: []
   },
+
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
@@ -29,6 +18,7 @@ Component({
         word: app.globalData.word
       })
       this.getWord()
+      this.getArticles()
       if (this.data.status == 0) {
         app.globalData.token = wx.getStorageSync('token')
         app.globalData.id = wx.getStorageSync('id')
@@ -40,20 +30,19 @@ Component({
           })
           wx.request({
             url: app.globalData.server + 'users/' + app.globalData.id,
-            // url: 'http://127.0.0.1:4523/mock/404238/users/1',
             method: 'GET',
             data: {},
             header: {
-              'content-type': 'application/json', // 默认值
+              'content-type': 'application/json',
             },
             success(res) {
               console.log(res.data)
               if (res.statusCode == 200) {
                 app.globalData.userInfo = res.data.user,
-                app.globalData.publish_articles = res.data.publish_articles,
-                app.globalData.publish_comments = res.data.publish_comments,
-                app.globalData.like_articles = res.data.like_articles, 
-                app.globalData.contribution = res.data.contribution
+                  app.globalData.publish_articles = res.data.publish_articles,
+                  app.globalData.publish_comments = res.data.publish_comments,
+                  app.globalData.like_articles = res.data.like_articles,
+                  app.globalData.contribution = res.data.contribution
               } else {
                 wx.showToast({
                   title: '服务器错误',
@@ -69,17 +58,18 @@ Component({
         }
       }
     },
+
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
     }
   },
+
   methods: {
     getWord() {
       if (!this.data.word.id) {
         var that = this
         wx.request({
           url: app.globalData.server + "website/word_of_the_day",
-          // url: 'http://127.0.0.1:4523/mock/404238/website/word_of_the_day',
           method: 'GET',
           data: {},
           header: {
@@ -97,11 +87,30 @@ Component({
         })
       }
     },
+
+    getArticles() {
+      let that = this
+      wx.request({
+        url: app.globalData.server + 'website/announcements',
+        method: 'GET',
+        data: {},
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          if (res.statusCode == 200) {
+            that.setData({
+              announcements: res.data.announcements
+            })
+          }
+        }
+      })
+    },
+
     getWordDetails(id) {
       let that = this
       wx.request({
         url: app.globalData.server + 'words/' + id,
-        // url: 'http://127.0.0.1:4523/mock/404238/words/1',
         method: 'GET',
         data: {},
         header: {
@@ -122,9 +131,10 @@ Component({
         }
       })
     },
+
     login(e) {
       wx.getUserProfile({
-        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        desc: '展示用户信息',
         success: (res) => {
           console.log(res.userInfo.avatarUrl)
           app.globalData.userInfo.avatar = res.userInfo.avatarUrl
@@ -139,12 +149,22 @@ Component({
         }
       })
     },
+
     getMore() {
       let word = JSON.stringify(this.data.word)
       wx.navigateTo({
         url: '/pages/basics/word/word?word=' + word
       })
     },
+
+    toArticle(e) {
+      let index = e.currentTarget.dataset.index
+      let id = this.data.announcements[index].article.id
+      wx.navigateTo({
+        url: '/pages/plugin/article/article?id=' + id
+      })
+    },
+
     search() {
       wx.navigateTo({
         url: '/pages/basics/search/search',

@@ -27,8 +27,8 @@
     </view>
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
       duration="500">
-      <swiper-item wx:for="{{swiperList}}" wx:key>
-        <image src="{{item.url}}" mode="aspectFill"></image>
+      <swiper-item data-index="{{index}}" bindtap="toArticle" wx:for="{{announcements}}" wx:key>
+        <image src="{{item.article.cover}}" mode="aspectFill"></image>
       </swiper-item>
     </swiper>
     <view class="index-search" bindtap="search">

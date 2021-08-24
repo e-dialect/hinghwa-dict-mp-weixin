@@ -9,18 +9,22 @@ page {
   z-index: 1024;
 }
 
-.music {
+.voice {
   display: flex;
   padding: 10rpx;
   border-radius: 10rpx;
   border: 1rpx solid #D3D3D3;
 }
 
-.cover {
-  width: 18vw;
+.word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22vw;
   height: 16vw;
   margin-right: 20rpx;
   border-radius: 10rpx;
+  font-size: 50rpx;
 }
 
 .info {

@@ -10,9 +10,9 @@ Component({
         url: '/music/music'
       },
       {
-        title: 'e字典',
+        title: 'e语音',
         img: 'https://wx3.sinaimg.cn/mw690/0084vph8ly1gswr6nm9taj60go0b4dhz02.jpg',
-        url: '/animation/animation'
+        url: '/voice/voice'
       },
       {
         title: 'e学习',

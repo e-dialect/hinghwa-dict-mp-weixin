@@ -78,9 +78,9 @@ Page({
       success(res) {
         if (res.statusCode == 200) {
           var arr = res.data.characters
+          console.log(arr)
           wx.request({
             url: app.globalData.server + 'characters',
-            // url: 'http://127.0.0.1:4523/mock/404238/characters',
             method: 'PUT',
             data: {
               characters: arr
@@ -210,17 +210,17 @@ Page({
 
   character(e) {
     let index = e.currentTarget.dataset.index
-    let character = JSON.stringify(this.data.characters[index])
+    let id = this.data.characters[index].id
     wx.navigateTo({
-      url: '/pages/basics/characters/characters?character=' + character
+      url: '/pages/basics/characters/characters?id=' + id
     })
   },
 
   word(e) {
     let index = e.currentTarget.dataset.index
-    let word = JSON.stringify(this.data.words[index])
+    let id = this.data.words[index].word.id
     wx.navigateTo({
-      url: '/pages/basics/words/words?word=' + word
+      url: '/pages/basics/words/words?id=' + id
     })
   }
 })
