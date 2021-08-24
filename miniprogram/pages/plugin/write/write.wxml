@@ -1,0 +1,38 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="content" class="text-black">发布</view>
+</cu-custom>
+<view style="height:100%;position:absolute;width:100%;">
+  <block>
+    <input class="extend text-bold" disabled value="标题"></input>
+    <input class="fileName" placeholder="请输入文章标题" bindinput="getTitle"></input>
+  </block>
+  <block>
+    <input class="extend text-bold" disabled bindtap="getCover" value="封面"></input>
+    <input class="fileName" placeholder="点击左侧上传封面" disabled value="{{url}}"></input>
+  </block>
+  <block>
+    <input class="extend text-bold" disabled value="简介"></input>
+    <textarea class="description" placeholder="请输入文章简介" bindinput="getDescription"></textarea>
+  </block>
+  <block>
+    <input class="extend text-bold" disabled value="正文"></input>
+    <input class="extend text-grey" disabled value="{{status==0?'预览':'编辑'}}" bindtap="changeStatus"></input>
+  </block>
+  <view class="tips">
+    <text class="tip" bindtap="tip" data-fh="#">#</text>
+    <text class="tip" style="margin-left:10%;line-height:80rpx;" bindtap="tip" data-fh="*">*</text>
+    <text class="tip" style="margin-left:20%;" bindtap="tip" data-fh="-">-</text>
+    <text class="tip" style="margin-left:30%;font-size:24rpx" bindtap="tip" data-fh="code">{{code}}</text>
+    <text class="tip" style="margin-left:40%;" bindtap="tip" data-fh="link">🔗</text>
+    <text class="tip" style="margin-left:50%;" bindtap="uploadImg">图</text>
+    <text class="tip" style="margin-left:60%;" decode="true" bindtap="tip" data-fh=">">>&nbsp;</text>
+    <text class="tip" style="margin-left:70%;style" bindtap="tip" data-fh="table">表</text>
+  </view>
+  <textarea class="markDown" placeholder="开始你的markdown编写..." maxlength="-1" bindinput="getContent" value="{{rawMD}}"
+    wx:if="{{status==0}}"></textarea>
+  <view class="preview" wx:if="{{status==1}}">
+    <wemark md="{{rawMD}}" link highlight disabled type="wemark"></wemark>
+  </view>
+  <button class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;" bindtap="release">发布</button>
+  <view class="stand-view"></view>
+</view>

@@ -4,7 +4,6 @@ Page({
   data: {
     word: {},
     date: '',
-    contributor: '',
     related_words: [],
     related_articles: []
   },
@@ -15,8 +14,6 @@ Page({
     })
     // 获取日期
     this.getDate()
-    // 获取贡献人
-    this.getContributor()
     // 获取相关词语
     this.getRelatedWords()
     // 获取相关文章
@@ -35,40 +32,11 @@ Page({
     })
   },
 
-  getContributor() {
-    let that = this
-    wx.request({
-      // url: app.globalData.server + 'users/' + that.data.word.contributor,
-      url: 'http://127.0.0.1:4523/mock/404238/users/1',
-      method: 'GET',
-      data: {},
-      header: {
-        'content-type': 'application/json',
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          that.setData({
-            contributor: res.data.user.username
-          })
-        } else {
-          wx.showToast({
-            title: '服务器错误',
-          })
-        }
-      },
-      fail(err) {
-        wx.showToast({
-          title: '网络异常',
-        })
-      }
-    })
-  },
-
   getRelatedWords() {
     let that = this
     wx.request({
-      // url: app.globalData.server + 'words',
-      url: 'http://127.0.0.1:4523/mock/404238/words',
+      url: app.globalData.server + 'words',
+      // url: 'http://127.0.0.1:4523/mock/404238/words',
       method: 'PUT',
       data: {
         words: that.data.word.related_words
@@ -91,8 +59,8 @@ Page({
   getAriticles() {
     let that = this
     wx.request({
-      // url: app.globalData.server + 'articles',
-      url: 'http://127.0.0.1:4523/mock/404238/articles',
+      url: app.globalData.server + 'articles',
+      // url: 'http://127.0.0.1:4523/mock/404238/articles',
       method: 'PUT',
       data: {
         articles: that.data.word.related_articles

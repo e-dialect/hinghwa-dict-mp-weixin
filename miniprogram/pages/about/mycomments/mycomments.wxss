@@ -1,0 +1,22 @@
+.text-name {
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.text-date {
+  color: #9b9b9b;
+  font-size: 24rpx;
+}
+
+.text-dz {
+  color: #999999;
+  font-size: 36rpx;
+  align-self: center;
+}
+
+.text-content {
+  position: relative;
+  width: 85vw;
+  left: 10vw;
+  margin-top: 15rpx;
+}

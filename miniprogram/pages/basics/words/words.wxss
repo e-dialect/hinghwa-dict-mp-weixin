@@ -16,5 +16,5 @@ page {
 .info {
   position: absolute;
   right: 50rpx;
-  bottom: 28rpx;
+  bottom: 50rpx;
 }

@@ -1,0 +1,29 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}"></cu-custom>
+<view class="music">
+  <view class="user">
+    <text>贡献人：</text>
+    <text class="text-blue">顾天阳</text>
+  </view>
+  <image src="{{music.cover}}" mode="aspectFill"></image>
+  <view class="info">
+    <view>
+      <view class="title">{{music.title}}</view>
+      <view class="artist">{{music.artist}}</view>
+    </view>
+    <view class="icon-like">
+      <text class="cuIcon-like"></text>
+    </view>
+  </view>
+  <view class="progress">
+    <text class="margin-top-sm" decode="true">{{current_time}}&nbsp;</text>
+    <view class="cu-progress round margin-top xs">
+      <view class="bg-blue" style="width:{{percent}}%;"></view>
+    </view>
+    <text class="margin-top-sm" decode="true">&nbsp;{{end_time}}</text>
+  </view>
+  <view class="icon">
+    <image class="other" src="/images/music/last.png" mode="aspectFill"></image>
+    <image class="play" src="{{img}}" mode="aspectFill" bindtap="playAndPause"></image>
+    <image class="other" src="/images/music/next.png" mode="aspectFill"></image>
+  </view>
+</view>

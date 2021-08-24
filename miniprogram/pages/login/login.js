@@ -1,29 +1,8 @@
 const app = getApp()
 
 Page({
-  data: {
-    avatar: '',
-    is_close: true,
-    ear: 'close.png'
-  },
-  onLoad() {
-    this.setData({
-      avatar: app.globalData.userInfo.avatar
-    })
-  },
-  bindEar() {
-    if (this.data.is_close == true) {
-      this.setData({
-        is_close: false,
-        ear: 'open.png'
-      })
-    } else {
-      this.setData({
-        is_close: true,
-        ear: 'close.png'
-      })
-    }
-  },
+  data: {},
+
   login(e) {
     var username = e.detail.value.username
     var password = e.detail.value.password
@@ -35,8 +14,7 @@ Page({
       return;
     }
     wx.request({
-      // url: app.globalData.server + 'login',
-      url: 'http://127.0.0.1:4523/mock/404238/login',
+      url: app.globalData.server + 'login',
       method: 'POST',
       data: {
         username: username,
@@ -54,13 +32,15 @@ Page({
             duration: 2000
           })
           wx.setStorageSync('token', res.data.token)
-          wx.reLaunch({
-            url: '/pages/index/index',
-          })
+          wx.setStorageSync('id', res.data.id)
+          setTimeout(function () {
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }, 500)
         } else if (res.statusCode == 401) {
           wx.showModal({
-            title: '提示',
-            content: '用户不存在或密码错误',
+            content: '用户名不存在或密码错误',
             showCancel: false,
             success(res) {
               console.log(res.confirm)
@@ -80,6 +60,13 @@ Page({
       }
     })
   },
+
+  forget() {
+    wx.navigateTo({
+      url: '/pages/forget/forget',
+    })
+  },
+
   register() {
     wx.navigateTo({
       url: '/pages/register/register',

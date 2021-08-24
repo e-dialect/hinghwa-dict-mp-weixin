@@ -1,0 +1,64 @@
+page {
+  background-color: white;
+}
+
+.music {
+  margin: 5vw;
+}
+
+.music .user {
+  margin-bottom: 40rpx;
+}
+
+.music image {
+  width: 90vw;
+  height: 32vh;
+  border-radius: 20rpx;
+}
+
+.music .info {
+  margin: 40rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.music .info .title {
+  font-size: 50rpx;
+  margin-bottom: 20rpx;
+}
+
+.music .info .artist {
+  font-size: 32rpx;
+  color: grey;
+}
+
+.music .info .icon-like {
+  margin-top: 40rpx;
+  font-size: 40rpx;
+}
+
+.music .progress {
+  margin-top: 200rpx;
+  display: flex;
+}
+
+.music .icon {
+  display: flex;
+  justify-content: center;
+  margin: 6vh;
+}
+
+.music .icon image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.music .icon .play {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 60rpx;
+}
+
+.music .icon .other {
+  margin-top: 22rpx;
+}

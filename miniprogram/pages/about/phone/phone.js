@@ -21,9 +21,10 @@ Page({
         }
       })
     } else {
+      app.globalData.userInfo.telephone = phone
       wx.request({
-        // url: app.globalData.server + 'users/' + app.globalData.id,
-        url: 'http://127.0.0.1:4523/mock/404238/users/1',
+        url: app.globalData.server + 'users/' + app.globalData.id,
+        // url: 'http://127.0.0.1:4523/mock/404238/users/1',
         method: 'PUT',
         data: {
           user: app.globalData.userInfo
@@ -35,7 +36,6 @@ Page({
         success(res) {
           console.log(res.data)
           if (res.statusCode == 200) {
-            app.globalData.userInfo.phone = phone
             wx.setStorage({
               data: res.data.token,
               key: 'token',

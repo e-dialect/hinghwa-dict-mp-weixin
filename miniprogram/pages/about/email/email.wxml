@@ -5,14 +5,14 @@
   <input value="{{old_email}}" disabled="true"></input>
 </view>
 <view class="cu-form-group">
+  <view class="text-df text-bold-less margin-right-sm">新邮箱</view>
+  <input placeholder="请输入新邮箱" bindinput="getNewEmail"></input>
+</view>
+<view class="cu-form-group">
   <view class="text-df text-bold-less margin-right-sm">验证码</view>
   <input placeholder="请输入验证码" bindinput="getCode"></input>
   <button bindtap="sendCode" class="cu-btn bg-gradual-blue shadow"
     style="width:32vw;border-radius:5000rpx;">获取验证码</button>
-</view>
-<view class="cu-form-group">
-  <view class="text-df text-bold-less margin-right-sm">新邮箱</view>
-  <input placeholder="请输入新邮箱" bindinput="getNewEmail"></input>
 </view>
 <button class="cu-btn round bg-gradual-blue shadow text-df margin-top-sm" style="display:flex;justify-content:center;"
   bindtap="setNewEmail">保存</button>

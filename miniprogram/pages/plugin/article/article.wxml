@@ -1,0 +1,55 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="content" class="text-black">兴化语记</view>
+</cu-custom>
+<scroll-view scroll-y class="scrollPage">
+  <view class="padding-sm">
+    <view class="text-bold text-xxl line">{{article.title}}</view>
+    <view class="flex text-df margin-top">
+      <image class="cu-avatar round ssm" src="{{article.author.avatar}}" mode="aspectFill"></image>
+      <text decode="true">&nbsp;{{article.author.nickname}}&nbsp;&nbsp;<text
+          class="text-grey">{{article.publish_time}}</text>
+      </text>
+    </view>
+    <view class="solid-top solid-bottom margin-top-xl padding-top-sm padding-bottom-sm">
+      <text class="text-xl text-grey line">{{article.description}}</text>
+    </view>
+    <view class="margin-top-xl">
+      <wemark md="{{article.content}}" link highlight disabled type="wemark"></wemark>
+    </view>
+    <view class="margin-top-xl padding-top-sm solid-top">
+      <view class="text-df text-bold">评论（{{comments.length}}条）</view>
+      <view class="solid-bottom padding-top-sm padding-bottom-sm" wx:for="{{comments}}" wx:if="{{item.parent==0}}">
+        <view class="flex">
+          <image class="cu-avatar round margin-right-sm" src="{{item.user.avatar}}" mode="aspectFill"></image>
+          <view class="flex flex-sub justify-between">
+            <view class="flex flex-direction">
+              <view class="text-name">{{item.user.nickname}}</view>
+              <view class="text-date">{{item.time}}</view>
+            </view>
+            <view class="text-dz">
+              <text class="cuIcon-appreciate"></text>
+            </view>
+          </view>
+        </view>
+        <view class="text-content" bindtap="reply" data-id="{{item.id}}">{{item.content}}</view>
+        <view class="text-reply" wx:for="{{item.kids}}" wx:for-item="kid">
+          <text class="text-blue">{{kid.user.nickname}}</text>
+          <text wx:if="{{kid.parent!=item.id}}"> @ </text>
+          <text class="text-blue" wx:if="{{kid.parent!=item.id}}">{{comments[map[kid.parent]].user.nickname}}</text>
+          <text bindtap="getAllReplys" data-id="{{item.id}}">：{{kid.content}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="stand-view"></view>
+</scroll-view>
+<view class="cu-bar foot input padding-bottom" style="min-height:120rpx;">
+  <view class="like {{is_like==0?'':'text-blue border'}}" bindtap="like" wx:if="{{is_reply==false}}">
+    <text class="cuIcon-appreciate"> {{likes}}</text>
+  </view>
+  <view class="input-box">
+    <input style="margin-left:30rpx;" value="{{comment}}" placeholder="{{ph_text}}" focus="{{is_reply}}" bindinput="getText"
+      bindfocus="focus" bindblur="blur" adjust-position="{{true}}"></input>
+  </view>
+  <button class="cu-btn bg-blue shadow" style="width:16vw;" bindtap="comment" wx:if="{{is_reply==true}}">发送</button>
+</view>

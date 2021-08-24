@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+</cu-custom>
+<view class="padding-sm solid-bottom">
+  <view class="flex">
+    <image class="cu-avatar round margin-right-sm" src="{{comment.user.avatar}}" mode="aspectFill"></image>
+    <view class="flex flex-sub justify-between">
+      <view class="flex flex-direction">
+        <view class="text-name">{{comment.user.nickname}}</view>
+        <view class="text-date">{{comment.time}}</view>
+      </view>
+      <view class="text-dz">
+        <text class="cuIcon-appreciate"></text>
+      </view>
+    </view>
+  </view>
+  <view class="text-content">{{comment.content}}</view>
+</view>
+<view class="padding-sm">
+  <view class="text-df text-bold padding-top-sm padding-bottom-sm">全部回复（{{comment.kids.length}}条）</view>
+  <view class="padding-top-sm padding-bottom-sm solid-bottom" wx:for="{{comment.kids}}">
+    <view class="flex">
+      <image class="cu-avatar round margin-right-sm" src="{{item.user.avatar}}" mode="aspectFill"></image>
+      <view class="flex flex-sub justify-between">
+        <view class="flex flex-direction">
+          <view class="text-name">{{item.user.nickname}}</view>
+          <view class="text-date">{{item.time}}</view>
+        </view>
+        <view class="text-dz">
+          <text class="cuIcon-appreciate"></text>
+        </view>
+      </view>
+    </view>
+    <view class="text-content">
+      <text wx:if="{{item.parent!=comment.id}}">@ </text>
+      <text class="text-blue"
+        wx:if="{{item.parent!=comment.id}}">{{comment.kids[map[item.parent]].user.nickname}}</text>
+      <text wx:if="{{item.parent!=comment.id}}">：</text>
+      <text bindtap="reply" data-id="{{item.id}}">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+<view class="cu-bar foot input padding-bottom" style="min-height:120rpx;">
+  <view class="input-box">
+    <input style="margin-left:30rpx;" placeholder="{{ph_text}}" focus="{{is_reply}}" bindinput="getText"
+      bindfocus="focus" bindblur="blur" adjust-position="{{true}}"></input>
+  </view>
+  <button class="cu-btn bg-blue shadow" style="width:16vw;" bindtap="comment">发送</button>
+</view>

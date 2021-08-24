@@ -2,18 +2,17 @@ const app = getApp()
 
 Page({
   data: {
-    username: ''
+    nickname: ''
   },
-  setUsername(e) {
+  setNickname(e) {
     this.setData({
-      username: e.detail.value
+      nickname: e.detail.value
     })
   },
-  saveUsername() {
-    var username = this.data.username
-    if (username == '') {
+  saveNickname() {
+    var nickname = this.data.nickname
+    if (nickname == '') {
       wx.showModal({
-        title: '提示',
         content: '请输入正确的昵称',
         showCancel: false,
         success(res) {
@@ -21,9 +20,9 @@ Page({
         }
       })
     } else {
+      app.globalData.userInfo.nickname = nickname
       wx.request({
-        // url: app.globalData.server + 'users/' + app.globalData.id,
-        url: 'http://127.0.0.1:4523/mock/404238/users/1',
+        url: app.globalData.server + 'users/' + app.globalData.id,
         method: 'PUT',
         data: {
           user: app.globalData.userInfo
@@ -33,11 +32,7 @@ Page({
           'token': app.globalData.token
         },
         success(res) {
-          console.log(res.data)
           if (res.statusCode == 200) {
-            app.globalData.data = {
-              'username': username
-            }
             wx.setStorage({
               data: res.data.token,
               key: 'token',
@@ -45,17 +40,18 @@ Page({
             wx.showToast({
               title: '修改成功',
             })
-            // 返回上一页面
-            wx.navigateBack({
-              delta: 1
-            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 500)
           } else if (res.statusCode == 400) {
             wx.showToast({
               title: '格式错误',
             })
           } else if (res.statusCode == 409) {
             wx.showToast({
-              title: '用户名重复',
+              title: '昵称重复',
             })
           } else {
             wx.showToast({

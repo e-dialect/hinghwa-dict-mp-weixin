@@ -2,40 +2,52 @@ const app = getApp()
 
 Page({
   data: {
-    is_close: true,
-    ear: 'close.png',
+    is_pwd1: true,
+    is_pwd2: true,
     email: ''
   },
-  bindEar() {
-    if (this.data.is_close == true) {
+
+  ear1() {
+    if (this.data.is_pwd1 == true) {
       this.setData({
-        is_close: false,
-        ear: 'open.png'
+        is_pwd1: false
       })
     } else {
       this.setData({
-        is_close: true,
-        ear: 'close.png'
+        is_pwd1: true
       })
     }
   },
+
+  ear2() {
+    if (this.data.is_pwd2 == true) {
+      this.setData({
+        is_pwd2: false
+      })
+    } else {
+      this.setData({
+        is_pwd2: true
+      })
+    }
+  },
+
   getEmail(e) {
     this.setData({
       email: e.detail.value
     })
   },
+
   // 获取验证码
   getCode() {
     var that = this
     wx.request({
       url: app.globalData.server + 'website/email',
-      // url: 'http://127.0.0.1:4523/mock/404238/website/email',
       method: 'POST',
       data: {
         email: that.data.email
       },
       header: {
-        'content-type': 'application/json', // 默认值
+        'content-type': 'application/json',
       },
       success(res) {
         console.log(res.data)
@@ -56,8 +68,9 @@ Page({
       }
     })
   },
+
   register(e) {
-    console.log(e.detail.value)
+    console.log(e)
     var username = e.detail.value.username
     var password = e.detail.value.password
     var password_confirmed = e.detail.value.password_confirmed
@@ -86,7 +99,6 @@ Page({
     }
     wx.request({
       url: app.globalData.server + 'users',
-      // url: 'http://127.0.0.1:4523/mock/404238/users',
       method: 'POST',
       data: {
         username: username,
@@ -106,9 +118,11 @@ Page({
             title: '注册成功',
           })
           wx.setStorageSync('id', res.data.id)
-          wx.navigateBack({
-            delta: 1,
-          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 500)
         } else if (res.statusCode == 401) {
           wx.showToast({
             title: '验证码错误',

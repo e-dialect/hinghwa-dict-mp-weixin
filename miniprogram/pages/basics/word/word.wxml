@@ -19,7 +19,7 @@
           </view>
         </view>
         <view class="margin-top-sm text-grey">
-          来源：<text class="text-blue">{{contributor}}</text>
+          来源：<text class="text-blue">{{word.contributor.username}}</text>
         </view>
       </view>
     </view>

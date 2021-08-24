@@ -6,15 +6,29 @@
     "pages/basics/search/search",
     "pages/basics/characters/characters",
     "pages/basics/words/words",
+    "pages/basics/pronunciation/pronunciation",
     "pages/component/home/home",
+    "pages/component/music/music",
+    "pages/component/playmusic/playmusic",
+    "pages/component/uploadmusic/uploadmusic",
+    "pages/component/voice/voice",
+    "pages/component/uploadpronunciation/uploadpronunciation",
     "pages/plugin/home/home",
+    "pages/plugin/article/article",
+    "pages/plugin/comment/comment",
+    "pages/plugin/write/write",
     "pages/about/home/home",
     "pages/about/userinfo/userinfo",
-    "pages/about/username/username",
+    "pages/about/nickname/nickname",
     "pages/about/email/email",
+    "pages/about/password/password",
+    "pages/about/articlesliked/articlesliked",
+    "pages/about/myarticles/myarticles",
+    "pages/about/mycomments/mycomments",
+    "pages/about/phone/phone",
     "pages/login/login",
     "pages/register/register",
-    "pages/about/phone/phone"
+    "pages/forget/forget"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -27,5 +41,9 @@
     "cu-custom": "/colorui/components/cu-custom"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ]
 }

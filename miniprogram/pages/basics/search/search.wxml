@@ -3,6 +3,12 @@
 </cu-custom>
 <scroll-view scroll-y class="scrollPage">
   <view class="cu-bar search bg-white">
+    <view class="action">
+      <picker bindchange="sort" value="{{index}}" range="{{sort}}">
+        <text>{{sort[index]}}</text>
+        <text class="cuIcon-triangledownfill"></text>
+      </picker>
+    </view>
     <view class="search-form round">
       <text class="cuIcon-search"></text>
       <input type="text" placeholder="兴化语记" value="{{key}}" confirm-type="search" bindinput="key"></input>
@@ -11,25 +17,26 @@
       <text class="text-blue">搜索</text>
     </view>
   </view>
-  <view class="cu-bar bg-white text-grey" wx:if="{{status==0}}">
+  <!-- <view class="cu-bar bg-white text-grey" wx:if="{{status==0}}">
     <view class="action">历史搜索</view>
     <image src="/images/home/delete.png" mode="widthFix" bindtap="deleteHistory"
       style="width:5vw;height:auto;margin-right:30rpx;">
     </image>
-  </view>
-  <view class="history" wx:if="{{status==0}}">
+  </view> -->
+  <!-- <view class="history" wx:if="{{status==0}}">
     <view class="padding-xs" wx:for="{{history}}">
       <view class="cu-tag round">{{item}}</view>
     </view>
-  </view>
-  <view class="bg-white flex text-df text-black" wx:if="{{status!=0}}">
+  </view> -->
+  <!-- <view class="bg-white flex text-df text-black" wx:if="{{status!=0}}">
     <view class="flex-sub padding {{status==1?'text-bold':''}}" bindtap="sort" data-index="1">单字</view>
     <view class="flex-sub padding {{status==2?'text-bold':''}}" bindtap="sort" data-index="2">词语</view>
     <view class="flex-sub padding line {{status==3?'text-bold':''}}" bindtap="sort" data-index="3">文章</view>
     <view class="flex-sub padding text-center" bindtap="sort" data-index="3">更多</view>
-  </view>
-  <view class="cu-list menu" wx:if="{{status==1}}">
-    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-index="{{index}}" wx:for="{{characters}}">
+  </view> -->
+  <view class="cu-list menu" wx:if="{{index==0&&status==1}}">
+    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-index="{{index}}"
+      wx:for="{{characters}}">
       <view class="flex flex-direction justify-between">
         <view class="margin-bottom-sm">
           <text class="text-xxl text-bold">{{item.character}}</text>
@@ -42,7 +49,7 @@
       </view>
     </view>
   </view>
-  <view class="cu-list menu" wx:if="{{status==2}}">
+  <view class="cu-list menu" wx:if="{{index==2&&status==1}}">
     <view class="cu-item arrow" style="min-height:150rpx;" bindtap="word" data-index="{{index}}" wx:for="{{words}}">
       <view class="flex flex-direction justify-between">
         <view class="margin-bottom-sm">
@@ -53,7 +60,7 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{status==3}}">
+  <view wx:if="{{index==3&&status==1}}">
     <view class="flex article solid-bottom" wx:for="{{articles}}">
       <image src="{{item.article.cover}}" mode="aspectFill"></image>
       <view style="flex:1;">
