@@ -35,7 +35,7 @@
     <view class="flex-sub padding text-center" bindtap="sort" data-index="3">更多</view>
   </view> -->
   <view class="cu-list menu" wx:if="{{index==0&&status==1}}">
-    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-index="{{index}}"
+    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
       wx:for="{{characters}}">
       <view class="flex flex-direction justify-between">
         <view class="margin-bottom-sm">
@@ -45,6 +45,23 @@
         <view>
           <text>{{item.pinyin}}</text>
           <text class="text-grey margin-left">/{{item.ipa}}/</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{index==1&&status==1}}">
+    <view class="cu-list menu" wx:for="{{pronunciation}}">
+      <view class="cu-item arrow" style="min-height:150rpx;" data-id="{{kid.id}}" bindtap="character"
+        wx:for="{{item.characters}}" wx:for-item="kid">
+        <view class="flex flex-direction justify-between">
+          <view class="margin-bottom-sm">
+            <text class="text-xxl text-bold">{{item.label}}</text>
+            <text class="cuIcon-notificationfill text-blue margin-left"></text>
+          </view>
+          <view>
+            <text>{{kid.pinyin}}</text>
+            <text class="text-grey margin-left">/{{kid.ipa}}/</text>
+          </view>
         </view>
       </view>
     </view>
@@ -61,7 +78,7 @@
     </view>
   </view>
   <view wx:if="{{index==3&&status==1}}">
-    <view class="flex article solid-bottom" wx:for="{{articles}}">
+    <view class="flex article solid-bottom" data-id="{{item.article.id}}" bindtap="toArticle" wx:for="{{articles}}">
       <image src="{{item.article.cover}}" mode="aspectFill"></image>
       <view style="flex:1;">
         <view class="flex justify-between">
@@ -70,7 +87,7 @@
             <text class="cuIcon-attention"></text> {{item.article.views}}
           </view>
         </view>
-        <view class="content">{{item.article.content}}</view>
+        <view class="content">{{item.article.description}}</view>
       </view>
     </view>
   </view>

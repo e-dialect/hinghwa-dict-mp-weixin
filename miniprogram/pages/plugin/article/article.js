@@ -27,8 +27,17 @@ Page({
     this.getComments()
   },
 
+  // 获取游客信息
+  toVisitor() {
+    let id = this.data.article.author.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
+  },
+
   // 根据id获取文章细节
   getArticle(id) {
+    wx.showLoading()
     let that = this
     wx.request({
       url: app.globalData.server + 'articles/' + id,
@@ -45,6 +54,9 @@ Page({
             likes: res.data.article.likes,
             is_like: res.data.me.liked
           })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 500)
         }
       }
     })
@@ -227,5 +239,20 @@ Page({
         }
       })
     }
+  },
+
+  toVisitorByComment(e) {
+    let index = e.currentTarget.dataset.index,
+      id = this.data.comments[index].user.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
+  },
+
+  toVisitorByReply(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
   }
 })

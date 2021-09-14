@@ -16,7 +16,7 @@
         </view>
         <view class="text-df">
           <text>来源：</text>
-          <text class="text-blue">{{item.contributor.nickname}}</text>
+          <text class="text-blue" data-id="{{item.contributor.id}}" bindtap="toVisitor">{{item.contributor.nickname}}</text>
           <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
         </view>
       </view>

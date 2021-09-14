@@ -42,8 +42,8 @@ Page({
 
   changePassword(e) {
     let old = e.detail.value.old
-    let new1 = e.detail.value.new1
-    let new2 = e.detail.value.new2
+    let new1 = e.detail.value.new1.trim()
+    let new2 = e.detail.value.new2.trim()
     if (old == '' || new1 == '' || new2 == '') {
       wx.showToast({
         title: '内容不完整',
@@ -70,6 +70,7 @@ Page({
         'token': app.globalData.token
       },
       success(res) {
+        console.log(res)
         if (res.statusCode == 200) {
           wx.showToast({
             title: '修改成功',

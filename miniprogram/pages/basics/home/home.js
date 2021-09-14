@@ -7,7 +7,8 @@ Component({
   data: {
     status: 0,
     word: {},
-    announcements: []
+    announcements: [],
+    triggered: false
   },
 
   lifetimes: {
@@ -65,6 +66,20 @@ Component({
   },
 
   methods: {
+    // 下拉刷新
+    onRefresh() {
+      if (this._freshing) return
+      this._freshing = true
+      wx.showLoading()
+      setTimeout(() => {
+        wx.hideLoading()
+        this.setData({
+          triggered: false,
+        })
+        this._freshing = false
+      }, 500)
+    },
+
     getWord() {
       if (!this.data.word.id) {
         var that = this
@@ -83,6 +98,12 @@ Component({
                 title: '服务器错误'
               })
             }
+          },
+          fail(err) {
+            console.log(err)
+            wx.showToast({
+              title: '网络异常'
+            })
           }
         })
       }

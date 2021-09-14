@@ -99,9 +99,9 @@
 	border-right:1px solid #e0e0e0;
 	border-bottom:1px solid #e0e0e0; */
 }
-.wemark_inline_table_td:last{
-	/* border-top:1px solid #e0e0e0; */
-}
+/* .wemark_inline_table_td:last{
+	border-top:1px solid #e0e0e0;
+} */
 .wemark_inline_table_th{
 	background:#f0f0f0;
 	/* border-top:1px solid #e0e0e0; */

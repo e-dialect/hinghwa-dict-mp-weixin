@@ -3,12 +3,12 @@ const app = getApp()
 Page({
   data: {
     music: {},
-    duration: 0,
-    img: '/images/music/play.png',
+    icon: 'cuIcon-stop',
     duration: 0,
     current_time: '0:00',
     end_time: '0:00',
-    percent: 0
+    progress: 0,
+    is_changing: 0
   },
 
   onLoad(options) {
@@ -35,30 +35,19 @@ Page({
     })
   },
 
+  toVisitor() {
+    let id = this.data.music.contributor.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
+  },
+
   initAudio() {
     let music = this.data.music
-    // 创建播放器
-    wx.playBackgroundAudio({
-      dataUrl: music.source,
-      title: music.title,
-      coverImgUrl: music.cover
-    })
-    // 监听音乐播放
-    wx.onBackgroundAudioPlay(() => {
-      this.setData({
-        img: '/images/music/pause.png'
-      })
-    })
-    // 监听音乐暂停
-    wx.onBackgroundAudioPause(() => {
-      this.setData({
-        img: '/images/music/play.png'
-      })
-    })
-    // 监听音乐停止
-    wx.onBackgroundAudioStop(() => {})
-    // 监听播放拿取播放进度
     const manage = wx.getBackgroundAudioManager()
+    manage.src = music.source
+    manage.title = music.title
+    manage.coverImgUrl = music.cover
     manage.onTimeUpdate(() => {
       if (this.data.duration == 0) {
         this.setData({
@@ -67,24 +56,55 @@ Page({
         })
       }
       const currentTime = manage.currentTime
-      this.setData({
-        current_time: this.formatTime(currentTime),
-        percent: currentTime * 100 / this.data.duration
-      })
+      if (this.data.is_changing == 0) {
+        this.setData({
+          current_time: this.formatTime(currentTime),
+          progress: currentTime * 1000 / this.data.duration
+        })
+      }
     })
   },
 
   playAndPause() {
-    wx.getBackgroundAudioPlayerState({
-      success: function (res) {
-        var status = res.status
-        if (status == 1) {
-          wx.pauseBackgroundAudio()
-        } else {
-          wx.playBackgroundAudio()
-        }
-      }
-    })
+    const manage = wx.getBackgroundAudioManager()
+    if (manage.paused == false) {
+      this.setData({
+        icon: 'cuIcon-playfill'
+      })
+      manage.pause()
+    } else {
+      this.setData({
+        icon: 'cuIcon-stop'
+      })
+      manage.play()
+    }
+  },
+
+  changingProgress(e) {
+    if (this.data.is_changing == 0) {
+      this.setData({
+        is_changing: 1
+      })
+    } else {
+      let current_time = (e.detail.value / 1000) * this.data.duration
+      this.setData({
+        current_time: this.formatTime(current_time)
+      })
+    }
+  },
+
+  changeProgress(e) {
+    let current_time = (e.detail.value / 1000) * this.data.duration
+    const manage = wx.getBackgroundAudioManager()
+    manage.seek(current_time)
+    setTimeout(function () {
+      this.setData({
+        current_time: this.formatTime(current_time),
+        progress: e.detail.value,
+        is_changing: 0
+      })
+    }, 100)
+
   },
 
   // 格式化时间
@@ -104,4 +124,10 @@ Page({
     }
     return num
   },
+
+  back() {
+    wx.navigateBack({
+      delta: 1,
+    })
+  }
 })

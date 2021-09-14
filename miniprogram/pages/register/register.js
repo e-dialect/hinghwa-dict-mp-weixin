@@ -126,24 +126,29 @@ Page({
         } else if (res.statusCode == 401) {
           wx.showToast({
             title: '验证码错误',
+            icon: 'error'
           })
         } else if (res.statusCode == 409) {
           wx.showToast({
-            title: '用户名重复',
+            title: '用户名已存在',
+            icon: 'error'
           })
         } else if (res.statusCode == 400) {
           wx.showToast({
             title: '请求有误',
+            icon: 'error'
           })
         } else if (res.statusCode == 500) {
           wx.showToast({
             title: '服务器错误',
+            icon: 'error'
           })
         }
       },
       fail(err) {
         wx.showToast({
           title: '网络异常',
+          icon: 'error'
         })
       }
     })

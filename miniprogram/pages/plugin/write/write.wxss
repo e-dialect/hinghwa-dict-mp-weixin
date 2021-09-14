@@ -24,6 +24,17 @@ page {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
+.cover {
+  height: 20%;
+  padding: 2.5%;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
 .extend {
   height: 4%;
   background-color: #dbdee2;

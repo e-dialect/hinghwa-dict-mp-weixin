@@ -20,7 +20,7 @@
       {{word.views}}
     </view>
     <view class="text-grey text-df margin-top-xs">
-      来源：<text class="text-blue">{{word.contributor.nickname}}</text>
+      来源：<text class="text-blue" bindtap="toVisitor">{{word.contributor.nickname}}</text>
     </view>
   </view>
 </view>

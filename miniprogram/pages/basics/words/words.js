@@ -14,6 +14,13 @@ Page({
     this.getWord()
   },
 
+  toVisitor() {
+    let id = this.data.word.contributor.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
+  },
+
   getWord() {
     let that = this
     wx.request({

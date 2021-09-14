@@ -19,7 +19,7 @@
           <text decode="true">&nbsp;{{item.author.nickname}}&nbsp;&nbsp;</text>
           <text class="text-grey">{{item.article.publish_time}}</text>
         </view>
-        <view class="text-content">{{item.article.content}}</view>
+        <view class="text-content">{{item.article.description}}</view>
       </view>
       <image src="{{item.article.cover}}" mode="aspectFill"></image>
     </view>

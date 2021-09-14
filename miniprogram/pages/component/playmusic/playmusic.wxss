@@ -1,5 +1,14 @@
 page {
-  background-color: white;
+  background-color: #222;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  opacity: 0.6;
+  -webkit-filter: blur(40rpx);
+  filter: blur(40rpx);
+  z-index: -1;
 }
 
 .music {
@@ -7,17 +16,20 @@ page {
 }
 
 .music .user {
-  margin-bottom: 40rpx;
+  color: #bbccbb;
+  margin-top: 120rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
 }
 
 .music image {
   width: 90vw;
-  height: 32vh;
+  height: 80vw;
   border-radius: 20rpx;
 }
 
 .music .info {
-  margin: 40rpx 0;
+  margin: 60rpx 0;
   display: flex;
   justify-content: space-between;
 }
@@ -25,40 +37,36 @@ page {
 .music .info .title {
   font-size: 50rpx;
   margin-bottom: 20rpx;
+  color: white;
 }
 
 .music .info .artist {
   font-size: 32rpx;
-  color: grey;
+  color: #919190;
 }
 
 .music .info .icon-like {
   margin-top: 40rpx;
-  font-size: 40rpx;
+  font-size: 50rpx;
+  color: #919190;
 }
 
 .music .progress {
-  margin-top: 200rpx;
+  margin-top: 120rpx;
   display: flex;
+  color: #919190;
 }
 
 .music .icon {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 6vh;
-}
-
-.music .icon image {
-  width: 50rpx;
-  height: 50rpx;
+  font-size: 80rpx;
+  color: white;
 }
 
 .music .icon .play {
-  width: 100rpx;
-  height: 100rpx;
+  font-size: 120rpx;
   margin: 0 60rpx;
-}
-
-.music .icon .other {
-  margin-top: 22rpx;
 }

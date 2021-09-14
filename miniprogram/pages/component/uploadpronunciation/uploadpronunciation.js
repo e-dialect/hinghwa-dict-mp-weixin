@@ -53,6 +53,7 @@ Page({
   // 上传.mp3文件
   uploadMp3(source) {
     let that = this
+    console.log(source)
     wx.uploadFile({
       url: app.globalData.server + 'website/files',
       filePath: source,
@@ -61,8 +62,10 @@ Page({
         'token': app.globalData.token
       },
       success(res) {
+        console.log(res)
         if (res.statusCode == 200) {
           let url = JSON.parse(res.data).url
+          console.log(res)
           that.setData({
             source: url
           })

@@ -22,9 +22,12 @@ Page({
       sourceType: ["album", "camera"],
       success(res) {
         wx.uploadFile({
-          url: "https://www.yuyinws.top/api/imgUpload",
+          url: app.globalData.server + 'website/files',
           filePath: res.tempFilePaths[0],
           name: "file",
+          header: {
+            'token': app.globalData.token
+          },
           success: (res) => {
             console.log(res)
             let data = JSON.parse(res.data)
