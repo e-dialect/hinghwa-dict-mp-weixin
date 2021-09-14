@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     title: '',
-    url: '',
+    url: 'https://HinghwaDict-1259415432.cos.ap-shanghai.myqcloud.com/files/image/6/2021/09/14/OmfYJtbQO6yVeA6.png',
     description: '',
     rawMD: '',
     code: '</>',
@@ -24,11 +24,13 @@ Page({
       sourceType: ["album", "camera"],
       success: (res) => {
         wx.uploadFile({
-          url: "https://www.yuyinws.top/api/imgUpload",
+          url: app.globalData.server + 'website/files',
           filePath: res.tempFilePaths[0],
           name: "file",
+          header: {
+            'token': app.globalData.token
+          },
           success: (res) => {
-            console.log(res)
             let data = JSON.parse(res.data)
             that.setData({
               url: data.url
@@ -84,18 +86,20 @@ Page({
       sourceType: ["album", "camera"],
       success: (res) => {
         wx.uploadFile({
-          url: "https://www.yuyinws.top/api/imgUpload",
+          url: app.globalData.server + 'website/files',
           filePath: res.tempFilePaths[0],
-          name: "file",
-          success: (res) => {
-            let data = JSON.parse(res.data)
-            data = that.data.rawMD + '![image](' + data.url + ')';
-            that.setData({
-              rawMD: data
-            })
+          name: 'file',
+          header: {
+            'token': app.globalData.token
           },
-          fail: (err) => {
-            console.log(err)
+          success(res) {
+            if (res.statusCode == 200) {
+              let data = JSON.parse(res.data)
+              data = that.data.rawMD + '![image](' + data.url + ')'
+              that.setData({
+                rawMD: data
+              })
+            }
           }
         })
       }
@@ -117,7 +121,6 @@ Page({
       // 创建文章
       wx.request({
         url: app.globalData.server + 'articles',
-        // url: 'http://127.0.0.1:4523/mock/404238/articles',
         method: 'POST',
         data: {
           title: title,
@@ -136,8 +139,8 @@ Page({
               duration: 2000,
               success(res) {
                 setTimeout(function () {
-                  wx.navigateBack({
-                    delta: 1
+                  wx.reLaunch({
+                    url: '/pages/index/index?status=plugin',
                   })
                 }, 500);
               }

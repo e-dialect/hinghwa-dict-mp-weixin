@@ -15,7 +15,9 @@
           <text class="cuIcon-notificationfill text-blue" data-index="{{index}}" bindtap="play"></text>
         </view>
         <view class="margin-top">
-          <text>来源：<text class="text-blue">{{item.contributor.nickname}}</text></text>
+          <text>来源：</text>
+          <text class="text-blue" data-id="{{item.contributor.id}}"
+            bindtap="toVisitor">{{item.contributor.nickname}}</text>
           <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
         </view>
       </view>

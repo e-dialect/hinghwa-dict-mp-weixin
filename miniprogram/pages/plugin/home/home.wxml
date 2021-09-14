@@ -4,8 +4,15 @@
 <button class="cu-btn icon lg bg-blue shadow write" bindtap="writeArticle">
   <text class="cuIcon-write"></text>
 </button>
-<scroll-view scroll-y class="scrollPage">
-  <view class="cu-card article no-card" bindtap="article" data-index="{{index}}" wx:for="{{articlesList}}" wx:key>
+<view class="flex padding text-center" style="background-color:white;">
+  <view class="flex-sub {{status==0?'text-bold':''}}" data-index="0" bindtap="changeStatus">热门文章</view>
+  <view class="flex-sub {{status==1?'text-bold':''}}" data-index="1" bindtap="changeStatus">全部文章</view>
+</view>
+<scroll-view scroll-y="true" style="height:85vh;" refresher-enabled="true" refresher-default-style="none"
+  refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh"
+  bindscrolltolower="loadMoreArticles">
+  <view class="cu-card article no-card" bindtap="article" data-index="{{index}}"
+    wx:for="{{status==0?hot_articles:display_all_articles}}" wx:key>
     <view class="cu-item shadow" style="margin-bottom:20rpx;">
       <view class="flex justify-between">
         <view class="title flex">

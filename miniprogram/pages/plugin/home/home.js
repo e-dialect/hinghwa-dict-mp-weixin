@@ -6,18 +6,50 @@ Component({
   },
 
   data: {
-    articlesList: []
+    hot_articles: [],
+    all_articles: [],
+    display_all_articles: [],
+    page: 1,
+    status: 0,
+    triggered: false
   },
 
   lifetimes: {
     attached() {
-      wx.showLoading({
-        title: '加载中',
+      let that = this
+      this.getHotArticles()
+    }
+  },
+
+  methods: {
+    // 获取热门文章
+    getHotArticles() {
+      wx.showLoading()
+      let that = this
+      wx.request({
+        url: app.globalData.server + 'website/hot_articles',
+        method: 'GET',
+        data: {},
+        header: {
+          'content-type': 'application/json',
+        },
+        success(res) {
+          console.log(res)
+          if (res.statusCode == 200) {
+            that.setData({
+              hot_articles: res.data.hot_articles
+            })
+            that.getAllArticles()
+          }
+        }
       })
+    },
+
+    // 获取全部文章
+    getAllArticles() {
       let that = this
       wx.request({
         url: app.globalData.server + 'articles',
-        // url: 'http://127.0.0.1:4523/mock/404238/articles',
         method: 'GET',
         data: {},
         header: {
@@ -30,7 +62,6 @@ Component({
             // 获取文章数组
             wx.request({
               url: app.globalData.server + 'articles',
-              // url: 'http://127.0.0.1:4523/mock/404238/articles',
               method: 'PUT',
               data: {
                 articles: arr
@@ -41,7 +72,8 @@ Component({
               success(res) {
                 if (res.statusCode == 200) {
                   that.setData({
-                    articlesList: res.data.articles
+                    all_articles: res.data.articles,
+                    display_all_articles: res.data.articles.slice(0, 4)
                   })
                   wx.hideLoading()
                 }
@@ -50,13 +82,51 @@ Component({
           }
         }
       })
-    }
-  },
+    },
 
-  methods: {
+    // 下拉刷新
+    onRefresh() {
+      if (this._freshing) return
+      this._freshing = true
+      this.getHotArticles()
+      setTimeout(() => {
+        this.setData({
+          triggered: false,
+        })
+        this._freshing = false
+      }, 500)
+    },
+
+    // 加载更多文章
+    loadMoreArticles() {
+      wx.showLoading()
+      let page = this.data.page
+      let origin_articles = this.data.display_all_articles
+      let concat_articles = this.data.all_articles.slice(page * 4, page * 4 + 4)
+      this.setData({
+        page: page + 1,
+        display_all_articles: origin_articles.concat(concat_articles)
+      })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 500)
+    },
+
+    changeStatus(e) {
+      let index = e.currentTarget.dataset.index
+      this.setData({
+        status: index
+      })
+    },
+
     article(e) {
       let index = e.currentTarget.dataset.index
-      let id = this.data.articlesList[index].article.id
+      let id = 0
+      if (this.data.status == 0) {
+        id = this.data.hot_articles[index].article.id
+      } else {
+        id = this.data.all_articles[index].article.id
+      }
       wx.navigateTo({
         url: '/pages/plugin/article/article?id=' + id
       })

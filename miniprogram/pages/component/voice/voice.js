@@ -40,4 +40,11 @@ Page({
     //   url: '/pages/component/uploadpronunciation/uploadpronunciation'
     // })
   },
+
+  toVisitor(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
+  }
 })

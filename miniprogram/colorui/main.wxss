@@ -1007,7 +1007,7 @@ button.icon.lg {
 .cu-progress {
 	overflow: hidden;
 	height: 28rpx;
-	background-color: #ebeef5;
+	background-color: #555455;
 	display: inline-flex;
 	align-items: center;
 	width: 100%;

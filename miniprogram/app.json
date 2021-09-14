@@ -19,6 +19,7 @@
     "pages/plugin/write/write",
     "pages/about/home/home",
     "pages/about/userinfo/userinfo",
+    "pages/about/visitor/visitor",
     "pages/about/nickname/nickname",
     "pages/about/email/email",
     "pages/about/password/password",

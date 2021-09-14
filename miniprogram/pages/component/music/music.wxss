@@ -13,7 +13,7 @@ page {
   display: flex;
   padding: 10rpx;
   border-radius: 10rpx;
-  border: 1rpx solid #D3D3D3;
+  /* border: 1rpx solid #D3D3D3; */
 }
 
 .cover {

@@ -7,7 +7,7 @@ Component({
 
   data: {
     avatar: '',
-    username: '',
+    nickname: '',
     recordsCount: 0,
     wordsCount: 0,
     visitTotal: 0
@@ -17,18 +17,18 @@ Component({
     attached() {
       var that = this
       app.watch(function (value) {
-        that.setData({
-          avatar: value.avatar
-        })
+        if (value.avatar) {
+          that.setData({
+            avatar: value.avatar
+          })
+        }
+        if (value.nickname) {
+          that.setData({
+            nickname: value.nickname
+          })
+        }
       })
-      this.setData({
-        avatar: app.globalData.userInfo.avatar,
-        username: app.globalData.userInfo.username
-      })
-      wx.showLoading({
-        title: '数据加载中',
-        mask: true
-      })
+      this.getInfo()
       let i = 0
       numDH();
 
@@ -51,11 +51,47 @@ Component({
           })
         }
       }
-      wx.hideLoading()
     },
   },
 
   methods: {
+    // 获取用户信息
+    getInfo() {
+      wx.showLoading()
+      let that = this
+      wx.request({
+        url: app.globalData.server + 'users/' + app.globalData.id,
+        method: 'GET',
+        data: {},
+        header: {
+          'content-type': 'application/json',
+        },
+        success(res) {
+          if (res.statusCode == 200) {
+            app.globalData.userInfo = res.data.user,
+              app.globalData.publish_articles = res.data.publish_articles,
+              app.globalData.publish_comments = res.data.publish_comments,
+              app.globalData.like_articles = res.data.like_articles,
+              app.globalData.contribution = res.data.contribution
+            that.setData({
+              avatar: app.globalData.userInfo.avatar,
+              nickname: app.globalData.userInfo.nickname
+            })
+            wx.hideLoading()
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+            })
+          }
+        },
+        fail(err) {
+          wx.showToast({
+            title: '网络异常',
+          })
+        }
+      })
+    },
+
     coutNum(e) {
       if (e > 1000 && e < 10000) {
         e = (e / 1000).toFixed(1) + 'k'
@@ -70,6 +106,27 @@ Component({
     userInfo() {
       wx.navigateTo({
         url: '/pages/about/userinfo/userinfo',
+      })
+    },
+
+    // 退出登录
+    exit() {
+      wx.showModal({
+        content: '是否退出当前登录？',
+        success(res) {
+          if (res.confirm) {
+            wx.clearStorageSync()
+            app.globalData.status = 0
+            wx.navigateTo({
+              url: '/pages/index/index?status=basics',
+              success(res) {
+                wx.showToast({
+                  title: '登出成功！',
+                })
+              }
+            })
+          }
+        }
       })
     }
   }
