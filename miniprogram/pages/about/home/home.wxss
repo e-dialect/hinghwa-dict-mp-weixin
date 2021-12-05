@@ -24,6 +24,7 @@
   top: 22vh;
   font-size: 36rpx;
   font-weight: 700;
+  color: white;
 }
 
 .bg-info image {

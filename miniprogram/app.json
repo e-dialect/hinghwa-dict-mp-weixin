@@ -11,6 +11,7 @@
     "pages/component/music/music",
     "pages/component/playmusic/playmusic",
     "pages/component/uploadmusic/uploadmusic",
+    "pages/component/condition/condition",
     "pages/component/voice/voice",
     "pages/component/uploadpronunciation/uploadpronunciation",
     "pages/plugin/home/home",

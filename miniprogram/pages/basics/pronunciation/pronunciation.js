@@ -63,25 +63,21 @@ Page({
   },
 
   play(e) {
-    const manage = wx.getBackgroundAudioManager()
-    manage.src = 'https://HinghwaDict-1259415432.cos.ap-shanghai.myqcloud.com/files/audio/8/2021/08/24/PcfkUuw87Kt06Xr.mpeg'
-    manage.title = '语音'
-    // let index = e.currentTarget.dataset.index
-    // var src = this.data.pronunciation[index].pronunciation.source
-    // console.log(src)
-    // if (src == '') {
-    //   wx.showToast({
-    //     title: '音源为空！',
-    //     icon: 'error'
-    //   })
-    //   return;
-    // }
-    // wx.showToast({
-    //   title: '正在播放语音..',
-    //   icon: 'none',
-    //   duration: 2000
-    // })
-    // this.innerAudioContext.src = src
-    // this.innerAudioContext.play()
+    let index = e.currentTarget.dataset.index
+    var src = this.data.pronunciation[index].pronunciation.source
+    console.log(src)
+    if (src == '') {
+      wx.showToast({
+        title: '音源为空！',
+        icon: 'error'
+      })
+      return;
+    }
+    wx.showToast({
+      title: '正在播放录音..',
+      icon: 'none'
+    })
+    this.innerAudioContext.src = src
+    this.innerAudioContext.play()
   }
 })

@@ -97,9 +97,10 @@ Page({
     let current_time = (e.detail.value / 1000) * this.data.duration
     const manage = wx.getBackgroundAudioManager()
     manage.seek(current_time)
+    let that = this
     setTimeout(function () {
-      this.setData({
-        current_time: this.formatTime(current_time),
+      that.setData({
+        current_time: that.formatTime(current_time),
         progress: e.detail.value,
         is_changing: 0
       })

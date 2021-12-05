@@ -7,8 +7,9 @@
     <input class="fileName" placeholder="请输入音乐名称" bindinput="getTitle"></input>
   </block>
   <block>
-    <input class="extend text-bold" disabled bindtap="getCover" value="封面"></input>
-    <input class="fileName" placeholder="点击左侧上传封面" disabled value="{{cover}}"></input>
+    <input class="extend text-bold" disabled value="封面"></input>
+    <input class="extend text-grey" disabled value="上传" bindtap="getCover"></input>
+    <image class="cover" src="{{cover}}" mode="aspectFill"></image>
   </block>
   <block>
     <input class="extend text-bold" disabled value="音源"></input>

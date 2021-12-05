@@ -12,6 +12,11 @@ Page({
       id: options.id
     })
     this.getWord()
+    // 创建播放器
+    this.innerAudioContext = wx.createInnerAudioContext()
+    this.innerAudioContext.onError((res) => {
+      that.tip("播放语音失败！")
+    })
   },
 
   toVisitor() {
@@ -60,9 +65,16 @@ Page({
   },
 
   pronounce() {
-    this.innerAudioContext = wx.createInnerAudioContext()
-    this.innerAudioContext.onError((res) => {
-      that.tip("播放语音失败！")
+    if (this.data.pronunciation.length == 0) {
+      wx.showToast({
+        title: '暂无录音',
+        icon: 'none'
+      })
+      return;
+    }
+    wx.showToast({
+      title: '正在播放录音...',
+      icon: 'none'
     })
     var src = this.data.pronunciation[0].pronunciation.source
     this.innerAudioContext.src = src

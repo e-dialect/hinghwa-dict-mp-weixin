@@ -36,9 +36,7 @@ Page({
         status: 1
       })
       // 开始录音
-      this.recorderManager.start({
-        format: 'mp3'
-      })
+      this.recorderManager.start()
     }
     // 正在录音
     else if (this.data.status == 1) {
@@ -62,10 +60,8 @@ Page({
         'token': app.globalData.token
       },
       success(res) {
-        console.log(res)
         if (res.statusCode == 200) {
           let url = JSON.parse(res.data).url
-          console.log(res)
           that.setData({
             source: url
           })
@@ -99,7 +95,13 @@ Page({
       county: e.detail.value.county,
       town: e.detail.value.town
     }
-    console.log(pronunciation)
+    if (!pronunciation.source || !pronunciation.ipa || !pronunciation.pinyin || !pronunciation.county || !pronunciation.town) {
+      wx.showToast({
+        title: '信息不完整',
+        icon: 'error'
+      })
+      return;
+    }
     wx.request({
       url: app.globalData.server + 'pronunciation',
       method: 'POST',

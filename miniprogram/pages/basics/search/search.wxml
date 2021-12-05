@@ -11,7 +11,8 @@
     </view>
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="兴化语记" value="{{key}}" confirm-type="search" bindinput="key"></input>
+      <input type="text" placeholder="兴化语记" value="{{key}}" confirm-type="search" bindinput="key"
+        bindconfirm="search"></input>
     </view>
     <view class="action" bindtap="search">
       <text class="text-blue">搜索</text>
