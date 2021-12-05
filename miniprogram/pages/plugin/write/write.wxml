@@ -7,8 +7,9 @@
     <input class="fileName" placeholder="请输入文章标题" bindinput="getTitle"></input>
   </block>
   <block>
-    <input class="extend text-bold" disabled bindtap="getCover" value="封面"></input>
-    <input class="fileName" placeholder="点击左侧上传封面" disabled value="{{url}}"></input>
+    <input class="extend text-bold" disabled value="封面"></input>
+    <input class="extend text-grey" disabled value="上传" bindtap="getCover"></input>
+    <image class="cover" src="{{url}}" mode="aspectFill"></image>
   </block>
   <block>
     <input class="extend text-bold" disabled value="简介"></input>

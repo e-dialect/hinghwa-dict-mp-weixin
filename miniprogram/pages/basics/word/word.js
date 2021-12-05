@@ -32,11 +32,18 @@ Page({
     })
   },
 
+  toVisitor() {
+    let id = this.data.word.contributor.id
+    wx.navigateTo({
+      url: '/pages/about/visitor/visitor?id=' + id,
+    })
+  },
+
   getRelatedWords() {
+    wx.showLoading()
     let that = this
     wx.request({
       url: app.globalData.server + 'words',
-      // url: 'http://127.0.0.1:4523/mock/404238/words',
       method: 'PUT',
       data: {
         words: that.data.word.related_words
@@ -45,22 +52,21 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res.data)
         if (res.statusCode == 200) {
           that.setData({
             related_words: res.data.words
           })
-          console.log(that.data.related_words)
+          wx.hideLoading()
         }
       }
     })
   },
 
   getAriticles() {
+    wx.showLoading()
     let that = this
     wx.request({
       url: app.globalData.server + 'articles',
-      // url: 'http://127.0.0.1:4523/mock/404238/articles',
       method: 'PUT',
       data: {
         articles: that.data.word.related_articles
@@ -69,12 +75,11 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res.data)
         if (res.statusCode == 200) {
           that.setData({
             related_articles: res.data.articles
           })
-          console.log(that.data.related_articles)
+          wx.hideLoading()
         }
       }
     })

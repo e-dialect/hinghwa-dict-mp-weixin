@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="content" class="text-black">条件查字</view>
+</cu-custom>
+
+<view class="cu-form-group">
+  <view class="title">声母</view>
+  <picker bindchange="PickerChange" value="{{index}}" range="{{shengmu}}">
+    <view class="picker">
+      {{shengmu[index]}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="title">韵母</view>
+  <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
+    range="{{yunmu}}">
+    <view class="picker">
+      {{yunmu[1][multiIndex[1]]}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="title">声调</view>
+  <picker bindchange="PickerChange1" value="{{index1}}" range="{{shengdiao}}">
+    <view class="picker">
+      {{shengdiao[index1]}}
+    </view>
+  </picker>
+</view>
+
+<button class="cu-btn round bg-gradual-blue shadow text-df margin-top"
+  style="display:flex;justify-content:center;width:65vw;" bindtap="searchByConditions">条件检索</button>
+
+<view class="cu-list menu margin-top">
+  <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
+    wx:for="{{characters}}">
+    <view class="flex flex-direction justify-between">
+      <view class="margin-bottom-sm">
+        <text class="text-xxl text-bold">{{item.character}}</text>
+        <text class="cuIcon-notificationfill text-blue margin-left"></text>
+      </view>
+      <view>
+        <text>{{item.pinyin}}</text>
+        <text class="text-grey margin-left">/{{item.ipa}}/</text>
+      </view>
+    </view>
+  </view>
+</view>

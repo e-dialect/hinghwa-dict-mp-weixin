@@ -6,6 +6,15 @@ Page({
     PageCur: 'basics',
     PageStatus: 0
   },
+
+  onLoad(options) {
+    if (options.status) {
+      this.setData({
+        PageCur: options.status
+      })
+    }
+  },
+
   NavChange(e) {
     if (app.globalData.status == 0) {
       wx.showModal({

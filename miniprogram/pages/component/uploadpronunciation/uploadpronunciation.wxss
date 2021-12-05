@@ -1,0 +1,36 @@
+page {
+  font-size: 32rpx;
+}
+
+.fileName {
+  height: 4%;
+  background-color: white;
+  padding: 1.8%;
+  width: 77.5%;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  border-radius: 10rpx;
+  display: inline-block;
+}
+
+.record {
+  height: 4%;
+  background-color: white;
+  padding: 1.8%;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  border-radius: 10rpx;
+  display: inline-block;
+}
+
+.extend {
+  height: 4%;
+  background-color: #dbdee2;
+  width: 15%;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  border-radius: 10rpx;
+  display: inline-block;
+  text-align: center;
+}

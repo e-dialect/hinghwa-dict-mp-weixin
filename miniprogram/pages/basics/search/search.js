@@ -8,6 +8,7 @@ Page({
     history: [],
     key: '',
     characters: [],
+    pronunciation: [],
     words: [],
     articles: []
   },
@@ -49,11 +50,15 @@ Page({
     })
     this.data.history.push(this.data.key)
     wx.setStorageSync('history', this.data.history)
+    wx.showLoading()
     var key = this.data.key
     var index = this.data.index
     if (index == 0) {
       // 拼音
       this.searchPinyin(key)
+    } else if (index == 1) {
+      // 单字 多字
+      this.searchCharacter(key)
     } else if (index == 2) {
       // 词语
       this.searchWord(key)
@@ -80,7 +85,6 @@ Page({
           var arr = res.data.characters
           wx.request({
             url: app.globalData.server + 'characters',
-            // url: 'http://127.0.0.1:4523/mock/404238/characters',
             method: 'PUT',
             data: {
               characters: arr
@@ -89,8 +93,8 @@ Page({
               'content-type': 'application/json',
             },
             success(res) {
-              console.log(res)
               if (res.statusCode == 200) {
+                wx.hideLoading()
                 that.setData({
                   characters: res.data.characters
                 })
@@ -100,6 +104,26 @@ Page({
         } else {
           wx.showToast({
             title: '服务器错误',
+          })
+        }
+      }
+    })
+  },
+
+  searchCharacter(key) {
+    let that = this
+    wx.request({
+      url: app.globalData.server + 'characters/words?search=' + key,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json',
+      },
+      success(res) {
+        if (res.statusCode == 200) {
+          wx.hideLoading()
+          that.setData({
+            pronunciation: res.data.characters
           })
         }
       }
@@ -116,10 +140,8 @@ Page({
         'content-type': 'application/json',
       },
       success(res) {
-        console.log(res.data)
         if (res.statusCode == 200) {
           var arr = res.data.words
-          console.log(arr)
           wx.request({
             url: app.globalData.server + 'words',
             method: 'PUT',
@@ -131,6 +153,7 @@ Page({
             },
             success(res) {
               if (res.statusCode == 200) {
+                wx.hideLoading()
                 that.setData({
                   words: res.data.words
                 })
@@ -174,6 +197,7 @@ Page({
             },
             success(res) {
               if (res.statusCode == 200) {
+                wx.hideLoading()
                 that.setData({
                   articles: res.data.articles
                 })
@@ -209,18 +233,24 @@ Page({
   },
 
   character(e) {
-    let index = e.currentTarget.dataset.index
-    let character = JSON.stringify(this.data.characters[index])
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/basics/characters/characters?character=' + character
+      url: '/pages/basics/characters/characters?id=' + id
     })
   },
 
   word(e) {
     let index = e.currentTarget.dataset.index
-    let word = JSON.stringify(this.data.words[index])
+    let id = this.data.words[index].word.id
     wx.navigateTo({
-      url: '/pages/basics/words/words?word=' + word
+      url: '/pages/basics/words/words?id=' + id
+    })
+  },
+
+  toArticle(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/plugin/article/article?id=' + id,
     })
   }
 })

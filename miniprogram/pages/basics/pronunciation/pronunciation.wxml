@@ -1,0 +1,28 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="content" class="text-black">更多语音</view>
+</cu-custom>
+<button class="cu-btn icon lg bg-blue shadow write" bindtap="uploadPronunciation">
+  <text class="cuIcon-voice"></text>
+</button>
+<view style="background-color:white;">
+  <view class="solid-bottom padding text-bold text-sl">{{word}}</view>
+  <view class="padding solid-bottom" wx:for="{{pronunciation}}">
+    <view class="flex justify-between align-center">
+      <view>
+        <view class="text-lg">
+          <text>{{item.pronunciation.pinyin}}</text>
+          <text class="text-grey" decode>&nbsp;&nbsp;/{{item.pronunciation.ipa}}/&nbsp;&nbsp;</text>
+          <text class="cuIcon-notificationfill text-blue" data-index="{{index}}" bindtap="play"></text>
+        </view>
+        <view class="margin-top">
+          <text>来源：</text>
+          <text class="text-blue" data-id="{{item.contributor.id}}"
+            bindtap="toVisitor">{{item.contributor.nickname}}</text>
+          <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
+        </view>
+      </view>
+      <view class="text-xl">
+        <text class="cuIcon-like"></text></view>
+    </view>
+  </view>
+</view>

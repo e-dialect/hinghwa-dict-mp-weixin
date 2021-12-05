@@ -9,11 +9,23 @@ page {
   z-index: 1024;
 }
 
-audio {
-  position: relative;
-  left: 2.5%;
-  width: 95%;
+.music {
   display: flex;
-  flex-direction: column;
-  margin-top: 30rpx;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  /* border: 1rpx solid #D3D3D3; */
+}
+
+.cover {
+  width: 18vw;
+  height: 16vw;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

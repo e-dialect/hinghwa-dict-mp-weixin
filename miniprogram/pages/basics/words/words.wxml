@@ -3,29 +3,36 @@
   <image src="/images/logo.png" mode="aspectFill"></image>
 </view>
 <view class="flex padding solid-bottom">
-  <view class="text-bold text-xxlp">{{word.word.word}}</view>
-  <view class="text-lg text-blue margin-left margin-top">
-    <text class="cuIcon-notificationfill"></text>
+  <view>
+    <view class="flex">
+      <view class="text-bold text-xxlp">{{word.word}}</view>
+      <view class="text-lg text-blue margin-left margin-top" bindtap="pronounce">
+        <text class="cuIcon-notificationfill"></text>
+      </view>
+    </view>
+    <view class="text-sm text-grey padding-top-xs" bindtap="morePronunciation">
+      更多语音<text class="cuIcon-right"></text>
+    </view>
   </view>
   <view class="info">
     <view class="text-grey text-df">
       访问：
-      {{word.word.views}}
+      {{word.views}}
     </view>
     <view class="text-grey text-df margin-top-xs">
-      来源：<text class="text-blue">{{word.contributor.nickname}}</text>
+      来源：<text class="text-blue" bindtap="toVisitor">{{word.contributor.nickname}}</text>
     </view>
   </view>
 </view>
 <view class="padding">
   <view class="text-bold text-xl">释义</view>
-  <view class="text-grey margin-top-xs">{{word.word.definition}}</view>
+  <view class="text-grey margin-top-xs">{{word.definition}}</view>
 </view>
 <view class="padding solid-bottom">
   <view class="text-bold text-xl">附注</view>
-  <view class="text-grey margin-top-xs">{{word.word.annotation}}</view>
+  <view class="text-grey margin-top-xs">{{word.annotation}}</view>
 </view>
 <view class="padding">
   <view class="text-bold text-lg">普通话</view>
-  <text class="text-grey margin-top-xs" decode="true" wx:for="{{word.word.mandarin}}">{{item}}&nbsp;&nbsp;&nbsp;</text>
+  <text class="text-grey margin-top-xs" decode="true" wx:for="{{word.mandarin}}">{{item}}&nbsp;&nbsp;&nbsp;</text>
 </view>

@@ -1,10 +1,9 @@
 <scroll-view scroll-y class="scrollPage">
-  <view class="word-bg">
-    <view class="text-xl text-white back" bindtap="back">
-      <text class="cuIcon-back"></text>
-    </view>
+  <image src="/images/word.png" mode="aspectFill" style="width:100%;"></image>
+  <view class="text-xl text-white back" bindtap="back">
+    <text class="cuIcon-back"></text>
   </view>
-  <view style="box-shadow:0 -10px 40px 60px #f7f7f7;position:relative;z-index:100;"></view>
+  <!-- <view style="box-shadow:0 -10px 40px 60px #f7f7f7;position:relative;z-index:100;"></view> -->
   <view class="layout-index" style="z-index:100">
     <view class="flex card padding-sm">
       <view class="flex-sub text-center text-bold text-slp margin-right-sm" style="border:1px solid grey;">{{word.word}}
@@ -19,7 +18,7 @@
           </view>
         </view>
         <view class="margin-top-sm text-grey">
-          来源：<text class="text-blue">{{word.contributor.username}}</text>
+          来源：<text class="text-blue" bindtap="toVisitor">{{word.contributor.username}}</text>
         </view>
       </view>
     </view>
@@ -33,7 +32,8 @@
           <text class="text-bold text-xl">相关词语</text>
           <text class="text-grey text-sm">（{{word.related_words.length}}个）</text>
         </view>
-        <view class="flex justify-between margin-top-sm" wx:for="{{related_words}}" bindtap="getMore" data-id="{{index}}" wx:key>
+        <view class="flex justify-between margin-top-sm" wx:for="{{related_words}}" bindtap="getMore"
+          data-id="{{index}}" wx:key>
           <view class="text-df">{{item.word}}</view>
           <view class="cuIcon-right text-gray"></view>
         </view>

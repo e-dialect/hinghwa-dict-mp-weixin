@@ -1,5 +1,4 @@
 .word-bg {
-  background-image: url(https://wx4.sinaimg.cn/mw690/0084vph8ly1gfgmxli3lpj313y0u078m.jpg);
   background-size: cover;
   height: 600rpx;
   display: flex;

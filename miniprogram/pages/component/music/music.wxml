@@ -4,7 +4,17 @@
 <button class="cu-btn icon lg bg-blue shadow write" bindtap="uploadMusic">
   <text class="cuIcon-musicfill"></text>
 </button>
-<view wx:for="{{music}}">
-  <audio poster="{{item.music.cover}}" name="{{item.music.title}}" author="{{item.music.artist}}"
-    src="{{item.music.source}}" id="myAudio" controls loop></audio>
+<view class="padding-sm" wx:for="{{music}}">
+  <view class="music" bindtap="playMusic" data-index="{{index}}">
+    <image class="cover" src="{{item.music.cover}}" mode="aspectFill"></image>
+    <view class="info">
+      <view>
+        <view class="text-lg margin-bottom-sm">{{item.music.title}}</view>
+        <view class="text-df text-grey">{{item.music.artist}}</view>
+      </view>
+      <view class="margin-right-xs text-xl" style="z-index:1024;" catchtap="likeMusic">
+        <text class="cuIcon-like"></text>
+      </view>
+    </view>
+  </view>
 </view>
