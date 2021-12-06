@@ -1,23 +1,2 @@
-<cu-custom bgColor="bg-white" isBack="{{true}}">
-  <view slot="content" class="text-black">发布</view>
-</cu-custom>
-<view style="height:100%;position:absolute;width:100%;">
-  <block>
-    <input class="extend text-bold" disabled value="名称"></input>
-    <input class="fileName" placeholder="请输入音乐名称" bindinput="getTitle"></input>
-  </block>
-  <block>
-    <input class="extend text-bold" disabled value="封面"></input>
-    <input class="extend text-grey" disabled value="上传" bindtap="getCover"></input>
-    <image class="cover" src="{{cover}}" mode="aspectFill"></image>
-  </block>
-  <block>
-    <input class="extend text-bold" disabled value="音源"></input>
-    <input class="fileName" placeholder="请上传音源地址" bindinput="getSource"></input>
-  </block>
-  <block>
-    <input class="extend text-bold" disabled value="歌手"></input>
-    <input class="fileName" placeholder="请输入歌手名称" bindinput="getArtist"></input>
-  </block>
-  <button class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;" bindtap="release">发布</button>
-</view>
+<!--pages/component/uploadmusic/uploadmusic.wxml-->
+<text>pages/component/uploadmusic/uploadmusic.wxml</text>

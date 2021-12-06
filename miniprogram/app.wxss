@@ -11,7 +11,7 @@ page {
 
 .layout-index {
   position: absolute;
-  top: 20vh;
+  top: 19vh;
   width: 100vw;
 }
 

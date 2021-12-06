@@ -1,9 +1,9 @@
 <cu-custom bgColor="bg-white" isBack="{{true}}">
   <view slot="content" class="text-black">语记·语音</view>
 </cu-custom>
-<button class="cu-btn icon lg bg-blue shadow write" bindtap="uploadPronunciation">
+<!-- <button class="cu-btn icon lg bg-blue shadow write" bindtap="uploadPronunciation">
   <text class="cuIcon-voice"></text>
-</button>
+</button> -->
 <view class="padding-sm" wx:for="{{pronunciation}}">
   <view class="voice">
     <view class="word solid-right">{{item.pronunciation.word_word}}</view>

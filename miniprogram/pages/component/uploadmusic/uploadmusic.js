@@ -1,102 +1,66 @@
-const app = getApp()
-
+// pages/component/uploadmusic/uploadmusic.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    title: '',
-    cover: '',
-    src: '',
-    artist: ''
+
   },
 
-  getTitle(e) {
-    this.setData({
-      title: e.detail.value
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
 
-  getCover() {
-    let that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ["original", "compressed"],
-      sourceType: ["album", "camera"],
-      success(res) {
-        wx.uploadFile({
-          url: app.globalData.server + 'website/files',
-          filePath: res.tempFilePaths[0],
-          name: "file",
-          header: {
-            'token': app.globalData.token
-          },
-          success: (res) => {
-            console.log(res)
-            let data = JSON.parse(res.data)
-            that.setData({
-              cover: data.url
-            })
-          },
-          fail: (err) => {
-            console.log(err)
-          }
-        })
-      }
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
-  getSource(e) {
-    this.setData({
-      src: e.detail.value
-    })
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
 
-  getArtist(e) {
-    this.setData({
-      artist: e.detail.value
-    })
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
   },
 
-  release() {
-    console.log(this.data)
-    let title = this.data.title
-    let cover = this.data.cover
-    let src = this.data.src
-    let artist = this.data.artist
-    if (title == '' || cover == '' || src == '' || artist == '') {
-      wx.showToast({
-        title: '音乐内容不完整',
-        icon: 'error'
-      })
-    } else {
-      // 创建音乐
-      wx.request({
-        url: app.globalData.server + 'music',
-        method: 'POST',
-        data: {
-          title: title,
-          cover: cover,
-          source: src,
-          artist: artist
-        },
-        header: {
-          'content-type': 'application/json',
-          'token': app.globalData.token
-        },
-        success(res) {
-          if (res.statusCode == 200) {
-            wx.showToast({
-              title: '发布成功',
-              duration: 2000,
-              success(res) {
-                setTimeout(function () {
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                }, 500);
-              }
-            })
-          }
-        }
-      })
-    }
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

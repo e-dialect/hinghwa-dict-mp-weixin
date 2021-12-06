@@ -36,17 +36,13 @@
     <view class="flex-sub padding text-center" bindtap="sort" data-index="3">更多</view>
   </view> -->
   <view class="cu-list menu" wx:if="{{index==0&&status==1}}">
-    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
-      wx:for="{{characters}}">
+    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="word" data-index="{{index}}" wx:for="{{words}}">
       <view class="flex flex-direction justify-between">
         <view class="margin-bottom-sm">
-          <text class="text-xxl text-bold">{{item.character}}</text>
+          <text class="text-xxl text-bold">{{item.word.word}}</text>
           <text class="cuIcon-notificationfill text-blue margin-left"></text>
         </view>
-        <view>
-          <text>{{item.pinyin}}</text>
-          <text class="text-grey margin-left">/{{item.ipa}}/</text>
-        </view>
+        <view class="text-grey definition">{{item.word.definition}}</view>
       </view>
     </view>
   </view>
@@ -68,13 +64,17 @@
     </view>
   </view>
   <view class="cu-list menu" wx:if="{{index==2&&status==1}}">
-    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="word" data-index="{{index}}" wx:for="{{words}}">
+    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
+      wx:for="{{characters}}">
       <view class="flex flex-direction justify-between">
         <view class="margin-bottom-sm">
-          <text class="text-xxl text-bold">{{item.word.word}}</text>
+          <text class="text-xxl text-bold">{{item.character}}</text>
           <text class="cuIcon-notificationfill text-blue margin-left"></text>
         </view>
-        <view class="text-grey definition">{{item.word.definition}}</view>
+        <view>
+          <text>{{item.pinyin}}</text>
+          <text class="text-grey margin-left">/{{item.ipa}}/</text>
+        </view>
       </view>
     </view>
   </view>

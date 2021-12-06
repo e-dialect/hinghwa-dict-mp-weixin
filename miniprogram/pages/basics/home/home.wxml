@@ -9,6 +9,14 @@
       <view class="card-slogan">记住乡愁 留下乡音</view>
       <button class="card-btn cu-btn round bg-black shadow" bindtap="login" style="width:22vw">授权登录</button>
     </view>
+    <view wx:else class="index-search" style="border-radius:5000rpx;" bindtap="search">
+      <view class="cu-bar search">
+        <view class="search-form round">
+          <text class="cuIcon-search"></text>
+          <input type="text" placeholder="搜索词语、单字、拼音和文章" confirm-type="search" disabled="true"></input>
+        </view>
+      </view>
+    </view>
     <view class="index-word">
       <view class="flex solid-bottom justify-between">
         <view class="padding-sm margin-xs">
@@ -32,7 +40,7 @@
         <image src="{{item.article.cover}}" mode="aspectFill"></image>
       </swiper-item>
     </swiper>
-    <view class="index-search" bindtap="search">
+    <!-- <view class="index-search" bindtap="search">
       <view class="flex">
         <view class="flex-treble padding-sm margin-xs radius">
           <view class="text-xl text-bold">语记·搜索</view>
@@ -42,7 +50,7 @@
           style="background-image:url('https://wx2.sinaimg.cn/mw690/0084vph8ly1gsw0m4zm6wj30so0iqact.jpg')">
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="stand-view"></view>
   </view>
 </scroll-view>
