@@ -1,0 +1,10 @@
+@import "../../../colorui/animation.wxss";
+
+page {
+  background-color: white;
+}
+
+.intro {
+  margin: 28rpx;
+  font-size: 30rpx;
+}
