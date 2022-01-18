@@ -38,8 +38,8 @@
     <view class="flex-sub padding-sm margin-xs">{{item.pinyin}}</view>
     <view class="flex-sub padding-sm margin-xs">{{item.IPA}}</view>
     <view class="flex-five padding-sm margin-xs">{{item.example}}</view>
-    <view class="flex-sub padding-sm margin-xs">
-      <text class="text-blue cuIcon-notificationfill" data-id="{{index}}" bindtap="playShengmu"></text>
+    <view class="flex-sub padding-sm margin-xs" data-id="{{index}}" bindtap="playShengmu">
+      <text class="text-blue cuIcon-notificationfill"></text>
     </view>
   </view>
 </view>
@@ -61,13 +61,14 @@
     <view class="flex-sub padding-sm margin-xs">{{item.pinyin}}</view>
     <view class="flex-sub padding-sm margin-xs">{{item.IPA}}</view>
     <view class="flex-five padding-sm margin-xs">{{item.example}}</view>
-    <view class="flex-sub padding-sm margin-xs">
-      <text class="text-blue cuIcon-notificationfill" data-id="{{index}}" bindtap="playYunmu"></text>
+    <view class="flex-sub padding-sm margin-xs" data-id="{{index}}" bindtap="playYunmu">
+      <text class="text-blue cuIcon-notificationfill"></text>
     </view>
   </view>
 </view>
 
 <view class="padding bg-white" wx:if="{{display[3]}}">
+  <text decode="{{true}}">&emsp;&emsp;声调可以采用调符和调号两种方法表示。调符是使用符号表示每种声调的起伏，调号则是以数字表示对应的调类。调值是语言学上常用的标记，「五度标记法」，1到5个数字表示声调的相对音高，1是最低，5是最高，可以用音阶的do re mi fa sol来理解。另外莆仙话还有一个用在代词的声调，并且伴有喉塞音，这里把它标记成第三调，如「我」guoh3/guôh，「这」zeh3/zêh。\n\n</text>
   <view class="flex margin-bottom-sm text-center solid-bottom solid-top">
     <view class="flex-sub padding-sm margin-xs">调类</view>
     <view class="flex-twice padding-sm margin-xs">调值/调符</view>
@@ -78,8 +79,8 @@
     <view class="flex-sub padding-sm margin-xs">{{item.type}}</view>
     <view class="flex-twice padding-sm margin-xs">{{item.tone}}</view>
     <view class="flex-twice padding-sm margin-xs">{{item.example}}</view>
-    <view class="flex-sub padding-sm margin-xs">
-      <text class="text-blue cuIcon-notificationfill" data-id="{{index}}" bindtap="playTone"></text>
+    <view class="flex-sub padding-sm margin-xs" data-id="{{index}}" bindtap="playTone">
+      <text class="text-blue cuIcon-notificationfill"></text>
     </view>
   </view>
 </view>
