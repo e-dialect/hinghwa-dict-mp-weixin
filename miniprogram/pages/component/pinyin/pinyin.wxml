@@ -24,7 +24,7 @@
   <text
     decode="{{true}}">&emsp;&emsp;下面介绍的拼音方案为莆田城里口音。想要了解更多其他口音的介绍请关注微信公众号「莆仙乡音社」(微信号：PhouSengUa)搜索“拼音教程”，或者观看b站拼音教程视频(up主@莆仙乡音社)。\n</text>
   <video style="margin-top:15rpx;width:100%;"
-    src="https://cn-hljheb-dx-v-01.bilivideo.com/upgcxcode/82/25/133662582/133662582-1-208.mp4?e=ig8euxZM2rNcNbNa7zdVhwdlhbuahwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1642533894&gen=playurlv2&os=bcache&oi=837395164&trid=0000e19ba97f274f46b399326e3c48fb690aT&platform=html5&upsig=94ac74eda3b53a64855929de89f1dc62&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&cdnid=3840&mid=0&bvc=vod&nettype=0&bw=277277&orderid=0,1&logo=80000000"></video>
+    src="https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/files/video/6/2022/01/20/9PRuDXJRFiJNHhA.mp4"></video>
 </view>
 
 <view class="padding bg-white" wx:if="{{display[1]}}">

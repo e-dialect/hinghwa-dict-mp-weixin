@@ -13,7 +13,12 @@ Page({
     articles: []
   },
 
-  onLoad() {
+  onLoad(option) {
+    if (option.index) {
+      this.setData({
+        index: option.index
+      })
+    }
     var history = wx.getStorageSync('history')
     if (history) {
       this.setData({

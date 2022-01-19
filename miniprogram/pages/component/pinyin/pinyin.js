@@ -5,7 +5,7 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    display: [false, false, false, false],
+    display: [true, false, false, false],
     toggleDelay: true,
     TabCur: 0,
     list: [{
@@ -25,7 +25,7 @@ Page({
         desc: '声调'
       }
     ],
-    list1:["开尾韵", "鼻尾韵", "塞尾韵"],
+    list1: ["开尾韵", "鼻尾韵", "塞尾韵"],
     shengmu: utils.shengmu,
     yunmu: [utils.kai, utils.bi, utils.se],
     tone: utils.tone
@@ -53,12 +53,36 @@ Page({
 
   playShengmu(e) {
     let index = e.currentTarget.dataset.id
-    let src = "https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/pinyin/example/"+ this.data.shengmu[index].pinyin + ".mp3"
+    let src = "https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/pinyin/example/" + this.data.shengmu[index].pinyin + ".mp3"
     this.innerAudioContext.src = src
     this.innerAudioContext.play()
   },
 
   tabSelect(e) {
+    // wx.chooseVideo({
+    //   sourceType: ['album'],
+    //   maxDuration: 60,
+    //   camera: 'back',
+    //   success(res) {
+    //     let tempFilePaths = res.tempFilePath
+    //     wx.uploadFile({
+    //       url: app.globalData.server + 'website/files',
+    //       filePath: tempFilePaths,
+    //       name: 'file',
+    //       header: {
+    //         'token': app.globalData.token
+    //       },
+    //       success(res) {
+    //         if (res.statusCode == 200) {
+    //           let url = JSON.parse(res.data).url
+    //           console.log(url)
+    //         }
+    //       }
+    //     })
+    //   }, fail(err) {
+    //     console.log(err)
+    //   }
+    // })
     this.setData({
       TabCur: e.currentTarget.dataset.id
     })
@@ -67,14 +91,14 @@ Page({
   playYunmu(e) {
     let index1 = this.data.TabCur
     let index2 = e.currentTarget.dataset.id
-    let src = "https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/pinyin/example/"+ this.data.yunmu[index1][index2].pinyin + ".mp3"
+    let src = "https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/pinyin/example/" + this.data.yunmu[index1][index2].pinyin + ".mp3"
     this.innerAudioContext.src = src
     this.innerAudioContext.play()
   },
 
   playTone(e) {
     let index = e.currentTarget.dataset.id
-    let src = "https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/pinyin/example/"+ this.data.tone[index].type + ".mp3"
+    let src = "https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/pinyin/example/" + this.data.tone[index].type + ".mp3"
     this.innerAudioContext.src = src
     this.innerAudioContext.play()
   }

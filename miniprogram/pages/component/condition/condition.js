@@ -11,7 +11,8 @@ Page({
     ],
     multiIndex: [0, 0],
     index1: 0,
-    shengdiao: []
+    shengdiao: [],
+    characters: []
   },
 
   onLoad() {
@@ -141,6 +142,22 @@ Page({
     let shengmu = this.getShengmu()
     let yunmu = this.getYunmu()
     let shengdiao = this.getShengdiao()
+    if (shengmu == 'all' && yunmu == 'all' && shengdiao == 'all') {
+      let that = this
+      wx.showModal({
+        content: '这样搜索共有5765个结果，若要显示可能需要一定的时间，请确认是否继续？',
+        success(res) {
+          if (res.confirm) {
+            that.search(shengmu, yunmu, shengdiao)
+          }
+        }
+      })
+    } else {
+      this.search(shengmu, yunmu, shengdiao)
+    }
+  },
+
+  search(shengmu, yunmu, shengdiao) {
     if (shengmu == 'all') {
       shengmu = ''
     } else {
@@ -168,25 +185,39 @@ Page({
       success(res) {
         if (res.statusCode == 200) {
           var arr = res.data.characters
-          wx.request({
-            url: app.globalData.server + 'characters',
-            method: 'PUT',
-            data: {
-              characters: arr
-            },
-            header: {
-              'content-type': 'application/json',
-            },
-            success(res) {
-              if (res.statusCode == 200) {
-                console.log(res)
-                wx.hideLoading()
-                that.setData({
-                  characters: res.data.characters
-                })
+          if (arr.length == 0) {
+            wx.showToast({
+              title: "检索结果为空！",
+              icon: 'none'
+            })
+            that.setData({
+              characters: []
+            })
+          } else {
+            wx.showLoading()
+            wx.request({
+              url: app.globalData.server + 'characters',
+              method: 'PUT',
+              data: {
+                characters: arr
+              },
+              header: {
+                'content-type': 'application/json',
+              },
+              success(res) {
+                if (res.statusCode == 200) {
+                  console.log(res)
+                  wx.hideLoading()
+                  if (res.data.characters.length > 1000) {
+                    res.data.characters = res.data.characters.slice(0, 1000)
+                  }
+                  that.setData({
+                    characters: res.data.characters
+                  })
+                }
               }
-            }
-          })
+            })
+          }
         } else {
           wx.showToast({
             title: '服务器错误',
