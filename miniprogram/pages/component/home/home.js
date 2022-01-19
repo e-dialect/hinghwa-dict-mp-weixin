@@ -5,7 +5,7 @@ Component({
 
   data: {
     list: [{
-        img: 'https://wx3.sinaimg.cn/mw690/0084vph8ly1gubp33nvf1j60p00dwwhk02.jpg',
+        img: 'https://HinghwaDict-1259415432.cos.ap-shanghai.myqcloud.com/files/image/6/2022/01/19/vDbjXVbhUzZ34tx.png',
         url: '/pinyin/pinyin'
       },
       {

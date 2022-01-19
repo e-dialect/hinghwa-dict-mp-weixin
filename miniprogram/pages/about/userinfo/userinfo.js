@@ -62,7 +62,6 @@ Page({
   },
 
   changeAvatar(url) {
-    console.log(app.globalData.userInfo.avatar)
     wx.request({
       url: app.globalData.server + 'users/' + app.globalData.id,
       method: 'PUT',
