@@ -42,7 +42,7 @@
           <text class="text-xxl text-bold">{{item.word.word}}</text>
         </view>
         <view class="margin-bottom-xs">
-          <text class="text-bold">{{item.word.standard_pinyin}}</text>
+          <text>{{item.word.standard_pinyin}}</text>
           <text class="text-grey" decode>&nbsp;&nbsp;/{{item.word.standard_ipa}}/</text>
           <text wx:if="{{item.pronunciation.url.length>4}}" class="cuIcon-notificationfill text-blue margin-left"></text>
         </view>
@@ -57,7 +57,7 @@
         <view class="flex flex-direction justify-between">
           <view class="margin-bottom-sm">
             <text class="text-xxl text-bold">{{item.label}}</text>
-            <text class="cuIcon-notificationfill text-blue margin-left"></text>
+            <!-- <text class="cuIcon-notificationfill text-blue margin-left"></text> -->
           </view>
           <view>
             <text>{{kid.pinyin}}</text>
@@ -73,7 +73,7 @@
       <view class="flex flex-direction justify-between">
         <view class="margin-bottom-sm">
           <text class="text-xxl text-bold">{{item.character}}</text>
-          <text class="cuIcon-notificationfill text-blue margin-left"></text>
+          <!-- <text class="cuIcon-notificationfill text-blue margin-left"></text> -->
         </view>
         <view>
           <text>{{item.pinyin}}</text>
