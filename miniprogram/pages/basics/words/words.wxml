@@ -1,38 +1,109 @@
 <cu-custom bgColor="bg-white" isBack="{{true}}"></cu-custom>
-<view class="logo">
-  <image src="/images/logo.png" mode="aspectFill"></image>
-</view>
+
 <view class="flex padding solid-bottom">
   <view>
     <view class="flex">
-      <view class="text-bold text-xxlp">{{word.word}}</view>
-      <view class="text-lg text-blue margin-left margin-top" bindtap="pronounce">
-        <text class="cuIcon-notificationfill"></text>
-      </view>
-    </view>
-    <view class="text-sm text-grey padding-top-xs" bindtap="morePronunciation">
-      更多语音<text class="cuIcon-right"></text>
+      <view class="text-bold text-sl">{{word.word}}</view>
     </view>
   </view>
   <view class="info">
     <view class="text-grey text-df">
-      访问：
-      {{word.views}}
+      访问：{{word.views}}
     </view>
     <view class="text-grey text-df margin-top-xs">
-      来源：<text class="text-blue" bindtap="toVisitor">{{word.contributor.nickname}}</text>
+      来源：<text class="text-blue" bindtap="toVisitor"
+        data-id="{{word.contributor.id}}">{{word.contributor.nickname}}</text>
     </view>
   </view>
 </view>
-<view class="padding">
-  <view class="text-bold text-xl">释义</view>
-  <view class="text-grey margin-top-xs">{{word.definition}}</view>
+
+<view class="flex padding solid-bottom">
+  <view>
+    <text class="text-bold">{{word.standard_pinyin}}</text>
+    <text class="text-grey" decode>&nbsp;&nbsp;/{{word.standard_ipa}}/&nbsp;&nbsp;</text>
+  </view>
+  <view wx:if="{{pronunciation.length}}" class="text-blue margin-left-xs" data-index="{{0}}" bindtap="pronounce">
+    <text class="cuIcon-notificationfill"></text>
+  </view>
 </view>
-<view class="padding solid-bottom">
-  <view class="text-bold text-xl">附注</view>
-  <view class="text-grey margin-top-xs">{{word.annotation}}</view>
-</view>
-<view class="padding">
-  <view class="text-bold text-lg">普通话</view>
-  <text class="text-grey margin-top-xs" decode="true" wx:for="{{word.mandarin}}">{{item}}&nbsp;&nbsp;&nbsp;</text>
+
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="tabSelect"
+    data-id="{{index}}">
+    {{item}}
+  </view>
+</scroll-view>
+
+<swiper wx:if="{{platform!='ios'}}" style="height:150vh;" class="screen-swiper" current="{{TabCur}}" duration="500" bindchange="tabSlide">
+  <swiper-item class="margin">
+    <view class="text-bold text-xl">释义</view>
+    <view style="width:92vw;" class="margin-top-sm text-grey">
+      {{word.definition}}
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="padding solid-bottom" wx:for="{{pronunciation}}" wx:key="index">
+      <view class="flex justify-between align-center">
+        <view>
+          <view>
+            <text class="text-bold">{{item.pronunciation.pinyin}}</text>
+            <text class="text-grey" decode>&nbsp;&nbsp;/{{item.pronunciation.ipa}}/&nbsp;&nbsp;</text>
+            <text class="cuIcon-notificationfill text-blue" data-index="{{index}}" bindtap="pronounce"></text>
+          </view>
+          <view class="margin-top">
+            <text>来源：</text>
+            <text class="text-blue" data-id="{{item.contributor.id}}"
+              bindtap="toVisitor">{{item.contributor.nickname}}</text>
+            <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
+          </view>
+        </view>
+        <view class="text-xl">
+          <text class="cuIcon-like"></text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item class="margin">
+    <view class="text-bold text-xl">附注</view>
+    <view class="margin-top-sm text-grey">
+      {{word.annotation}}
+    </view>
+  </swiper-item>
+</swiper>
+
+<view wx:if="{{platform=='ios'}}">
+  <view wx:if="{{TabCur==0}}" class="margin">
+    <view class="text-bold text-xl">释义</view>
+    <view class="margin-top-sm text-grey">
+      {{word.definition}}
+    </view>
+  </view>
+  <view wx:if="{{TabCur==1}}">
+    <view class="padding solid-bottom" wx:for="{{pronunciation}}" wx:key="index">
+      <view class="flex justify-between align-center">
+        <view>
+          <view>
+            <text class="text-bold">{{item.pronunciation.pinyin}}</text>
+            <text class="text-grey" decode>&nbsp;&nbsp;/{{item.pronunciation.ipa}}/&nbsp;&nbsp;</text>
+            <text class="cuIcon-notificationfill text-blue" data-index="{{index}}" bindtap="pronounce"></text>
+          </view>
+          <view class="margin-top">
+            <text>来源：</text>
+            <text class="text-blue" data-id="{{item.contributor.id}}"
+              bindtap="toVisitor">{{item.contributor.nickname}}</text>
+            <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
+          </view>
+        </view>
+        <view class="text-xl">
+          <text class="cuIcon-like"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{TabCur==2}}" class="margin">
+    <view class="text-bold text-xl">附注</view>
+    <view class="margin-top-sm text-grey">
+      {{word.annotation}}
+    </view>
+  </view>
 </view>

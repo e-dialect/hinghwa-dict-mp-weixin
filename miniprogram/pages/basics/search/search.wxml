@@ -36,11 +36,15 @@
     <view class="flex-sub padding text-center" bindtap="sort" data-index="3">更多</view>
   </view> -->
   <view class="cu-list menu" wx:if="{{index==0&&status==1}}">
-    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="word" data-index="{{index}}" wx:for="{{words}}">
+    <view class="cu-item arrow" style="min-height:240rpx;" bindtap="word" data-index="{{index}}" wx:for="{{words}}">
       <view class="flex flex-direction justify-between">
-        <view class="margin-bottom-sm">
+        <view class="margin-bottom-xs">
           <text class="text-xxl text-bold">{{item.word.word}}</text>
-          <text class="cuIcon-notificationfill text-blue margin-left"></text>
+        </view>
+        <view class="margin-bottom-xs">
+          <text class="text-bold">{{item.word.standard_pinyin}}</text>
+          <text class="text-grey" decode>&nbsp;&nbsp;/{{item.word.standard_ipa}}/</text>
+          <text wx:if="{{item.pronunciation.url.length>4}}" class="cuIcon-notificationfill text-blue margin-left"></text>
         </view>
         <view class="text-grey definition">{{item.word.definition}}</view>
       </view>
