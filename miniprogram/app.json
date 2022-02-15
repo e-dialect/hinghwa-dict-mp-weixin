@@ -13,6 +13,8 @@
     "pages/component/uploadmusic/uploadmusic",
     "pages/component/condition/condition",
     "pages/component/voice/voice",
+    "pages/component/pinyin/pinyin",
+    "pages/component/daily/daily",
     "pages/component/uploadpronunciation/uploadpronunciation",
     "pages/plugin/home/home",
     "pages/plugin/article/article",

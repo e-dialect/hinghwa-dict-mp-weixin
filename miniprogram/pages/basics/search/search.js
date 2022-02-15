@@ -4,7 +4,7 @@ Page({
   data: {
     status: 0,
     index: 0,
-    sort: ['拼音', '单字', '词语', '文章'],
+    sort: ['词语', '单字', '拼音', '文章'],
     history: [],
     key: '',
     characters: [],
@@ -13,7 +13,12 @@ Page({
     articles: []
   },
 
-  onLoad() {
+  onLoad(option) {
+    if (option.index) {
+      this.setData({
+        index: option.index
+      })
+    }
     var history = wx.getStorageSync('history')
     if (history) {
       this.setData({
@@ -54,14 +59,14 @@ Page({
     var key = this.data.key
     var index = this.data.index
     if (index == 0) {
-      // 拼音
-      this.searchPinyin(key)
+      // 词语
+      this.searchWord(key)
     } else if (index == 1) {
       // 单字 多字
       this.searchCharacter(key)
     } else if (index == 2) {
-      // 词语
-      this.searchWord(key)
+      // 拼音
+      this.searchPinyin(key)
     } else if (index == 3) {
       // 文章
       this.searchArticle(key)
@@ -153,6 +158,7 @@ Page({
             },
             success(res) {
               if (res.statusCode == 200) {
+                console.log(res.data.words)
                 wx.hideLoading()
                 that.setData({
                   words: res.data.words

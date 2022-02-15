@@ -3,6 +3,7 @@ App({
   onLaunch: function () {
     wx.getSystemInfo({
       success: e => {
+        this.globalData.platform = e.platform
         this.globalData.StatusBar = e.statusBarHeight;
         let capsule = wx.getMenuButtonBoundingClientRect();
         if (capsule) {

@@ -39,11 +39,21 @@
     </view>
   </picker>
 </view>
-<view class="cu-form-group">
+
+<!-- <view class="cu-form-group">
   <view class="title">现居地</view>
   <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
     <view class="picker text-grey">
       <text >{{region[1]}} {{region[2]}}</text>
+    </view>
+  </picker>
+</view> -->
+
+<view class="cu-form-group">
+  <view class="title">居住地</view>
+  <picker mode="multiSelector" bindchange="multiChange" bindcolumnchange="columnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker text-grey">
+      <text>{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}</text>
     </view>
   </picker>
 </view>

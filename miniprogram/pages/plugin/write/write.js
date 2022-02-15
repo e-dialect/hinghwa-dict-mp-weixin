@@ -1,153 +1,66 @@
-const app = getApp()
-
+// pages/plugin/write/write.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    title: '',
-    url: 'https://HinghwaDict-1259415432.cos.ap-shanghai.myqcloud.com/files/image/6/2021/09/14/OmfYJtbQO6yVeA6.png',
-    description: '',
-    rawMD: '',
-    code: '</>',
-    status: 0
+
   },
 
-  getTitle(e) {
-    this.setData({
-      title: e.detail.value
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
 
-  getCover() {
-    let that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ["original", "compressed"],
-      sourceType: ["album", "camera"],
-      success: (res) => {
-        wx.uploadFile({
-          url: app.globalData.server + 'website/files',
-          filePath: res.tempFilePaths[0],
-          name: "file",
-          header: {
-            'token': app.globalData.token
-          },
-          success: (res) => {
-            let data = JSON.parse(res.data)
-            that.setData({
-              url: data.url
-            })
-          },
-          fail: (err) => {
-            console.log(err)
-          }
-        })
-      }
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
-  getDescription(e) {
-    this.setData({
-      description: e.detail.value
-    })
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
 
-  changeStatus() {
-    let data = this.data.status
-    this.setData({
-      status: (data + 1) % 2
-    })
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
   },
 
-  getContent(e) {
-    this.setData({
-      rawMD: e.detail.value
-    })
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
   },
 
-  tip(e) {
-    var tip = e.currentTarget.dataset.fh
-    if (tip == "code") {
-      tip = "``` js\ninput your code\n```";
-    } else if (tip == "link") {
-      tip = "[url](https://)";
-    } else if (tip == 'table') {
-      tip = "|h|h|\n|--|--|\n|b|b|"
-    }
-    let data = this.data.rawMD + tip
-    this.setData({
-      rawMD: data
-    })
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
   },
 
-  uploadImg() {
-    let that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ["original", "compressed"],
-      sourceType: ["album", "camera"],
-      success: (res) => {
-        wx.uploadFile({
-          url: app.globalData.server + 'website/files',
-          filePath: res.tempFilePaths[0],
-          name: 'file',
-          header: {
-            'token': app.globalData.token
-          },
-          success(res) {
-            if (res.statusCode == 200) {
-              let data = JSON.parse(res.data)
-              data = that.data.rawMD + '![image](' + data.url + ')'
-              that.setData({
-                rawMD: data
-              })
-            }
-          }
-        })
-      }
-    })
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
   },
 
-  release() {
-    console.log(this.data)
-    let title = this.data.title
-    let url = this.data.url
-    let description = this.data.description
-    let rawMD = this.data.rawMD
-    if (title == '' || url == '' || description == '' || rawMD == '') {
-      wx.showToast({
-        title: '文章内容不完整',
-        icon: 'error'
-      })
-    } else {
-      // 创建文章
-      wx.request({
-        url: app.globalData.server + 'articles',
-        method: 'POST',
-        data: {
-          title: title,
-          description: description,
-          content: rawMD,
-          cover: url
-        },
-        header: {
-          'content-type': 'application/json',
-          'token': app.globalData.token
-        },
-        success(res) {
-          if (res.statusCode == 200) {
-            wx.showToast({
-              title: '发布成功',
-              duration: 2000,
-              success(res) {
-                setTimeout(function () {
-                  wx.reLaunch({
-                    url: '/pages/index/index?status=plugin',
-                  })
-                }, 500);
-              }
-            })
-          }
-        }
-      })
-    }
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

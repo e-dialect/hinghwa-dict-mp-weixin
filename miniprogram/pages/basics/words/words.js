@@ -4,12 +4,16 @@ Page({
   data: {
     id: 0,
     word: {},
-    pronunciation: []
+    pronunciation: [],
+    TabCur: 0,
+    tabs: ['释义', '发音', '附注'],
+    platform: ''
   },
 
   onLoad(options) {
     this.setData({
-      id: options.id
+      id: options.id,
+      platform: app.globalData.platform
     })
     this.getWord()
     // 创建播放器
@@ -19,8 +23,8 @@ Page({
     })
   },
 
-  toVisitor() {
-    let id = this.data.word.contributor.id
+  toVisitor(e) {
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/about/visitor/visitor?id=' + id,
     })
@@ -40,6 +44,7 @@ Page({
           that.setData({
             word: res.data.word
           })
+          // console.log(res.data.word)
           that.getPronunciation()
         }
       }
@@ -48,44 +53,46 @@ Page({
 
   // 获取发音
   getPronunciation() {
+    let id = this.data.id
     let that = this
     wx.request({
-      url: app.globalData.server + 'pronunciation?word=' + that.data.id,
+      url: app.globalData.server + 'pronunciation?word=' + id,
       method: 'GET',
       data: {},
       header: {
         'content-type': 'application/json'
       },
       success(res) {
-        that.setData({
-          pronunciation: res.data.pronunciation
-        })
+        if (res.statusCode == 200) {
+          that.setData({
+            pronunciation: res.data.pronunciation
+          })
+          console.log(res.data.pronunciation)
+        }
       }
     })
   },
 
-  pronounce() {
-    if (this.data.pronunciation.length == 0) {
-      wx.showToast({
-        title: '暂无录音',
-        icon: 'none'
-      })
-      return;
-    }
+  pronounce(e) {
     wx.showToast({
       title: '正在播放录音...',
       icon: 'none'
     })
-    var src = this.data.pronunciation[0].pronunciation.source
+    let index = e.currentTarget.dataset.index
+    var src = this.data.pronunciation[index].pronunciation.source
     this.innerAudioContext.src = src
     this.innerAudioContext.play()
   },
 
-  morePronunciation() {
-    let id = this.data.word.id
-    let word = this.data.word.word
-    wx.navigateTo({
-      url: '/pages/basics/pronunciation/pronunciation?id=' + id + '&word=' + word,
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id
+    })
+  },
+
+  tabSlide(e) {
+    this.setData({
+      TabCur: e.detail.current
     })
   }
 })

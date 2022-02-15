@@ -16,18 +16,22 @@ Page({
   },
 
   NavChange(e) {
-    if (app.globalData.status == 0) {
+    let PageCur = e.currentTarget.dataset.cur
+    if (app.globalData.status == 0 && PageCur == 'about') {
+      let that = this
       wx.showModal({
         content: '请先授权登录',
         showCancel: false,
         success(res) {
-          console.log(res.confirm)
+          that.setData({
+            PageCur: 'basics'
+          })
         }
       })
       return;
     } else {
       this.setData({
-        PageCur: e.currentTarget.dataset.cur
+        PageCur: PageCur
       })
     }
   },

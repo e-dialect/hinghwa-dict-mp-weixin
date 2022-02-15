@@ -1,65 +1,66 @@
-const app = getApp()
-
+// pages/component/music/music.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    music: []
+
   },
 
-  onShow() {
-    // 获取音乐列表
-    this.getMusic()
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
 
-  getMusic() {
-    let that = this
-    wx.request({
-      url: app.globalData.server + 'music',
-      method: 'GET',
-      data: {},
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          let arr = res.data.music
-          wx.request({
-            url: app.globalData.server + 'music',
-            method: 'PUT',
-            data: {
-              music: arr
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success(res) {
-              console.log(res.data)
-              if (res.statusCode == 200) {
-                that.setData({
-                  music: res.data.music
-                })
-              }
-            }
-          })
-        }
-      }
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
-  uploadMusic() {
-    wx.navigateTo({
-      url: '/pages/component/uploadmusic/uploadmusic',
-    })
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
 
-  playMusic(e) {
-    let index = e.currentTarget.dataset.index
-    let id = this.data.music[index].music.id
-    wx.navigateTo({
-      url: '/pages/component/playmusic/playmusic?id=' + id,
-    })
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
   },
 
-  likeMusic() {
-    console.log('like')
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

@@ -1,0 +1,11 @@
+page {
+  background-color: white;
+}
+
+.box {  
+  margin: 20rpx 0; 
+}
+
+.box view.cu-bar {
+  margin-top: 20rpx; 
+}

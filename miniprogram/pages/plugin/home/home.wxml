@@ -1,9 +1,9 @@
 <cu-custom bgColor="bg-white">
   <view class="text-black" slot="content">语记·互动</view>
 </cu-custom>
-<button class="cu-btn icon lg bg-blue shadow write" bindtap="writeArticle">
+<!-- <button class="cu-btn icon lg bg-blue shadow write" bindtap="writeArticle">
   <text class="cuIcon-write"></text>
-</button>
+</button> -->
 <view class="flex padding text-center" style="background-color:white;">
   <view class="flex-sub {{status==0?'text-bold':''}}" data-index="0" bindtap="changeStatus">热门文章</view>
   <view class="flex-sub {{status==1?'text-bold':''}}" data-index="1" bindtap="changeStatus">全部文章</view>

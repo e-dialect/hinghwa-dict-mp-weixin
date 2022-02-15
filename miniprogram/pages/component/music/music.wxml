@@ -1,20 +1,2 @@
-<cu-custom bgColor="bg-white" isBack="{{true}}">
-  <view slot="content" class="text-black">语记·音乐</view>
-</cu-custom>
-<button class="cu-btn icon lg bg-blue shadow write" bindtap="uploadMusic">
-  <text class="cuIcon-musicfill"></text>
-</button>
-<view class="padding-sm" wx:for="{{music}}">
-  <view class="music" bindtap="playMusic" data-index="{{index}}">
-    <image class="cover" src="{{item.music.cover}}" mode="aspectFill"></image>
-    <view class="info">
-      <view>
-        <view class="text-lg margin-bottom-sm">{{item.music.title}}</view>
-        <view class="text-df text-grey">{{item.music.artist}}</view>
-      </view>
-      <view class="margin-right-xs text-xl" style="z-index:1024;" catchtap="likeMusic">
-        <text class="cuIcon-like"></text>
-      </view>
-    </view>
-  </view>
-</view>
+<!--pages/component/music/music.wxml-->
+<text>pages/component/music/music.wxml</text>

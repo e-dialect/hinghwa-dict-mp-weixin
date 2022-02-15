@@ -1,12 +1,12 @@
 <cu-custom bgColor="bg-white" isBack="{{true}}"></cu-custom>
-<view class="logo">
+<!-- <view class="logo">
   <image src="/images/logo.png" mode="aspectFill"></image>
-</view>
+</view> -->
 <view class="flex padding solid-bottom">
   <view class="text-bold text-xxlp">{{character.character}}</view>
-  <view class="text-lg text-blue margin-left margin-top">
+  <!-- <view class="text-lg text-blue margin-left margin-top">
     <text class="cuIcon-notificationfill"></text>
-  </view>
+  </view> -->
 </view>
 <view class="cu-form-group padding padding-right-xl">
   <view class="title">拼音</view>
