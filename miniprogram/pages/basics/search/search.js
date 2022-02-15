@@ -158,6 +158,7 @@ Page({
             },
             success(res) {
               if (res.statusCode == 200) {
+                console.log(res.data.words)
                 wx.hideLoading()
                 that.setData({
                   words: res.data.words

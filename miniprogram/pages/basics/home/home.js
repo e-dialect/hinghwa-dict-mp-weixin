@@ -13,6 +13,11 @@ Component({
 
   lifetimes: {
     attached: function () {
+      if (wx.canIUse('picker.level')) {
+        console.log('yes yes')
+      }else {
+        console.log('no no no')
+      }
       // 在组件实例进入页面节点树时执行
       this.setData({
         status: app.globalData.status,
@@ -221,9 +226,10 @@ Component({
     },
 
     getMore() {
-      let word = JSON.stringify(this.data.word)
+      // let word = JSON.stringify(this.data.word)
+      let id = this.data.word.id
       wx.navigateTo({
-        url: '/pages/basics/word/word?word=' + word
+        url: '/pages/basics/words/words?id=' + id
       })
     },
 

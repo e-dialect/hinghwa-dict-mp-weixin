@@ -7,9 +7,9 @@
       style="background-image:url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gsxy5mqf1oj36y01jkqd9.jpg)">
       <view class="card-name">兴化语记</view>
       <view class="card-slogan">记住乡愁 留下乡音</view>
-      <button class="card-btn cu-btn round bg-black shadow" bindtap="login" style="width:22vw">授权登录</button>
+      <button class="card-btn cu-btn round bg-black shadow" bindtap="login" style="width:22vw">一键登录</button>
     </view>
-    <view wx:else class="index-search" style="border-radius:5000rpx;" bindtap="search">
+    <view class="index-search" style="border-radius:5000rpx;" bindtap="search">
       <view class="cu-bar search">
         <view class="search-form round">
           <text class="cuIcon-search"></text>

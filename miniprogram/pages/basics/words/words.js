@@ -67,7 +67,7 @@ Page({
           that.setData({
             pronunciation: res.data.pronunciation
           })
-          // console.log(res.data.pronunciation)
+          console.log(res.data.pronunciation)
         }
       }
     })
