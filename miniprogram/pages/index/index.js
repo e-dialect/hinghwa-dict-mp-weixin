@@ -7,6 +7,21 @@ Page({
     PageStatus: 0
   },
 
+  //右上角分享功能
+  onShareAppMessage() {
+    var that = this;
+    return {
+      title: '',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
+
   onLoad(options) {
     if (options.status) {
       this.setData({

@@ -1,5 +1,7 @@
-<cu-custom bgColor="bg-white" isBack="{{true}}"></cu-custom>
-
+<cu-custom wx:if="{{isShare===0}}" bgColor="bg-white" isBack="{{true}}"></cu-custom>
+<view wx:else class="back text-xl" bindtap="navigateToIndex">
+  <text class="cuIcon-back"></text>
+</view>
 <view class="flex padding solid-bottom">
   <view>
     <view class="flex">

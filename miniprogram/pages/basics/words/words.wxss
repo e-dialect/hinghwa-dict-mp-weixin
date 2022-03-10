@@ -18,3 +18,8 @@ page {
   right: 50rpx;
   bottom: 40rpx;
 }
+
+.back {
+  margin-top: 8vh;
+  margin-left: 4vw;
+}

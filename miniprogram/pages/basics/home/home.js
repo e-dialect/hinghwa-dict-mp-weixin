@@ -4,10 +4,11 @@ Component({
   options: {
     addGlobalClass: true,
   },
+
   data: {
     status: 0,
     word: {},
-    announcements: [],
+    carousels: [],
     triggered: false
   },
 
@@ -37,7 +38,6 @@ Component({
               'content-type': 'application/json',
             },
             success(res) {
-              console.log(res.data)
               if (res.statusCode == 200) {
                 app.globalData.userInfo = res.data.user,
                   app.globalData.publish_articles = res.data.publish_articles,
@@ -112,7 +112,7 @@ Component({
     getArticles() {
       let that = this
       wx.request({
-        url: app.globalData.server + 'website/announcements',
+        url: app.globalData.server + 'website/carousel',
         method: 'GET',
         data: {},
         header: {
@@ -120,8 +120,9 @@ Component({
         },
         success(res) {
           if (res.statusCode == 200) {
+            console.log(res.data)
             that.setData({
-              announcements: res.data.announcements
+              carousels: res.data.carousel
             })
           }
         }
@@ -230,7 +231,7 @@ Component({
 
     toArticle(e) {
       let index = e.currentTarget.dataset.index
-      let id = this.data.announcements[index].article.id
+      let id = this.data.carousels[index].id
       wx.navigateTo({
         url: '/pages/plugin/article/article?id=' + id
       })

@@ -8,10 +8,33 @@ Page({
     pronunciation: [],
     TabCur: 0,
     tabs: ['释义', '发音', '附注'],
-    platform: ''
+    platform: '',
+    isShare: 0
+  },
+
+  //右上角分享功能
+  onShareAppMessage() {
+    var that = this
+    var title = this.data.word.word
+    var id = this.data.word.id
+    return {
+      title: title,
+      path: '/pages/basics/words/words?id=' + id + '&share=1',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
 
   onLoad(options) {
+    if (options.share) {
+      this.setData({
+        isShare: options.share
+      })
+    }
     this.setData({
       id: options.id,
       platform: app.globalData.platform
@@ -21,6 +44,12 @@ Page({
     this.innerAudioContext = wx.createInnerAudioContext()
     this.innerAudioContext.onError((res) => {
       that.tip("播放语音失败！")
+    })
+  },
+
+  navigateToIndex() {
+    wx.navigateTo({
+      url: '/pages/index/index?status=basics'
     })
   },
 
