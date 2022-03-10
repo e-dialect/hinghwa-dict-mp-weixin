@@ -2,10 +2,14 @@ const app = getApp()
 
 Page({
   data: {
+    id: -1,
     pronunciation: []
   },
 
-  onLoad() {
+  onLoad(options) {
+    this.setData({
+      id: options.id
+    })
     this.getPronunciation()
     // 创建播放器
     this.innerAudioContext = wx.createInnerAudioContext()
@@ -15,7 +19,7 @@ Page({
   getPronunciation() {
     let that = this
     wx.request({
-      url: app.globalData.server + 'pronunciation',
+      url: app.globalData.server + 'pronunciation?contributor=' + that.data.id,
       method: 'GET',
       data: {},
       header: {
