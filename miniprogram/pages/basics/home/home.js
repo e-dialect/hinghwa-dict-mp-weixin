@@ -13,11 +13,6 @@ Component({
 
   lifetimes: {
     attached: function () {
-      if (wx.canIUse('picker.level')) {
-        console.log('yes yes')
-      }else {
-        console.log('no no no')
-      }
       // 在组件实例进入页面节点树时执行
       this.setData({
         status: app.globalData.status,

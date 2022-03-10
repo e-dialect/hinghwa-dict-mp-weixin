@@ -11,8 +11,7 @@
       访问：{{word.views}}
     </view>
     <view class="text-grey text-df margin-top-xs">
-      来源：<text class="text-blue" bindtap="toVisitor"
-        data-id="{{word.contributor.id}}">{{word.contributor.nickname}}</text>
+      来源：<text class="text-blue" bindtap="toVisitor" data-id="{{word.contributor.id}}">{{word.contributor.nickname}}</text>
     </view>
   </view>
 </view>
@@ -28,17 +27,20 @@
 </view>
 
 <scroll-view scroll-x class="bg-white nav text-center">
-  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="tabSelect"
-    data-id="{{index}}">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
     {{item}}
   </view>
 </scroll-view>
 
 <swiper wx:if="{{platform!='ios'}}" style="height:150vh;" class="screen-swiper" current="{{TabCur}}" duration="500" bindchange="tabSlide">
   <swiper-item class="margin">
-    <view class="text-bold text-xl">释义</view>
-    <view style="width:92vw;" class="margin-top-sm text-grey">
-      {{word.definition}}
+    <view wx:for="{{definition}}" style="width:92vw;" class="margin-top-sm solid-bottom">
+      <view class="text-bold text-xl">{{item.content}}</view>
+      <view wx:for="{{item.example}}" class="padding-sm">
+        <button class="cu-btn bg-red" style="width:8vw;">{{item.type}}</button>
+        <text> {{item.content}}</text>
+        <text class="text-grey"> {{item.explain}}</text>
+      </view>
     </view>
   </swiper-item>
   <swiper-item>
@@ -52,8 +54,7 @@
           </view>
           <view class="margin-top">
             <text>来源：</text>
-            <text class="text-blue" data-id="{{item.contributor.id}}"
-              bindtap="toVisitor">{{item.contributor.nickname}}</text>
+            <text class="text-blue" data-id="{{item.contributor.id}}" bindtap="toVisitor">{{item.contributor.nickname}}</text>
             <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
           </view>
         </view>
@@ -73,9 +74,13 @@
 
 <view wx:if="{{platform=='ios'}}">
   <view wx:if="{{TabCur==0}}" class="margin">
-    <view class="text-bold text-xl">释义</view>
-    <view class="margin-top-sm text-grey">
-      {{word.definition}}
+    <view wx:for="{{definition}}" style="width:92vw;" class="margin-top-sm solid-bottom">
+      <view class="text-bold text-xl">{{item.content}}</view>
+      <view wx:for="{{item.example}}" class="padding-sm">
+        <button class="cu-btn bg-red" style="width:8vw;">{{item.type}}</button>
+        <text> {{item.content}}</text>
+        <text class="text-grey"> {{item.explain}}</text>
+      </view>
     </view>
   </view>
   <view wx:if="{{TabCur==1}}">
@@ -89,8 +94,7 @@
           </view>
           <view class="margin-top">
             <text>来源：</text>
-            <text class="text-blue" data-id="{{item.contributor.id}}"
-              bindtap="toVisitor">{{item.contributor.nickname}}</text>
+            <text class="text-blue" data-id="{{item.contributor.id}}" bindtap="toVisitor">{{item.contributor.nickname}}</text>
             <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
           </view>
         </view>
