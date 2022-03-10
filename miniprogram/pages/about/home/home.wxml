@@ -7,7 +7,7 @@
     <view class="text">{{nickname}}</view>
   </view>
   <view class="padding flex text-center text-grey bg-white shadow-warp">
-    <view class="flex flex-sub flex-direction solid-right">
+    <view class="flex flex-sub flex-direction solid-right" bindtap="getMyRecords">
       <view class="text-xlp text-orange">{{recordsCount}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-voice"></text> 语音量
