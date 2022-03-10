@@ -109,6 +109,13 @@ Component({
       })
     },
 
+    getMyRecords() {
+      let id = app.globalData.id
+      wx.navigateTo({
+        url: '/pages/component/voice/voice?id=' + id,
+      })
+    },
+
     // 退出登录
     exit() {
       wx.showModal({
