@@ -1,4 +1,4 @@
-<scroll-view scroll-y class="scrollPage">
+<!-- <scroll-view scroll-y class="scrollPage">
   <view class="user-bg img-edge-cover">
     <view class="text-xl text-white back" bindtap="back">
       <text class="cuIcon-back"></text>
@@ -12,58 +12,50 @@
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xlp text-orange">{{contribution.pronunciation}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-voice"></text> Records</view>
+        <text class="cuIcon-voice"></text> Records
+      </view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xlp text-blue">{{contribution.word}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-font"></text> Words</view>
+        <text class="cuIcon-font"></text> Words
+      </view>
     </view>
     <view class="flex flex-sub flex-direction">
       <view class="text-xlp text-green">{{contribution.listened}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-attention"></text> View</view>
+        <text class="cuIcon-attention"></text> View
+      </view>
     </view>
   </view>
-  <!-- <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articlesliked/articlesliked" hover-class="none">
-        <text class="cuIcon-appreciate text-grey"></text>
-        <text class="text-grey">点赞文章</text>
-      </navigator>
+</scroll-view> -->
+
+<scroll-view scroll-y class="scrollPage">
+  <image class="bg-image" src="/images/bg2.jpg" mode="aspectFill"></image>
+  <view class="bg-info">
+    <view class="avatar">
+      <image class="cu-avatar round" src="{{avatar}}" mode="aspectFill"></image>
     </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/myarticles/myarticles" hover-class="none">
-        <text class="cuIcon-edit text-grey"></text>
-        <text class="text-grey">我的文章</text>
-      </navigator>
+    <view class="text">{{nickname}}</view>
+  </view>
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right" bindtap="getMyRecords">
+      <view class="text-xlp text-orange">{{recordsCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-voice"></text> 语音量
+      </view>
     </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/mycomments/mycomments" hover-class="none">
-        <text class="cuIcon-comment text-grey"></text>
-        <text class="text-grey">我的评论</text>
-      </navigator>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xlp text-blue">{{wordsCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-font"></text> 词语量
+      </view>
     </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
-        <text class="cuIcon-musicfill text-grey"></text>
-        <text class="text-grey">我的音乐</text>
-      </navigator>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xlp text-green">{{visitTotal}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-attention"></text> 播放量
+      </view>
     </view>
   </view>
-  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/password/password" hover-class="none">
-        <text class="cuIcon-write text-grey"></text>
-        <text class="text-grey">修改密码</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/articles/articles" hover-class="none">
-        <text class="cuIcon-group text-grey"></text>
-        <text class="text-grey">关于我们</text>
-      </navigator>
-    </view>
-  </view>
-  <view class="stand-view"></view> -->
 </scroll-view>

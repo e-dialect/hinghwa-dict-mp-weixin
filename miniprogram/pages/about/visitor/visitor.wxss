@@ -1,4 +1,4 @@
-.user-bg {
+/* .user-bg {
   background-image: url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gszctmzgg2j337q37q4i3.jpg);
   background-size: cover;
   height: 500rpx;
@@ -23,4 +23,39 @@
   position: absolute;
   top: 5vh;
   left: 5vw;
+} */
+
+.bg-image {
+  z-index: -1;
+  position: absolute;
+  width: 100vw;
+  height: 28vh;
+}
+
+.bg-info {
+  z-index: 1024;
+  height: 28vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-info .avatar {
+  width: 190rpx;
+  height: 190rpx
+}
+
+.bg-info .text {
+  position: absolute;
+  top: 22vh;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: white;
+}
+
+.bg-info image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 6rpx;
 }

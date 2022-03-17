@@ -2,11 +2,12 @@ const app = getApp()
 
 Page({
   data: {
-    user: {},
-    publish_articles: [],
-    publish_comments: [],
-    like_articles: [],
-    contribution: {}
+    id: 0,
+    avatar: '',
+    nickname: '',
+    recordsCount: 0,
+    wordsCount: 0,
+    visitTotal: 0
   },
 
   onLoad(options) {
@@ -28,21 +29,29 @@ Page({
         console.log(res)
         if (res.statusCode == 200) {
           that.setData({
-            user: res.data.user,
-            publish_articles: res.data.publish_articles,
-            publish_comments: res.data.publish_comments,
-            like_articles: res.data.like_articles,
-            contribution: res.data.contribution
+            id: res.data.user.id,
+            avatar: res.data.user.avatar,
+            nickname: res.data.nickname,
+            recordsCount: res.data.contribution.pronunciation,
+            wordsCount: res.data.contribution.word,
+            visitTotal: res.data.contribution.listened
           })
         }
       }
     })
   },
 
-  // 返回上一页面
-  back() {
-    wx.navigateBack({
-      delta: 1
+  getMyRecords() {
+    let id = this.data.id
+    wx.navigateTo({
+      url: '/pages/component/voice/voice?id=' + id,
     })
-  }
+  },
+
+  // 返回上一页面
+  // back() {
+  //   wx.navigateBack({
+  //     delta: 1
+  //   })
+  // }
 })
