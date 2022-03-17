@@ -1,66 +1,124 @@
-// pages/component/uploadpronunciation/uploadpronunciation.js
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    id: 0,
+    word: '',
+    status: 0,
+    source: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad(options) {
+    this.setData({
+      id: options.id,
+      word: options.word
+    })
+    var that = this;
+    // 创建录音管理器
+    this.recorderManager = wx.getRecorderManager()
+    this.recorderManager.onError(function () {
+      that.tip("录音失败！")
+    })
+    this.recorderManager.onStop(function (res) {
+      that.uploadMp3(res.tempFilePath)
+    })
+    // 创建播放器
+    this.innerAudioContext = wx.createInnerAudioContext()
+    this.innerAudioContext.onError((res) => {
+      that.tip("播放录音失败！")
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  recordOrOver() {
+    // 未在录音
+    if (this.data.status == 0) {
+      this.setData({
+        status: 1
+      })
+      // 开始录音
+      this.recorderManager.start({
+        format: 'mp3'
+      })
+    }
+    // 正在录音
+    else if (this.data.status == 1) {
+      this.setData({
+        status: 0
+      })
+      // 结束录音
+      this.recorderManager.stop()
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 上传.mp3文件
+  uploadMp3(source) {
+    let that = this
+    wx.uploadFile({
+      url: app.globalData.server + 'website/files',
+      filePath: source,
+      name: 'file',
+      header: {
+        'token': app.globalData.token
+      },
+      success(res) {
+        if (res.statusCode == 200) {
+          let url = JSON.parse(res.data).url
+          that.setData({
+            source: url
+          })
+          wx.showToast({
+            title: '录音成功！',
+          })
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  playMp3() {
+    var src = this.data.source;
+    if (src == '') {
+      wx.showToast({
+        title: '请先录音！',
+        icon: 'error'
+      })
+      return;
+    }
+    this.innerAudioContext.src = src;
+    this.innerAudioContext.play()
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  release(e) {
+    let pronunciation = {
+      word: this.data.id,
+      source: e.detail.value.source,
+      ipa: e.detail.value.ipa,
+      pinyin: e.detail.value.pinyin,
+      county: e.detail.value.county,
+      town: e.detail.value.town
+    }
+    wx.request({
+      url: app.globalData.server + 'pronunciation',
+      method: 'POST',
+      data: {
+        pronunciation: pronunciation
+      },
+      header: {
+        'content-type': 'application/json',
+        'token': app.globalData.token
+      },
+      success(res) {
+        console.log(res)
+        if (res.statusCode == 200) {
+          wx.showToast({
+            title: '发布成功！'
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 500)
+        }
+      }
+    })
   }
 })
