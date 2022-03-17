@@ -20,8 +20,8 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 22vw;
-  height: 16vw;
+  width: 30vw;
+  height: 28vw;
   margin-right: 20rpx;
   border-radius: 10rpx;
   font-size: 50rpx;

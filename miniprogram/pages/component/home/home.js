@@ -9,7 +9,7 @@ Component({
         url: '/component/pinyin/pinyin'
       }, {
         img: 'https://hinghwadict-1259415432.cos.ap-shanghai.myqcloud.com/website/%E6%8B%BC%E9%9F%B3%E9%80%9F%E6%9F%A5.png',
-        url: '/basics/search/search?index=1'
+        url: '/basics/search/search'
       },
       {
         img: 'https://HinghwaDict-1259415432.cos.ap-shanghai.myqcloud.com/files/image/6/2021/12/05/WrUXiZC8fTxXZAc.png',

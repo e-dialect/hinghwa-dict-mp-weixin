@@ -34,6 +34,10 @@ Page({
   },
 
   play(e) {
+    wx.showToast({
+      title: '正在播放录音...',
+      icon: 'none'
+    })
     let index = e.currentTarget.dataset.index
     this.innerAudioContext.src = this.data.pronunciation[index].pronunciation.source
     this.innerAudioContext.play()

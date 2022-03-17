@@ -5,19 +5,24 @@
   <text class="cuIcon-voice"></text>
 </button> -->
 <view class="padding-sm" wx:for="{{pronunciation}}">
-  <view class="voice">
+  <view class="voice" data-index="{{index}}" bindtap="play">
     <view class="word solid-right">{{item.pronunciation.word_word}}</view>
     <view class="info">
       <view>
         <view class="text-df margin-bottom-sm">
-          <text>{{item.pronunciation.pinyin}}</text>
-          <text class="text-grey" decode>&nbsp;&nbsp;/{{item.pronunciation.ipa}}/&nbsp;&nbsp;&nbsp;</text>
-          <text class="text-blue cuIcon-notificationfill" data-index="{{index}}" bindtap="play"></text>
+          <text decode>{{item.pronunciation.pinyin}}&nbsp;&nbsp;</text>
+          <text class="text-blue cuIcon-notificationfill"></text>
+        </view>
+        <view class="text-df margin-bottom-sm">
+          <text class="text-grey">/{{item.pronunciation.ipa}}/</text>
+        </view>
+        <view class="text-df margin-bottom-sm">
+          <text>地区：</text>
+          <text decode>{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}</text>
         </view>
         <view class="text-df">
           <text>来源：</text>
           <text class="text-blue" data-id="{{item.contributor.id}}" bindtap="toVisitor">{{item.contributor.nickname}}</text>
-          <text decode>&nbsp;&nbsp;（{{item.pronunciation.county}}&nbsp;&nbsp;{{item.pronunciation.town}}）</text>
         </view>
       </view>
     </view>
