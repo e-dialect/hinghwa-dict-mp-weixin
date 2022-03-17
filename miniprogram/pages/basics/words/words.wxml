@@ -2,6 +2,9 @@
 <view wx:else class="back text-xl" bindtap="navigateToIndex">
   <text class="cuIcon-back"></text>
 </view>
+<button class="cu-btn icon lg bg-blue shadow write" bindtap="uploadPronunciation">
+  <text class="cuIcon-voice"></text>
+</button>
 <view class="flex padding solid-bottom">
   <view>
     <view class="flex">

@@ -205,5 +205,13 @@ Page({
     this.setData({
       definition: result
     })
-  }
+  },
+
+  uploadPronunciation() {
+    let id = this.data.id,
+      word = this.data.word.word
+    wx.navigateTo({
+      url: '/pages/component/uploadpronunciation/uploadpronunciation?id=' + id + '&word=' + word
+    })
+  },
 })

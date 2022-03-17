@@ -23,3 +23,10 @@ page {
   margin-top: 8vh;
   margin-left: 4vw;
 }
+
+.write {
+  position: fixed;
+  bottom: 10vh;
+  right: 6vw;
+  z-index: 1024;
+}
