@@ -100,9 +100,16 @@ Page({
             success(res) {
               if (res.statusCode == 200) {
                 wx.hideLoading()
-                that.setData({
-                  characters: res.data.characters
-                })
+                if (res.data.characters.length === 0) {
+                  wx.showToast({
+                    title: '搜索结果为空',
+                    icon: 'none'
+                  })
+                } else {
+                  that.setData({
+                    characters: res.data.characters
+                  })
+                }
               }
             }
           })
@@ -127,9 +134,17 @@ Page({
       success(res) {
         if (res.statusCode == 200) {
           wx.hideLoading()
-          that.setData({
-            pronunciation: res.data.characters
-          })
+          console.log(res.data.characters)
+          if (res.data.characters[0].characters.length === 0) {
+            wx.showToast({
+              title: '搜索结果为空',
+              icon: 'none'
+            })
+          } else {
+            that.setData({
+              pronunciation: res.data.characters
+            })
+          }
         }
       }
     })
@@ -158,11 +173,17 @@ Page({
             },
             success(res) {
               if (res.statusCode == 200) {
-                console.log(res.data.words)
                 wx.hideLoading()
-                that.setData({
-                  words: res.data.words
-                })
+                if (res.data.words.length === 0) {
+                  wx.showToast({
+                    title: '搜索结果为空',
+                    icon: 'none'
+                  })
+                } else {
+                  that.setData({
+                    words: res.data.words
+                  })
+                }
               }
             }
           })

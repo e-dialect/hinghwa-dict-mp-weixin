@@ -9,7 +9,8 @@ Page({
     TabCur: 0,
     tabs: ['释义', '发音', '附注'],
     platform: '',
-    isShare: 0
+    isShare: 0,
+    no_pronunciations: false
   },
 
   //右上角分享功能
@@ -97,7 +98,11 @@ Page({
           that.setData({
             pronunciation: res.data.pronunciation
           })
-          console.log(res.data.pronunciation)
+          if (res.data.pronunciation.length === 0) {
+            that.setData({
+              no_pronunciations: true
+            })
+          }
         }
       }
     })
@@ -209,9 +214,11 @@ Page({
 
   uploadPronunciation() {
     let id = this.data.id,
-      word = this.data.word.word
+      word = this.data.word.word,
+      ipa = this.data.word.standard_ipa,
+      pinyin = this.data.word.standard_pinyin
     wx.navigateTo({
-      url: '/pages/component/uploadpronunciation/uploadpronunciation?id=' + id + '&word=' + word
+      url: '/pages/component/uploadpronunciation/uploadpronunciation?id=' + id + '&word=' + word + '&ipa=' + ipa + '&pinyin=' + pinyin,
     })
   },
 })

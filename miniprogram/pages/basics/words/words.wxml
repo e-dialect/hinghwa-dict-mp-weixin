@@ -49,6 +49,9 @@
     </view>
   </swiper-item>
   <swiper-item>
+    <view wx:if="{{no_pronunciations===true}}" class="margin">
+      <text class="text-grey">该词语暂无语音哦～点击右下方贡献语音～</text>
+    </view>
     <view class="padding solid-bottom" wx:for="{{pronunciation}}" wx:key="index">
       <view class="flex justify-between align-center">
         <view>
@@ -89,6 +92,9 @@
     </view>
   </view>
   <view wx:if="{{TabCur==1}}">
+    <view wx:if="{{no_pronunciations===true}}" class="margin">
+      <text class="text-grey">该词语暂无语音哦～点击右下方贡献语音～</text>
+    </view>
     <view class="padding solid-bottom" wx:for="{{pronunciation}}" wx:key="index">
       <view class="flex justify-between align-center">
         <view>
