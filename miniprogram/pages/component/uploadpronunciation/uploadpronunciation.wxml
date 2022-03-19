@@ -8,29 +8,33 @@
       <input class="fileName" disabled value="{{word}}"></input>
     </block>
     <block>
-      <input class="extend text-bold" disabled value="录音" bindtap="recordOrOver"></input>
-      <input class="extend text-grey" style="width:25%;" disabled value="{{status==0?'播放录音':'正在录音...'}}"
-        bindtap="playMp3"></input>
-      <input name="source" class="record" placeholder="{{status==0?'点击上方开始录音':'点击上方结束录音'}}" disabled
-        value="{{source}}"></input>
+      <input class="extend text-bold" disabled value="录音"></input>
+      <input class="extend text-grey" style="width:25%;" disabled value="播放录音" bindtap="playMp3"></input>
+      <input class="record" placeholder="{{status==0?'长按开始录音':'松开结束录音'}}" disabled bindlongpress="startRecord" bindtouchend="stopRecord"></input>
     </block>
     <block>
       <input class="extend text-bold" disabled value="IPA"></input>
-      <input name="ipa" class="fileName" placeholder="请输入该词语的国际音标"></input>
+      <input name="ipa" value="{{ipa}}" class="fileName" placeholder="请输入该词语的国际音标"></input>
     </block>
     <block>
       <input class="extend text-bold" disabled value="拼音"></input>
-      <input name="pinyin" class="fileName" placeholder="请输入该词语的拼音"></input>
+      <input name="pinyin" value="{{pinyin}}" class="fileName" placeholder="请输入该词语的拼音"></input>
     </block>
-    <block>
+    <!-- <block>
       <input class="extend text-bold" disabled value="县区"></input>
       <input name="county" class="fileName" placeholder="请输入您的县区"></input>
-    </block>
-    <block>
+    </block> -->
+    <!-- <block>
       <input class="extend text-bold" disabled value="乡镇"></input>
       <input name="town" class="fileName" placeholder="请输入您的乡镇"></input>
-    </block>
-    <button class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;"
-      form-type="submit">发布</button>
+    </block> -->
+    <view class="flex">
+      <input class="extend text-bold" style="font-size:34rpx;padding:13rpx;" disabled value="地区"></input>
+      <picker class="fileName" style="margin-right:20rpx;" mode="multiSelector" bindchange="multiChange" bindcolumnchange="columnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+      </picker>
+    </view>
+    <button class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;" form-type="submit">发布</button>
   </form>
 </view>
+
