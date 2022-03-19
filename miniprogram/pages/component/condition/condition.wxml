@@ -33,11 +33,11 @@
 
 <view class="cu-list menu margin-top">
   <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
-    wx:for="{{characters}}">
+    wx:for="{{characters}}" bindtap="getCharacter">
     <view class="flex flex-direction justify-between">
       <view class="margin-bottom-sm">
         <text class="text-xxl text-bold">{{item.character}}</text>
-        <text class="cuIcon-notificationfill text-blue margin-left"></text>
+        <!-- <text class="cuIcon-notificationfill text-blue margin-left"></text> -->
       </view>
       <view>
         <text>{{item.pinyin}}</text>
@@ -46,3 +46,5 @@
     </view>
   </view>
 </view>
+
+

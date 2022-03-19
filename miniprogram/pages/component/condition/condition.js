@@ -225,5 +225,12 @@ Page({
         }
       }
     })
+  },
+
+  getCharacter(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/basics/characters/characters?id=' + id
+    })
   }
 })
