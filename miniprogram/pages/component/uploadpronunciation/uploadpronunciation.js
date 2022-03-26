@@ -79,22 +79,26 @@ Page({
   //   }
   // },
 
-  startRecord() {
-    this.setData({
-      status: 1
-    })
-    // 开始录音
-    this.recorderManager.start({
-      format: 'mp3'
-    })
-  },
-
-  stopRecord() {
-    this.setData({
-      status: 0
-    })
-    // 结束录音
-    this.recorderManager.stop()
+  startOrStopRecord() {
+    if (this.data.status === 0) {
+      this.setData({
+        status: 1
+      })
+      wx.showToast({
+        title: '正在录音...',
+        icon: 'none'
+      })
+      // 开始录音
+      this.recorderManager.start({
+        format: 'mp3'
+      })
+    } else {
+      this.setData({
+        status: 0
+      })
+      // 结束录音
+      this.recorderManager.stop()
+    }
   },
 
   // 上传.mp3文件
@@ -114,7 +118,7 @@ Page({
             source: url
           })
           wx.showToast({
-            title: '录音成功！',
+            title: '录音成功',
           })
         }
       }
@@ -207,6 +211,14 @@ Page({
           }, 500)
         }
       }
+    })
+  },
+
+  // 重新录制
+  reRecord()
+  {
+    this.setData({
+      source: ''
     })
   }
 })

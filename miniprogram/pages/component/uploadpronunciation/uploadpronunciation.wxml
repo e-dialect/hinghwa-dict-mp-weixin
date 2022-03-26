@@ -7,11 +7,11 @@
       <input class="extend text-bold" disabled value="词语"></input>
       <input class="fileName" disabled value="{{word}}"></input>
     </block>
-    <block>
+    <!-- <block>
       <input class="extend text-bold" disabled value="录音"></input>
       <input class="extend text-grey" style="width:25%;" disabled value="播放录音" bindtap="playMp3"></input>
       <input class="record" placeholder="{{status==0?'长按开始录音':'松开结束录音'}}" disabled bindlongpress="startRecord" bindtouchend="stopRecord"></input>
-    </block>
+    </block> -->
     <block>
       <input class="extend text-bold" disabled value="IPA"></input>
       <input name="ipa" value="{{ipa}}" class="fileName" placeholder="请输入该词语的国际音标"></input>
@@ -20,21 +20,28 @@
       <input class="extend text-bold" disabled value="拼音"></input>
       <input name="pinyin" value="{{pinyin}}" class="fileName" placeholder="请输入该词语的拼音"></input>
     </block>
-    <!-- <block>
-      <input class="extend text-bold" disabled value="县区"></input>
-      <input name="county" class="fileName" placeholder="请输入您的县区"></input>
-    </block> -->
-    <!-- <block>
-      <input class="extend text-bold" disabled value="乡镇"></input>
-      <input name="town" class="fileName" placeholder="请输入您的乡镇"></input>
-    </block> -->
     <view class="flex">
       <input class="extend text-bold" style="font-size:34rpx;padding:13rpx;" disabled value="地区"></input>
       <picker class="fileName" style="margin-right:20rpx;" mode="multiSelector" bindchange="multiChange" bindcolumnchange="columnChange" value="{{multiIndex}}" range="{{multiArray}}">
         {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
       </picker>
     </view>
-    <button class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;" form-type="submit">发布</button>
+    <view class="record-btn">
+      <button wx:if="{{source===''}}" class="cu-btn icon llg bg-blue shadow margin-bottom-sm" bindtap="startOrStopRecord">
+        <text class="cuIcon-voice"></text>
+      </button>
+      <button wx:else class="cu-btn icon llg bg-blue shadow margin-bottom-sm" bindtap="playMp3">
+        <text class="cuIcon-notificationfill"></text>
+      </button>
+      <view wx:if="{{source===''}}" class="text-bold text-xlp">
+        <text wx:if="{{status===0}}">点击开始录音</text>
+        <text wx:else>点击结束录音</text>
+      </view>
+      <view wx:else class="text-bold text-xlp">
+        <text>点击播放录音</text>
+      </view>
+    </view>
+    <button wx:if="{{source!==''}}" class="cu-btn block bg-red shadow margin" style="width:90vw;font-size:32rpx;" bindtap="reRecord">重新录制</button>
+    <button wx:if="{{source!==''}}" class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;" form-type="submit">确认提交</button>
   </form>
 </view>
-

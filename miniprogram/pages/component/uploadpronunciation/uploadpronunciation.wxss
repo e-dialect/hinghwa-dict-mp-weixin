@@ -34,3 +34,11 @@ page {
   display: inline-block;
   text-align: center;
 }
+
+.record-btn
+{
+  margin-top: 58rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
