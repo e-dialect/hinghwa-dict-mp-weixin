@@ -17,13 +17,13 @@
         </view>
       </view>
     </view>
-    <view class="index-word">
+    <view class="index-word" bindtap="getMore">
       <view class="flex solid-bottom justify-between">
         <view class="padding-sm margin-xs">
           <text class="text-bold">每日一词</text>
           <!-- <text class="cuIcon-refresh text-gray margin-left-sm"></text> -->
         </view>
-        <view class="padding-sm margin-xs text-grey" bindtap="getMore">MORE</view>
+        <view class="padding-sm margin-xs text-grey">MORE</view>
       </view>
       <view class="flex">
         <view class="flex-sub padding-sm margin text-center solid-right">
