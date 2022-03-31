@@ -142,7 +142,46 @@ Component({
       if (app.globalData.userInfo.wechat === true) {
         wx.showModal({
           content: '当前用户已经绑定微信！',
-          showCancel: false
+          cancelText: '取消绑定',
+          success(res) {
+            if (res.cancel) {
+              // 取消绑定微信
+              wx.login({
+                success(res1) {
+                  if (res1.code) {
+                    wx.request({
+                      url: app.globalData.server + 'users/' + app.globalData.id + '/wechat',
+                      method: 'DELETE',
+                      data: {
+                        jscode: res1.code
+                      },
+                      header: {
+                        'content-type': 'application/json',
+                        'token': app.globalData.token
+                      },
+                      success(res2) {
+                        if (res2.statusCode == 200) {
+                          wx.showToast({
+                            title: '解除绑定',
+                          })
+                          app.globalData.userInfo.wechat = false
+                        } else if (res2.statusCode == 401) {
+                          wx.showModal({
+                            content: '没有权限',
+                          })
+                        } else if (res2.statusCode == 500) {
+                          wx.showToast({
+                            title: '服务器错误',
+                            icon: 'error'
+                          })
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          }
         })
       } else {
         wx.showModal({
@@ -167,6 +206,7 @@ Component({
                           wx.showToast({
                             title: '绑定成功',
                           })
+                          app.globalData.userInfo.wechat = true
                         } else if (res2.statusCode == 401) {
                           wx.showModal({
                             content: '没有权限',
