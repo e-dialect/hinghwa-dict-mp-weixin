@@ -27,21 +27,21 @@
       </picker>
     </view>
     <view class="record-btn">
-      <button wx:if="{{source===''}}" class="cu-btn icon llg bg-blue shadow margin-bottom-sm" bindtap="startOrStopRecord">
+      <button wx:if="{{source===''}}" class="cu-btn icon llg bg-blue shadow margin-bottom-sm" bindlongpress="startRecord" bindtouchend="stopRecord">
         <text class="cuIcon-voice"></text>
       </button>
       <button wx:else class="cu-btn icon llg bg-blue shadow margin-bottom-sm" bindtap="playMp3">
         <text class="cuIcon-notificationfill"></text>
       </button>
       <view wx:if="{{source===''}}" class="text-bold text-xlp">
-        <text wx:if="{{status===0}}">点击开始录音</text>
-        <text wx:else>点击结束录音</text>
+        <text wx:if="{{status===0}}">长按开始录音</text>
+        <text wx:else>松开结束录音</text>
       </view>
       <view wx:else class="text-bold text-xlp">
         <text>点击播放录音</text>
       </view>
     </view>
     <button wx:if="{{source!==''}}" class="cu-btn block bg-red shadow margin" style="width:90vw;font-size:32rpx;" bindtap="reRecord">重新录制</button>
-    <button wx:if="{{source!==''}}" class="cu-btn block bg-grey shadow margin" style="width:90vw;font-size:32rpx;" form-type="submit">确认提交</button>
+    <button wx:if="{{source!==''}}" class="cu-btn block bg-blue shadow margin" style="width:90vw;font-size:32rpx;" form-type="submit">确认提交</button>
   </form>
 </view>

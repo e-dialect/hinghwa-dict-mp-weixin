@@ -49,7 +49,8 @@ Page({
       that.tip("录音失败！")
     })
     this.recorderManager.onStop(function (res) {
-      that.uploadMp3(res.tempFilePath)
+      that.setSource(res.tempFilePath)
+      // that.uploadMp3(res.tempFilePath)
     })
     // 创建播放器
     this.innerAudioContext = wx.createInnerAudioContext()
@@ -79,49 +80,34 @@ Page({
   //   }
   // },
 
-  startOrStopRecord() {
-    if (this.data.status === 0) {
-      this.setData({
-        status: 1
-      })
-      wx.showToast({
-        title: '正在录音...',
-        icon: 'none'
-      })
-      // 开始录音
-      this.recorderManager.start({
-        format: 'mp3'
-      })
-    } else {
-      this.setData({
-        status: 0
-      })
-      // 结束录音
-      this.recorderManager.stop()
-    }
+  startRecord() {
+    this.setData({
+      status: 1
+    })
+    wx.showToast({
+      title: '正在录音...',
+      icon: 'none'
+    })
+    // 开始录音
+    this.recorderManager.start({
+      format: 'mp3'
+    })
   },
 
-  // 上传.mp3文件
-  uploadMp3(source) {
-    let that = this
-    wx.uploadFile({
-      url: app.globalData.server + 'website/files',
-      filePath: source,
-      name: 'file',
-      header: {
-        'token': app.globalData.token
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          let url = JSON.parse(res.data).url
-          that.setData({
-            source: url
-          })
-          wx.showToast({
-            title: '录音成功',
-          })
-        }
-      }
+  stopRecord() {
+    this.setData({
+      status: 0
+    })
+    // 结束录音
+    this.recorderManager.stop()
+  },
+
+  setSource(source) {
+    this.setData({
+      source: source
+    })
+    wx.showToast({
+      title: '录音成功',
     })
   },
 
@@ -178,6 +164,9 @@ Page({
   },
 
   release(e) {
+    wx.showLoading({
+      title: '正在提交...',
+    })
     let pronunciation = {
       word: this.data.id,
       source: this.data.source,
@@ -186,37 +175,54 @@ Page({
       county: countys[this.data.multiIndex[0]],
       town: towns[this.data.multiIndex[0]][this.data.multiIndex[1]]
     }
+    this.uploadMp3(pronunciation)
+  },
 
-    // 发起网络请求
-    wx.request({
-      url: app.globalData.server + 'pronunciation',
-      method: 'POST',
-      data: {
-        pronunciation: pronunciation
-      },
+  // 上传.mp3文件
+  uploadMp3(pronunciation) {
+    let that = this
+    wx.uploadFile({
+      url: app.globalData.server + 'website/files',
+      filePath: pronunciation.source,
+      name: 'file',
       header: {
-        'content-type': 'application/json',
         'token': app.globalData.token
       },
       success(res) {
-        console.log(res)
         if (res.statusCode == 200) {
-          wx.showToast({
-            title: '发布成功！'
+          let url = JSON.parse(res.data).url
+          pronunciation.source = url
+          wx.request({
+            url: app.globalData.server + 'pronunciation',
+            method: 'POST',
+            data: {
+              pronunciation: pronunciation
+            },
+            header: {
+              'content-type': 'application/json',
+              'token': app.globalData.token
+            },
+            success(res) {
+              if (res.statusCode == 200) {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '发布成功'
+                })
+                setTimeout(function () {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }, 500)
+              }
+            }
           })
-          setTimeout(function () {
-            wx.navigateBack({
-              delta: 1,
-            })
-          }, 500)
         }
       }
     })
   },
 
   // 重新录制
-  reRecord()
-  {
+  reRecord() {
     this.setData({
       source: ''
     })
