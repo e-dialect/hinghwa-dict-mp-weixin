@@ -139,46 +139,53 @@ Component({
 
     //绑定微信
     bindingWechat() {
-      wx.showModal({
-        content: '是否绑定微信？',
-        success(res) {
-          if (res.confirm) {
-            wx.login({
-              success(res1) {
-                if (res1.code) {
-                  wx.request({
-                    url: app.globalData.server + 'users/' + app.globalData.id + '/wechat',
-                    method: 'PUT',
-                    data: {
-                      jscode: res1.code
-                    },
-                    header: {
-                      'content-type': 'application/json',
-                      'token': app.globalData.token
-                    },
-                    success(res2) {
-                      if (res2.statusCode == 200) {
-                        wx.showToast({
-                          title: '绑定成功',
-                        })
-                      } else if (res2.statusCode == 401) {
-                        wx.showModal({
-                          content: '没有权限',
-                        })
-                      } else if (res2.statusCode == 500) {
-                        wx.showToast({
-                          title: '服务器错误',
-                          icon: 'error'
-                        })
+      if (app.globalData.userInfo.wechat === true) {
+        wx.showModal({
+          content: '当前用户已经绑定微信！',
+          showCancel: false
+        })
+      } else {
+        wx.showModal({
+          content: '是否绑定微信？',
+          success(res) {
+            if (res.confirm) {
+              wx.login({
+                success(res1) {
+                  if (res1.code) {
+                    wx.request({
+                      url: app.globalData.server + 'users/' + app.globalData.id + '/wechat',
+                      method: 'PUT',
+                      data: {
+                        jscode: res1.code
+                      },
+                      header: {
+                        'content-type': 'application/json',
+                        'token': app.globalData.token
+                      },
+                      success(res2) {
+                        if (res2.statusCode == 200) {
+                          wx.showToast({
+                            title: '绑定成功',
+                          })
+                        } else if (res2.statusCode == 401) {
+                          wx.showModal({
+                            content: '没有权限',
+                          })
+                        } else if (res2.statusCode == 500) {
+                          wx.showToast({
+                            title: '服务器错误',
+                            icon: 'error'
+                          })
+                        }
                       }
-                    }
-                  })
+                    })
+                  }
                 }
-              }
-            })
+              })
+            }
           }
-        }
-      })
+        })
+      }
     }
   }
 })

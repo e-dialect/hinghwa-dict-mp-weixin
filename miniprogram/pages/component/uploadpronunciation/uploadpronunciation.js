@@ -32,6 +32,7 @@ Page({
     })
 
     if (app.globalData.userInfo.county) {
+      console.log(app.globalData.userInfo)
       let index_0 = countys.indexOf(app.globalData.userInfo.county)
       let index_1 = towns[index_0].indexOf(app.globalData.userInfo.town)
       let multiArray = this.data.multiArray
@@ -39,6 +40,12 @@ Page({
       this.setData({
         multiIndex: [index_0, index_1],
         multiArray: multiArray
+      })
+    } else {
+      wx.showModal({
+        title: '地区tip',
+        content: '在个人页面中点击头像可进入设置页面，设置地区之后默认读取到当前页面的地区项。',
+        showCancel: false
       })
     }
 
