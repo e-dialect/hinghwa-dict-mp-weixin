@@ -35,7 +35,7 @@ Page({
     if (app.globalData.status == 0 && PageCur == 'about') {
       let that = this
       wx.showModal({
-        content: '请先授权登录',
+        content: '请先登录',
         showCancel: false,
         success(res) {
           that.login()
