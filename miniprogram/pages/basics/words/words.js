@@ -114,9 +114,21 @@ Page({
       icon: 'none'
     })
     let index = e.currentTarget.dataset.index
-    var src = this.data.pronunciation[index].pronunciation.source
+    let src = ""
+    if (index === "-1")
+      src = this.data.word.source
+    else
+      this.data.pronunciation[index].pronunciation.source
     this.innerAudioContext.src = src
     this.innerAudioContext.play()
+  },
+
+  get_related_word(e) {
+    let index = e.currentTarget.dataset.index
+    let id = this.data.word.related_words[index].id
+    wx.navigateTo({
+      url: '/pages/basics/words/words?id=' + id
+    })
   },
 
   tabSelect(e) {

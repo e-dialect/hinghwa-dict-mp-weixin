@@ -21,13 +21,24 @@
   </view>
 </view>
 
-<view class="flex padding solid-bottom">
+<view class="padding solid-bottom">
+  <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">标准读音</button>
   <view>
-    <text class="text-bold">{{word.standard_pinyin}}</text>
-    <text class="text-grey" decode>&nbsp;&nbsp;/{{word.standard_ipa}}/&nbsp;&nbsp;</text>
+    <text class="text-bold text-xl" space="emsp"> {{word.standard_pinyin}}</text>
+    <text class="text-grey text-xl" space="emsp"> /{{word.standard_ipa}}/ </text>
+    <text wx:if="{{pronunciation.length}}" class="cuIcon-notificationfill text-xl text-blue" data-index="-1" bindtap="pronounce"></text>
   </view>
-  <view wx:if="{{pronunciation.length}}" class="text-blue margin-left-xs" data-index="{{0}}" bindtap="pronounce">
-    <text class="cuIcon-notificationfill"></text>
+</view>
+<view wx:if="{{word.related_words.length!==0}}" class="padding solid-bottom">
+  <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">相关词汇</button>
+  <view>
+    <text wx:for="{{word.related_words}}" class="text-bold text-xl text-blue" space="emsp" data-index="{{index}}" bindtap="get_related_word"> {{item.word}}</text>
+  </view>
+</view>
+<view wx:if="{{word.mandarin.length!==0}}" class="padding solid-bottom">
+  <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">普通话词汇</button>
+  <view>
+    <text wx:for="{{word.mandarin}}" class="text-bold text-xl" space="emsp"> {{item}}</text>
   </view>
 </view>
 
