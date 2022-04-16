@@ -12,7 +12,8 @@ Page({
     multiIndex: [0, 0],
     index1: 0,
     shengdiao: [],
-    characters: []
+    result: [],
+    space: ' '
   },
 
   onLoad() {
@@ -173,10 +174,11 @@ Page({
     } else {
       shengdiao = '&shengdiao=' + shengdiao
     }
+    wx.showLoading()
     // 发起条件检索
     let that = this
     wx.request({
-      url: app.globalData.server + 'characters?' + shengmu + yunmu + shengdiao,
+      url: app.globalData.server + 'characters/pinyin?' + shengmu + yunmu + shengdiao,
       method: 'GET',
       data: {},
       header: {
@@ -184,38 +186,16 @@ Page({
       },
       success(res) {
         if (res.statusCode == 200) {
-          var arr = res.data.characters
-          if (arr.length == 0) {
+          if (res.data.result.length === 0) {
             wx.showToast({
-              title: "检索结果为空！",
-              icon: 'none'
-            })
-            that.setData({
-              characters: []
+              title: '检索结果为空',
+              icon: none
             })
           } else {
-            wx.showLoading()
-            wx.request({
-              url: app.globalData.server + 'characters',
-              method: 'PUT',
-              data: {
-                characters: arr
-              },
-              header: {
-                'content-type': 'application/json',
-              },
-              success(res) {
-                if (res.statusCode == 200) {
-                  console.log(res)
-                  wx.hideLoading()
-                  if (res.data.characters.length > 1000) {
-                    res.data.characters = res.data.characters.slice(0, 1000)
-                  }
-                  that.setData({
-                    characters: res.data.characters
-                  })
-                }
-              }
+            wx.hideLoading()
+            console.log(res.data.result)
+            that.setData({
+              result: res.data.result
             })
           }
         } else {
@@ -231,6 +211,13 @@ Page({
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/basics/characters/characters?id=' + id
+    })
+  },
+
+  getWord(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/basics/words/words?id=' + id
     })
   }
 })

@@ -12,8 +12,7 @@
 </view>
 <view class="cu-form-group">
   <view class="title">韵母</view>
-  <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
-    range="{{yunmu}}">
+  <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}" range="{{yunmu}}">
     <view class="picker">
       {{yunmu[1][multiIndex[1]]}}
     </view>
@@ -28,23 +27,15 @@
   </picker>
 </view>
 
-<button class="cu-btn round bg-gradual-blue shadow text-df margin-top"
-  style="display:flex;justify-content:center;width:65vw;" bindtap="searchByConditions">条件检索</button>
+<button class="cu-btn round bg-gradual-blue shadow text-df margin-top margin-bottom" style="display:flex;justify-content:center;width:65vw;" bindtap="searchByConditions">条件检索</button>
 
-<view class="cu-list menu margin-top">
-  <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
-    wx:for="{{characters}}" bindtap="getCharacter">
-    <view class="flex flex-direction justify-between">
-      <view class="margin-bottom-sm">
-        <text class="text-xxl text-bold">{{item.character}}</text>
-        <!-- <text class="cuIcon-notificationfill text-blue margin-left"></text> -->
-      </view>
-      <view>
-        <text>{{item.pinyin}}</text>
-        <text class="text-grey margin-left">/{{item.ipa}}/</text>
-      </view>
-    </view>
+<view wx:for="{{result}}" class="padding bg-white solid-bottom">
+  <view class="text-bold text-xxlp">{{item.pinyin}}</view>
+  <view>
+    <text wx:for="{{item.characters}}" data-id="{{item.word}}" bindtap="getWord">
+      <text class="text-xxl {{item.word?'text-blue':''}}" space="emsp">{{item.character}}</text>
+      <text wx:if="{{item.traditional!==item.character}}" class="text-xl" space="emsp">{{item.traditional}} </text>
+      <text wx:else class="text-xl" space="emsp">{{space}}</text>
+    </text>
   </view>
 </view>
-
-
