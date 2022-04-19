@@ -74,48 +74,19 @@ Page({
   },
 
   searchPinyin(key) {
-    let shengmu = key.substring(0, 1)
-    let yunmu = key.substring(1, key.length - 1)
-    let shengdiao = key.substring(key.length - 1)
     let that = this
     wx.request({
-      url: app.globalData.server + 'characters?shengmu=' + shengmu + '&yunmu=' + yunmu + '&shengdiao=' + shengdiao,
+      url: app.globalData.server + 'characters/words/v2?search=' + key,
       method: 'GET',
-      data: {},
       header: {
         'content-type': 'application/json',
       },
       success(res) {
-        if (res.statusCode == 200) {
-          var arr = res.data.characters
-          wx.request({
-            url: app.globalData.server + 'characters',
-            method: 'PUT',
-            data: {
-              characters: arr
-            },
-            header: {
-              'content-type': 'application/json',
-            },
-            success(res) {
-              if (res.statusCode == 200) {
-                wx.hideLoading()
-                if (res.data.characters.length === 0) {
-                  wx.showToast({
-                    title: '搜索结果为空',
-                    icon: 'none'
-                  })
-                } else {
-                  that.setData({
-                    characters: res.data.characters
-                  })
-                }
-              }
-            }
-          })
-        } else {
-          wx.showToast({
-            title: '服务器错误',
+        if (res.statusCode === 200) {
+          wx.hideLoading()
+          console.log(res.data.characters)
+          that.setData({
+            characters: res.data.characters
           })
         }
       }
@@ -278,6 +249,15 @@ Page({
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/plugin/article/article?id=' + id,
+    })
+  },
+
+  getWord(e) {
+    let id = e.currentTarget.dataset.id
+    if (!id)
+      return
+    wx.navigateTo({
+      url: '/pages/basics/words/words?id=' + id
     })
   }
 })

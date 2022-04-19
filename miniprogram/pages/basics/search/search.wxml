@@ -2,6 +2,10 @@
   <view slot="content" class="text-black">语记·搜索</view>
 </cu-custom>
 <scroll-view scroll-y class="scrollPage">
+  <view wx:if="{{index==2}}" class="bg-white padding-sm padding-left">
+    <view class="text-black text-bold text-xl">输入汉字查拼音</view>
+    <view>忽略所有非汉字字符，暂不支持搜索繁体字</view>
+  </view>
   <view class="cu-bar search bg-white">
     <view class="action">
       <picker bindchange="sort" value="{{index}}" range="{{sort}}">
@@ -11,8 +15,7 @@
     </view>
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="兴化语记" focus="true" value="{{key}}" confirm-type="search" bindinput="key"
-        bindconfirm="search"></input>
+      <input type="text" placeholder="兴化语记" focus="true" value="{{key}}" confirm-type="search" bindinput="key" bindconfirm="search"></input>
     </view>
     <view class="action" bindtap="search">
       <text class="text-blue">搜索</text>
@@ -52,8 +55,7 @@
   </view>
   <view wx:if="{{index==1&&status==1}}">
     <view class="cu-list menu" wx:for="{{pronunciation}}">
-      <view class="cu-item arrow" style="min-height:150rpx;" data-id="{{kid.id}}" bindtap="character"
-        wx:for="{{item.characters}}" wx:for-item="kid">
+      <view class="cu-item arrow" style="min-height:150rpx;" data-id="{{kid.id}}" bindtap="character" wx:for="{{item.characters}}" wx:for-item="kid">
         <view class="flex flex-direction justify-between">
           <view class="margin-bottom-sm">
             <text class="text-xxl text-bold">{{item.label}}</text>
@@ -67,17 +69,19 @@
       </view>
     </view>
   </view>
-  <view class="cu-list menu" wx:if="{{index==2&&status==1}}">
-    <view class="cu-item arrow" style="min-height:150rpx;" bindtap="character" data-id="{{item.id}}"
-      wx:for="{{characters}}">
-      <view class="flex flex-direction justify-between">
-        <view class="margin-bottom-sm">
-          <text class="text-xxl text-bold">{{item.character}}</text>
-          <!-- <text class="cuIcon-notificationfill text-blue margin-left"></text> -->
-        </view>
+  <view class="bg-white" wx:if="{{index==2&&status==1}}">
+    <view wx:for="{{characters}}" wx:for-item="i">
+      <view wx:for="{{i.characters}}" wx:for-item="j" class="padding solid-bottom">
         <view>
-          <text>{{item.pinyin}}</text>
-          <text class="text-grey margin-left">/{{item.ipa}}/</text>
+          <text class="text-xxl text-black text-bold">{{i.label}} </text>
+          <text class="text-grey"> {{j.county}} / {{j.town}}</text>
+        </view>
+        <view class="text-lg margin-top-xs">
+          <text wx:for="{{j.characters}}" wx:for-item="k" data-id="{{k.word}}" bindtap="getWord">
+            <text wx:if="{{k.word}}" class="text-blue">{{k.pinyin}}</text>
+            <text wx:else>{{k.pinyin}}</text>
+            <text class="text-grey" space="emsp"> /{{k.ipa}}/ </text>
+          </text>
         </view>
       </view>
     </view>
