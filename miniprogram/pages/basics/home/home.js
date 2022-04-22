@@ -221,6 +221,14 @@ Component({
       })
     },
 
+    // jump to a word randomly
+    randomWord() {
+      let random_id = Math.floor(Math.random() * 6099) + 1;
+      wx.navigateTo({
+        url: '/pages/basics/words/words?id=' + random_id
+      })
+    },
+
     getMore() {
       // let word = JSON.stringify(this.data.word)
       let id = this.data.word.id

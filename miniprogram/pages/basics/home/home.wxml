@@ -1,14 +1,14 @@
-<scroll-view scroll-y class="scrollPage" refresher-enabled="true" refresher-default-style="none"
-  refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh">
-  <image src="/images/xhyj.png" mode="aspectFill" style="width:100%;"></image>
-  <!-- <view style="box-shadow:0 -10px 40px 45px #f7f7f7;position:relative;z-index:100;"></view> -->
-  <view class="layout-index" style="z-index:100;">
-    <view wx:if="{{status==0}}" class="index-card bg-img"
-      style="background-image:url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gsxy5mqf1oj36y01jkqd9.jpg)">
+<scroll-view scroll-y class="scrollPage" refresher-enabled="true" refresher-default-style="none" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh">
+  <image src="/images/fm.gif" mode="widthFix" style="width:100%;"></image>
+  <view class="layout-index-login" style="z-index:100;">
+    <view wx:if="{{status==0}}" class="index-card bg-img" style="background-image:url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gsxy5mqf1oj36y01jkqd9.jpg)">
       <view class="card-name">兴化语记</view>
       <view class="card-slogan">记住乡愁 留下乡音</view>
       <button class="card-btn cu-btn round bg-black shadow" bindtap="login" style="width:22vw">一键登录</button>
     </view>
+  </view>
+  <!-- <view style="box-shadow:0 -10px 40px 45px #f7f7f7;position:relative;z-index:100;"></view> -->
+  <view class="layout-index" style="z-index:100;">
     <view class="index-search" style="border-radius:5000rpx;" bindtap="search">
       <view class="cu-bar search">
         <view class="search-form round">
@@ -17,15 +17,15 @@
         </view>
       </view>
     </view>
-    <view class="index-word" bindtap="getMore">
+    <view class="index-word">
       <view class="flex solid-bottom justify-between">
         <view class="padding-sm margin-xs">
           <text class="text-bold">每日一词</text>
           <!-- <text class="cuIcon-refresh text-gray margin-left-sm"></text> -->
         </view>
-        <view class="padding-sm margin-xs text-grey">MORE</view>
+        <view class="padding-sm margin-xs text-grey" bindtap="randomWord">随机跳词</view>
       </view>
-      <view class="flex">
+      <view class="flex" bindtap="getMore">
         <view class="flex-sub padding-sm margin text-center solid-right">
           <view class="text-bold text-sl">{{word.word}}</view>
         </view>
