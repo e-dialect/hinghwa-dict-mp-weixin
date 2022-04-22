@@ -146,12 +146,8 @@ Page({
     if (shengmu == 'all' && yunmu == 'all' && shengdiao == 'all') {
       let that = this
       wx.showModal({
-        content: '这样搜索共有5765个结果，若要显示可能需要一定的时间，请确认是否继续？',
-        success(res) {
-          if (res.confirm) {
-            that.search(shengmu, yunmu, shengdiao)
-          }
-        }
+        content: '有超过500个可能拼音，过于宽泛！请再详细一些~',
+        showCancel: false
       })
     } else {
       this.search(shengmu, yunmu, shengdiao)
