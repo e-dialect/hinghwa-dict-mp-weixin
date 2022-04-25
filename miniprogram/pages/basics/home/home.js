@@ -249,6 +249,12 @@ Component({
       wx.navigateTo({
         url: '/pages/basics/search/search',
       })
+    },
+
+    getAnnouncement() {
+      wx.navigateTo({
+        url: '/pages/plugin/article/article?id=175'
+      })
     }
   }
 })

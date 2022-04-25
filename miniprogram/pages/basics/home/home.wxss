@@ -1,0 +1,23 @@
+.welcome-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin: 5vw;
+}
+
+.word-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-right: 1vw;
+}
+
+.search-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-left: 1vw;
+}
+
+.article-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-top: 2vw;
+}

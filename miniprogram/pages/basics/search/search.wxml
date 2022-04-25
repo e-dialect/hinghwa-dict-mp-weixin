@@ -74,6 +74,8 @@
       <view wx:for="{{i.characters}}" wx:for-item="j" class="padding solid-bottom">
         <view>
           <text class="text-xxl text-black text-bold">{{i.label}} </text>
+          <text wx:if="{{i.lable!==i.traditional}}"> </text>
+          <text class="text-xl">{{i.label===i.traditional?' ':i.traditional}}</text>
           <text class="text-grey"> {{j.county}} / {{j.town}}</text>
         </view>
         <view class="text-lg margin-top-xs">
