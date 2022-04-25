@@ -22,25 +22,25 @@
 </view>
 
 <view class="padding solid-bottom">
-  <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">标准读音</button>
+  <!-- <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">标准读音</button> -->
   <view>
-    <text class="text-bold text-xl" space="emsp"> {{word.standard_pinyin}}</text>
+    <text class="text-bold text-xl" space="emsp">{{word.standard_pinyin}}</text>
     <text class="text-grey text-xl" space="emsp"> /{{word.standard_ipa}}/ </text>
     <text wx:if="{{pronunciation.length}}" class="cuIcon-notificationfill text-xl text-blue" data-index="-1" bindtap="pronounce"></text>
   </view>
 </view>
-<view wx:if="{{word.related_words.length!==0}}" class="padding solid-bottom">
+<!-- <view wx:if="{{word.related_words.length!==0}}" class="padding solid-bottom">
   <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">相关词汇</button>
   <view>
     <text wx:for="{{word.related_words}}" class="text-bold text-xl text-blue" space="emsp" data-index="{{index}}" bindtap="get_related_word"> {{item.word}}</text>
   </view>
-</view>
-<view wx:if="{{word.mandarin.length!==0}}" class="padding solid-bottom">
+</view> -->
+<!-- <view wx:if="{{word.mandarin.length!==0}}" class="padding solid-bottom">
   <button class="cu-btn bg-red text-sm margin-bottom-sm" style="width:fit-content">普通话词汇</button>
   <view>
     <text wx:for="{{word.mandarin}}" class="text-bold text-xl" space="emsp"> {{item}}</text>
   </view>
-</view>
+</view> -->
 
 <scroll-view scroll-x class="bg-white nav text-center">
   <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
@@ -84,9 +84,23 @@
     </view>
   </swiper-item>
   <swiper-item class="margin">
-    <view class="text-bold text-xl">附注</view>
-    <view class="margin-top-sm text-grey">
-      {{word.annotation}}
+    <view wx:if="{{word.annotation.length!==0}}">
+      <view class="text-bold text-xl">附注</view>
+      <view class="margin-top-sm text-grey">
+        {{word.annotation}}
+      </view>
+    </view>
+    <view wx:if="{{word.related_words.length!==0}}" class="margin-top">
+      <view class="text-bold text-xl">相关词汇</view>
+      <view class="margin-top-sm">
+        <text wx:for="{{word.related_words}}" class="text-bold text-xl text-blue" space="emsp" data-index="{{index}}" bindtap="get_related_word">{{item.word}} </text>
+      </view>
+    </view>
+    <view wx:if="{{word.mandarin.length!==0}}" class="margin-top">
+      <view class="text-bold text-xl">普通话词汇</view>
+      <view class="margin-top-sm">
+        <text wx:for="{{word.mandarin}}" class="text-xl" space="emsp">{{item}} </text>
+      </view>
     </view>
   </swiper-item>
 </swiper>
@@ -127,9 +141,23 @@
     </view>
   </view>
   <view wx:if="{{TabCur==2}}" class="margin">
-    <view class="text-bold text-xl">附注</view>
-    <view class="margin-top-sm text-grey">
-      {{word.annotation}}
+    <view wx:if="{{word.annotation.length!==0}}">
+      <view class="text-bold text-xl">附注</view>
+      <view class="margin-top-sm text-grey">
+        {{word.annotation}}
+      </view>
+    </view>
+    <view wx:if="{{word.related_words.length!==0}}" class="margin-top">
+      <view class="text-bold text-xl">相关词汇</view>
+      <view class="margin-top-sm">
+        <text wx:for="{{word.related_words}}" class="text-bold text-xl text-blue" space="emsp" data-index="{{index}}" bindtap="get_related_word">{{item.word}} </text>
+      </view>
+    </view>
+    <view wx:if="{{word.mandarin.length!==0}}" class="margin-top">
+      <view class="text-bold text-xl">普通话词汇</view>
+      <view class="margin-top-sm">
+        <text wx:for="{{word.mandarin}}" class="text-xl" space="emsp">{{item}} </text>
+      </view>
     </view>
   </view>
 </view>

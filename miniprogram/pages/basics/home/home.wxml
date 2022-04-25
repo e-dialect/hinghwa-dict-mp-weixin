@@ -20,25 +20,25 @@
         </view>
       </view>
       <view class="flex padding align-center text-center">
-        <view class="flex-sub">
+        <view class="flex-sub" data-id="1" bindtap="getTools">
           <view>
             <image src="/images/1.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">拼音方案</view>
         </view>
-        <view class="flex-sub">
+        <view class="flex-sub" data-id="2" bindtap="getTools">
           <view>
             <image src="/images/2.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">拼音速查</view>
         </view>
-        <view class="flex-sub">
+        <view class="flex-sub" data-id="3" bindtap="getTools">
           <view>
             <image src="/images/3.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">条件查字</view>
         </view>
-        <view class="flex-sub">
+        <view class="flex-sub" data-id="4" bindtap="getTools">
           <view>
             <image src="/images/4.png" mode="widthFix" style="width:100%"></image>
           </view>

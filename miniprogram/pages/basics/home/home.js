@@ -251,6 +251,27 @@ Component({
       })
     },
 
+    getTools(e) {
+      let id = e.currentTarget.dataset.id
+      if (id === '1') {
+        wx.navigateTo({
+          url: '/pages/component/pinyin/pinyin',
+        })
+      } else if (id === '2') {
+        wx.navigateTo({
+          url: '/pages/basics/search/search?index=2',
+        })
+      } else if (id === '3') {
+        wx.navigateTo({
+          url: '/pages/component/condition/condition',
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/component/daily/daily',
+        })
+      }
+    },
+
     getAnnouncement() {
       wx.navigateTo({
         url: '/pages/plugin/article/article?id=175'

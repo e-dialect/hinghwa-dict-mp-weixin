@@ -7,7 +7,7 @@ Page({
     definition: [],
     pronunciation: [],
     TabCur: 0,
-    tabs: ['释义', '发音', '附注'],
+    tabs: ['释义', '发音', '其他'],
     platform: '',
     isShare: 0,
     no_pronunciations: false
