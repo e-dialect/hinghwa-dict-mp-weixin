@@ -62,6 +62,7 @@ Page({
         } else {
           wx.showToast({
             title: '发送失败',
+            icon: 'error'
           })
         }
       },

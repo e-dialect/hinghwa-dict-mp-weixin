@@ -766,6 +766,12 @@ button.icon.lg {
 	height: 95rpx;
 }
 
+button.icon.llg {
+	font-size: 42rpx;
+	width: 155rpx;
+	height: 155rpx;
+}
+
 .cu-btn.shadow-blur::before {
 	top: 4rpx;
 	left: 4rpx;

@@ -9,18 +9,21 @@ Component({
     status: 0,
     word: {},
     carousels: [],
-    triggered: false
+    triggered: false,
+    announcements: []
   },
 
   lifetimes: {
     attached: function () {
+       console.log('aaaa')
       // 在组件实例进入页面节点树时执行
       this.setData({
         status: app.globalData.status,
         word: app.globalData.word
       })
       this.getWord()
-      this.getArticles()
+      // this.getArticles()
+      this.getAnnouncements()
       if (this.data.status == 0) {
         app.globalData.token = wx.getStorageSync('token')
         app.globalData.id = wx.getStorageSync('id')
@@ -239,7 +242,7 @@ Component({
 
     toArticle(e) {
       let index = e.currentTarget.dataset.index
-      let id = this.data.carousels[index].id
+      let id = this.data.announcements[index].article.id
       wx.navigateTo({
         url: '/pages/plugin/article/article?id=' + id
       })
@@ -272,9 +275,22 @@ Component({
       }
     },
 
-    getAnnouncement() {
-      wx.navigateTo({
-        url: '/pages/plugin/article/article?id=175'
+    getAnnouncements() {
+      let that = this
+      wx.request({
+        url: app.globalData.server + 'website/announcements',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json',
+        },
+        success(res) {
+          if (res.statusCode === 200) {
+            that.setData({
+              announcements: res.data.announcements
+            })
+            console.log(that.data.announcements)
+          }
+        }
       })
     }
   }

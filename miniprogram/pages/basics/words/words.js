@@ -71,6 +71,7 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
+        console.log(res)
         if (res.statusCode == 200) {
           that.setData({
             word: res.data.word

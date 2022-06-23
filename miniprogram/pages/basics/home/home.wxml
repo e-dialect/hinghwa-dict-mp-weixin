@@ -1,5 +1,5 @@
 <scroll-view scroll-y class="scrollPage" refresher-enabled="true" refresher-default-style="none" refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh">
-  <image src="/images/fm.gif" mode="widthFix" style="width:100%;"></image>
+  <image src="https://cos.edialect.top/miniprogram/fm.gif" mode="widthFix" style="width:100%;"></image>
   <!-- <view class="layout-index-login" style="z-index:100;">
     <view wx:if="{{status==0}}" class="index-card bg-img" style="background-image:url(https://wx3.sinaimg.cn/mw690/0084vph8ly1gsxy5mqf1oj36y01jkqd9.jpg)">
       <view class="card-name">兴化语记</view>
@@ -19,40 +19,46 @@
           <button class="cu-btn bg-black shadow" style="width:fit-content" bindtap="login">一键登录</button>
         </view>
       </view>
-      <view class="flex padding align-center text-center">
+      <view class="cu-bar search" bindtap="search">
+        <view class="search-form round">
+          <text class="cuIcon-search"></text>
+          <input type="text" placeholder="搜索词语、单字、拼音和文章" confirm-type="search" disabled="true"></input>
+        </view>
+      </view>
+      <!-- <view class="flex padding align-center text-center">
         <view class="flex-sub" data-id="1" bindtap="getTools">
           <view>
-            <image src="/images/1.png" mode="widthFix" style="width:100%"></image>
+            <image src="https://cos.edialect.top/miniprogram/1.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">拼音方案</view>
         </view>
         <view class="flex-sub" data-id="2" bindtap="getTools">
           <view>
-            <image src="/images/2.png" mode="widthFix" style="width:100%"></image>
+            <image src="https://cos.edialect.top/miniprogram/2.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">拼音速查</view>
         </view>
         <view class="flex-sub" data-id="3" bindtap="getTools">
           <view>
-            <image src="/images/3.png" mode="widthFix" style="width:100%"></image>
+            <image src="https://cos.edialect.top/miniprogram/3.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">条件查字</view>
         </view>
         <view class="flex-sub" data-id="4" bindtap="getTools">
           <view>
-            <image src="/images/4.png" mode="widthFix" style="width:100%"></image>
+            <image src="https://cos.edialect.top/miniprogram/4.png" mode="widthFix" style="width:100%"></image>
           </view>
           <view class="text-bold">日常用语</view>
         </view>
-      </view>
+      </view> -->
     </view>
-    <view class="flex" style="margin:5vw">
-      <view class="flex-sub word-card padding shadow -gray">
-        <view class="text-gray" style="direction:rtl" bindtap="randomWord">随机跳词</view>
-        <view class="text-bold text-center padding text-xxlp solid-bottom" bindtap="getMore">{{word.word}}</view>
-        <view class="text-gray padding-top" bindtap="getMore">{{word.definition}}</view>
-      </view>
-      <view class="flex-sub">
+    <!-- <view class="flex" style="margin:5vw"> -->
+    <view class="word-card padding shadow -gray" style="margin:5vw">
+      <view class="text-gray" style="direction:rtl" bindtap="randomWord">随机跳词</view>
+      <view class="text-bold text-center padding text-xxlp solid-bottom" bindtap="getMore">{{word.word}}</view>
+      <view class="text-gray padding-top" bindtap="getMore">{{word.definition}}</view>
+    </view>
+    <!-- <view class="flex-sub">
         <view class="search-card padding shadow -gray" bindtap="search">
           <view class="text-bold text-center padding text-xl">搜索</view>
           <view class="cu-bar search">
@@ -62,11 +68,12 @@
             </view>
           </view>
         </view>
-        <view class="article-card shadow -gray" bindtap="getAnnouncement">
-          <image src="/images/logo.png" mode="widthFix" style="width:100%"></image>
+        <view class="article-card padding shadow -gray" bindtap="getAnnouncement">
+          <view class="text-bold text-center padding text-xl">公告</view>
+          <view class="text-gray text-center">点击进入>></view>
         </view>
-      </view>
-    </view>
+      </view> -->
+    <!-- </view> -->
     <!-- <view class="index-search" style="border-radius:5000rpx;" bindtap="search">
       <view class="cu-bar search">
         <view class="search-form round">
@@ -107,6 +114,9 @@
         </view>
       </view>
     </view> -->
+    <view wx:for="{{announcements}}" class="word-card padding shadow -gray" style="margin:5vw" data-index="{{index}}" bindtap="toArticle">
+      <image src="{{item.article.cover}}" mode="widthFix" style="width:100%"></image>
+    </view>
     <view class="stand-view"></view>
   </view>
 </scroll-view>

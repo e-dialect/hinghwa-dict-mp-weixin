@@ -24,7 +24,7 @@ Page({
 
   onShow() {
     // 获取评论
-    this.getComments()
+    // this.getComments()
   },
 
   // 获取游客信息

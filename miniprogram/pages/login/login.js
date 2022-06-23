@@ -31,6 +31,7 @@ Page({
             title: '登录成功',
             duration: 2000
           })
+          console.log("aaaa:", res.data.token)
           wx.setStorageSync('token', res.data.token)
           wx.setStorageSync('id', res.data.id)
           setTimeout(function () {

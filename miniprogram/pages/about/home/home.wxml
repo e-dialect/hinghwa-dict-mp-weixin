@@ -1,5 +1,5 @@
 <scroll-view scroll-y class="scrollPage">
-  <image class="bg-image" src="/images/bg2.jpg" mode="aspectFill"></image>
+  <image class="bg-image" src="https://cos.edialect.top/miniprogram/user.png" mode="aspectFill"></image>
   <view class="bg-info">
     <view class="avatar" bindtap="userInfo">
       <image class="cu-avatar round" src="{{avatar}}" mode="aspectFill"></image>

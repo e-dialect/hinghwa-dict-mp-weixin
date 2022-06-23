@@ -49,6 +49,5 @@
   "requiredBackgroundModes": [
     "audio",
     "location"
-  ],
-  "lazyCodeLoading": "requiredComponents"
+  ]
 }

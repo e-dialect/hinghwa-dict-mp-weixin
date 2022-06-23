@@ -11,7 +11,13 @@ page {
 
 .layout-index {
   position: absolute;
-  top: 19vh;
+  top: 45%;
+  width: 100vw;
+}
+
+.layout-index-login {
+  position: absolute;
+  top: 33%;
   width: 100vw;
 }
 
